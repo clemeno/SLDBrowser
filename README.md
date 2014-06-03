@@ -1,8 +1,8 @@
-# SLDBrowser #
+# SLDBrowser (dev) #
 
 \[ [Use it online](http://pirmil.eu/) \]
 
-Branch: dev [![Build Status](https://travis-ci.org/clemeno/SLDBrowser.svg?branch=dev)](https://travis-ci.org/clemeno/SLDBrowser)
+[![Build Status](https://travis-ci.org/clemeno/SLDBrowser.svg?branch=dev)](https://travis-ci.org/clemeno/SLDBrowser)
 
 SLDBrowser : Semantic Linked Data Browser, 
 
