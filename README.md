@@ -1,14 +1,20 @@
-# SLDBrowser (dev) #
+# SLDBrowser #
 
 \[ [Use it online](http://pirmil.eu/) \]
 
 [![Build Status](https://travis-ci.org/clemeno/SLDBrowser.svg?branch=dev)](https://travis-ci.org/clemeno/SLDBrowser)
 
-SLDBrowser : Semantic Linked Data Browser, 
 
-dynamic SPARQL endpoint selection 
 
-data visualisation suggestions 
+SLDBrowser (dev) 
+
+Semantic Linked Data Browser
+
+Dynamic SPARQL endpoint selection 
+
+Data visualisation suggestions 
+
+
 
 ## Build ##
 
