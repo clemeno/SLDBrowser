@@ -1,11 +1,14 @@
 # SLDBrowser #
 
+\[ [Use it online](http://pirmil.eu/) \]
+
+Branch: dev [![Build Status](https://travis-ci.org/clemeno/SLDBrowser.svg?branch=dev)](https://travis-ci.org/clemeno/SLDBrowser)
+
 SLDBrowser : Semantic Linked Data Browser, 
 
 dynamic SPARQL endpoint selection 
 
 data visualisation suggestions 
-
 
 ## Build ##
 
@@ -49,6 +52,5 @@ Upload the following files &amp; folders to a web server:
  - min/*
 
 ## Temporary License ## 
-dev
 
 Copyright © 2014 Clément Ménoret ; Creative Commons (CC) BY-NC-ND
