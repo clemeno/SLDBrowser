@@ -1,4 +1,4 @@
-# SLDBrowser #
+#SLDBrowser
 
 \[ [Use it online](http://pirmil.eu/) \]
 
@@ -16,15 +16,15 @@ Data visualisation suggestions
 
 
 
-## Build ##
+##Build
 
-### Requires ###
+###Requires
 
 Installed: 
  - Node.js with npm (http://nodejs.org/ with npm included) 
  - Grunt (http://gruntjs.com/) 
 
-### npm dependencies ###
+###npm dependencies
 
 Command ````npm install ```` 
 
@@ -35,7 +35,7 @@ Will locally install:
  - Grep
  - Uglify
 
-### Build ###
+###Build
 
 Command ````grunt all ```` 
 
@@ -46,7 +46,7 @@ Will perform:
  - cleaning
  - minify
 
-## Deploy ##
+##Deploy
 
 Upload the following files &amp; folders to a web server: 
  - *.html
@@ -57,6 +57,6 @@ Upload the following files &amp; folders to a web server:
  - img/*
  - min/*
 
-## Temporary License ## 
+##Temporary License
 
 Copyright © 2014 Clément Ménoret ; Creative Commons (CC) BY-NC-ND
