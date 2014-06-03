@@ -1,0 +1,261 @@
+html, body {
+	height: 100%; 
+	margin: 0; 
+	font-family: sans-serif; 
+	font-size: 0.8em; 
+}
+
+h1 {  
+	font-size: 220%; 
+	font-weight: bold; 
+} 
+h2 {  
+	font-size: 180%; 
+	font-weight: bold; 
+} 
+h3 {  
+	font-size: 150%; 
+	font-weight: bold; 
+} 
+h4 {  
+	font-size: 125%; 
+	font-weight: bold; 
+} 
+h5 {  
+	font-size: 110%; 
+	font-weight: bold; 
+} 
+h6 {  
+	font-size: 105%; 
+	font-weight: bold; 
+} 
+
+input {
+	width: 24em; 
+}
+select {
+	width: 18em; 
+}
+select, input {
+	font-family: monospace; 
+	vertical-align: middle; 
+}
+select:hover, button:hover, label:hover {
+	cursor: pointer; 
+}
+
+
+
+/* *** *** *** */ 
+
+#webappcontrol {
+	position: fixed; 
+	top: 0; 
+	left: 0; 
+	z-index: 99999999999999; 
+	padding: 8px; 
+	background-color: rgba( 20, 20, 20, 0.6 ); 
+	color: rgba( 240, 240, 240, 0.9 ); 
+	width: 100%; 
+	min-width: 1010px; 
+}
+#webappfullcontent {
+	z-index: 100; 
+	width: auto; 
+	min-width: 512px; 
+	min-height: 512px; 
+	margin-bottom: 16px; 
+	background: white; 
+	z-index: 10; 
+	/*overflow: auto; */
+	border-top: 2px solid rgba( 120, 120, 120, 0.8 ); 
+	border-bottom: 2px dashed rgba( 120, 120, 120, 0.8 ); 
+	border-radius: 16px; 
+}
+
+.topdiv {
+	/*display: inline-block; */
+	/*width: 1000px; */
+	/*vertical-align: top; */
+	/*border-radius: 8px; */
+}
+
+.topdiv p {
+	margin-bottom: 4px; 
+} 
+
+#webapptitle {
+	font-size: 240%; 
+}
+
+
+
+.ib {
+	display: inline-block; 
+}
+
+.map { 
+	width: auto; 
+	padding: 8px; 
+	background-color: rgba( 200, 200, 200, 0.6 ); 
+	border-radius: 16px; 
+} 
+.map .canevas { 
+	width: 524px; 
+	height: 400px; 
+} 
+.map:hover, .topdiv {
+	cursor: move; 
+	cursor: url( \openhand.cur ), move; 
+	cursor: url( \openhand.cur ) 4 4, move; 
+}
+.map:active {
+	cursor: move; 
+	cursor: url( \closedhand.cur ), move; 
+	cursor: url( \closedhand.cur ) 4 4, move; 
+}
+
+.timeline { 
+	width: auto; 
+	padding: 8px; 
+	background-color: rgba( 200, 200, 200, 0.6 ); 
+	border-radius: 16px; 
+} 
+.timeline:hover, .topdiv {
+	cursor: move; 
+	cursor: url( \openhand.cur ), move; 
+	cursor: url( \openhand.cur ) 4 4, move; 
+}
+.timeline:active {
+	cursor: move; 
+	cursor: url( \closedhand.cur ), move; 
+	cursor: url( \closedhand.cur ) 4 4, move; 
+}
+h2.timelineMajorMarker {
+	margin-top: 4px; 
+}
+h3.timelineMajorMarker {
+	margin-top: 3px; 
+	margin-left: 8px; 
+}
+h4.timelineMajorMarker {
+	margin-top: 2px; 
+	margin-left: 16px; 
+}
+h5.timelineMajorMarker {
+	margin-top: 1px; 
+	margin-left: 24px; 
+}
+h6.timelineMajorMarker {
+	margin-left: 32px; 
+}
+.timelineMinor { 
+	margin-top: 2px; 
+	padding: 4px;
+	border: 1px solid rgba( 80, 80, 80, 0.8 ); 
+	border-radius: 6px; 
+}
+
+.object {
+	/*display: inline-block; */
+	/*float: left; */
+	word-wrap: break-word; 
+	overflow: hidden; 
+	max-width: 254px; 
+	padding: 8px; 
+	background-color: rgba( 200, 200, 200, 0.6 ); 
+	/*vertical-align: top; */
+	border-radius: 16px; 
+}
+.object:hover, .topdiv {
+	cursor: move; 
+	cursor: url( \openhand.cur ), move; 
+	cursor: url( \openhand.cur ) 4 4, move; 
+}
+.object:active {
+	cursor: move; 
+	cursor: url( \closedhand.cur ), move; 
+	cursor: url( \closedhand.cur ) 4 4, move; 
+}
+
+.object img {
+	object-fit: contain; 
+}
+
+.object h4 { 
+	display: inline; 
+} 
+
+.comment img {
+	float: right; 
+	width: auto; 
+	max-width: 128px; 
+	height: auto; 
+	max-height: 128px; 
+	border-radius: 6px; 
+}
+.bigimg1 { 
+	max-width: 100% !important; 
+	max-height: 100% !important; 
+}
+
+.selectable {
+	word-wrap: break-word; 
+}
+.selectable:hover {
+	cursor: text; 
+	/*border: 1px dashed rgba( 180, 180, 180, 0.6 );*/
+	/*background: rgba( 255, 255, 255, 0.4 ); */
+}
+.selectable:hover:before {
+	content: '“'; 
+	font-weight: bold; 
+}
+.selectable:hover:after {
+	content: '”'; 
+	font-weight: bold; 
+}
+.selectable.uri:before {
+	content: '<'; 
+	font-weight: bold; 
+}
+.selectable.uri:after {
+	content: '>'; 
+	font-weight: bold; 
+}
+
+.nodespawner:hover { 
+	cursor: pointer; 
+	cursor: hand; 
+} 
+
+
+
+/* cool predicates */ 
+
+.label {
+	font-weight: bold; 
+}
+
+
+/* identing lists */ 
+.predicatelist li { 
+	display: block; 
+	max-width: 99%; 
+	word-wrap: break-word; 
+	font-weight: bold; 
+	margin-top: 4px; 
+	padding: 2px; 
+	border: 1px solid rgba( 80, 80, 80, 0.8 ); 
+}
+.objectlist li { 
+	display: block; 
+	max-width: 99%; 
+	word-wrap: break-word; 
+	font-weight: normal; 
+	margin-top: 4px; 
+	padding: 2px; 
+	border: 1px solid rgba( 160, 160, 160, 0.8 ); 
+}
+
+
