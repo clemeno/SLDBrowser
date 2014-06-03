@@ -8,7 +8,7 @@
 	"licenses": [ "Creative Commons (CC) BY-NC-ND" ], 
 	"sldbfiles": [ "utils.js", "layout.js", "webapp.model.js", "webapp.data.js", "webapp.loading.visuals.js", "webapp.controller.js"], 
 	"scripts": {
-		"test": "mocha"
+		"test": "grunt"
 	},
 	"engines": {
 		"node": ">= 0.10.0"

@@ -194,8 +194,9 @@ grunt.registerTask('quality', ['lint', 'test']);
 grunt.registerTask('concatfiles', ['concat']);
 grunt.registerTask('clean', ['grep']); 
 grunt.registerTask('minify', ['concatfiles', 'clean', 'uglify']);
+grunt.registerTask('qcc', ['quality', 'concatfiles', 'clean']);
 grunt.registerTask('all', ['quality', 'minify']);
-grunt.registerTask('default', ['quality', 'concatfiles', 'clean']);
+grunt.registerTask('default', ['quality']);
 
 
 };
