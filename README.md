@@ -15,7 +15,7 @@ Node.js, npm, Grunt
 
 ### _npm_ dependencies ###
 
- ````bash npm install ```` 
+Command ````npm install ```` 
 
 Will locally install: 
  - JSHint
@@ -26,7 +26,7 @@ Will locally install:
 
 ### Build ###
 
- ````bash grunt all ```` 
+Command ````grunt all ```` 
 
 Will perform: 
  - lint
