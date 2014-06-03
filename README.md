@@ -1,21 +1,30 @@
-# SLDBrowser #
+#SLDBrowser
 
-SLDBrowser : Semantic Linked Data Browser, 
+\[ [Use it online](http://pirmil.eu/) \]
 
-dynamic SPARQL endpoint selection 
-
-data visualisation suggestions 
+[![Build Status](https://travis-ci.org/clemeno/SLDBrowser.svg?branch=dev)](https://travis-ci.org/clemeno/SLDBrowser)
 
 
-## Build ##
 
-### Requires ###
+SLDBrowser (dev) 
+
+Semantic Linked Data Browser
+
+Dynamic SPARQL endpoint selection 
+
+Data visualisation suggestions 
+
+
+
+##Build
+
+###Requires
 
 Installed: 
  - Node.js with npm (http://nodejs.org/ with npm included) 
  - Grunt (http://gruntjs.com/) 
 
-### npm dependencies ###
+###npm dependencies
 
 Command ````npm install ```` 
 
@@ -26,7 +35,7 @@ Will locally install:
  - Grep
  - Uglify
 
-### Build ###
+###Build
 
 Command ````grunt all ```` 
 
@@ -37,7 +46,7 @@ Will perform:
  - cleaning
  - minify
 
-## Deploy ##
+##Deploy
 
 Upload the following files &amp; folders to a web server: 
  - *.html
@@ -48,7 +57,6 @@ Upload the following files &amp; folders to a web server:
  - img/*
  - min/*
 
-## Temporary License ## 
-dev
+##Temporary License
 
 Copyright © 2014 Clément Ménoret ; Creative Commons (CC) BY-NC-ND
