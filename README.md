@@ -11,9 +11,11 @@ data visualisation suggestions
 
 ### Requires ###
 
-Node.js, npm, Grunt
+Installed: 
+ - Node.js with npm (http://nodejs.org/ with npm included) 
+ - Grunt (http://gruntjs.com/) 
 
-### _npm_ dependencies ###
+### npm dependencies ###
 
 Command ````npm install ```` 
 
