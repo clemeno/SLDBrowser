@@ -1,101 +1,88 @@
 /*global module:false*/
 module.exports	=	function(	grunt	)	{
-
-
-
-	// grunt initconfig
-
+	//	grunt	init	config
 	grunt.initConfig(
 		{
-
-
-
-			// load package.json data
-
-			pkg:	grunt.file.readJSON(	'package.json'	)
-
-
-
-			// banner template
-
-			,	banner:	'/*! <%=	pkg.title	||	pkg.name	%> - v<%=	pkg.version	%> - '
+			//	load	package.json	data
+			//	pkg
+			pkg						:	grunt.file.readJSON(	'package.json'	)
+			// banner	template
+			// banner
+			,	banner			:	'/*! <%=	pkg.title	||	pkg.name	%> - v<%=	pkg.version	%> - '
 				+	'<%=	grunt.template.today(	"yyyy-mm-dd"	)	%>\n'
 				+	'<%=	pkg.homepage	?	"* "	+	pkg.homepage	+	"\\n"	:	""	%>'
 				+	'* Copyright (c) <%=	grunt.template.today(	"yyyy"	)	%> <%=	pkg.author.name	%> ;'
 				+	' Licensed <%=	pkg.licenses.join(	",	"	)	%> */\n'
-
-
-
 			// task configuration
-
-			,	concat:	{
-				options:	{
-					banner:					'<%=	banner	%>'
-					,	stripBanners:	true
+			// concat
+			,	concat			:	{
+				options	:	{
+					banner					:	'<%=	banner	%>'
+					,	stripBanners	:	true
 				},
-				dist:	{
-					separator:	';'
-					,	src:			'<%=	pkg.sldbfiles	%>'
-					,	dest:			'cat/<%=	pkg.name	%>.cat.js'
+				dist		:	{
+					separator	:	';'
+					,	src			:	'<%=	pkg.sldbfiles	%>'
+					,	dest		:	'cat/<%=	pkg.name	%>.cat.js'
 				}
 			}
-
-			,	grep:	{
-				clean:	{
-					files:	{
-						'<%=	concat.dist.dest	%>':	['<%=	concat.dist.dest	%>']
+			//	grep
+			,	grep				:	{
+				clean	:	{
+					files			:	{
+						'<%=	concat.dist.dest	%>'	:	['<%=	concat.dist.dest	%>']
 					}
-					,	options:	{
-						pattern:				'for_mocha'
-						,	fileOverride:	true
+					,	options	:	{
+						pattern					:	'for_mocha'
+						,	fileOverride	:	true
 					}
 				}
 			}
-
-			,	uglify:	{
-				options:	{
-					preserveComments:	false
-					,	banner:					'<%=	banner	%>'
+			//	uglify
+			,	uglify			:	{
+				options	:	{
+					preserveComments	:	false
+					,	banner					:	'<%=	banner	%>'
 				}
-				,	dist:	{
-					src:		'<%=	concat.dist.dest	%>'
-					,	dest:	'min/<%=	pkg.name	%>.min.js'
+				,	dist	:	{
+					src			:	'<%=	concat.dist.dest	%>'
+					,	dest	:	'min/<%=	pkg.name	%>.min.js'
 				}
 			}
-
-			,	jshint:	{
-				options:	{
-					bitwise					:	false
-					,	camelcase			:	false
-					,	curly					:	false
-					,	eqeqeq				:	false
-					,	es3						:	false
-					,	forin					:	false
-					,	freeze				:	false
+			//	jshint
+			,	jshint			:	{
+				options	:	{
+					bitwise					:				false
+					,	camelcase			:				false
+					,	curly					:				false
+					,	eqeqeq				:				false
+					,	es3						:				false
+					,	forin					:				false
+					,	freeze				:				false
 					,	immed					:	true
-					,	indent				:	false
+					,	indent				:				false
 					,	latedef				:	true
 					,	newcap				:	true
 					,	noarg					:	true
 					,	noempty				:	true
-					,	nonew					:	false
-					,	plusplus			:	false
-					,	quotmark			:	false
+					,	nonew					:				false
+					,	plusplus			:				false
+					,	quotmark			:				false
 					,	undef					:	true
-					,	unused				:	false
-					,	strict				:	false
-					,	trailing			:	false
+					,	unused				:				false
+					,	strict				:				false
+					,	trailing			:				false
 					,	asi						:	true
-					,	boss					:	false
-					,	debug					:	false
+					,	boss					:				false
+					,	debug					:				false
 					,	eqnull				:	true
 					,	esnext				:	true
-					,	evil					:	false
+					,	evil					:				false
 					,	expr					:	true
-					,	funcscope			:	false
+					,	funcscope			:				false
 					,	gcl						:	true
-					,	globalstrict	:	false
-					,	iterator			:	false
+					,	globalstrict	:				false
+					,	iterator			:				false
 					,	lastsemic			:	true
 					,	laxbreak			:	true
 					,	laxcomma			:	true
@@ -103,11 +90,11 @@ module.exports	=	function(	grunt	)	{
 					,	maxerr				:	20
 					,	moz						:	true
 					,	multistr			:	true
-					,	notypeof			:	false
-					,	proto					:	false
-					,	scripturl			:	false
+					,	notypeof			:				false
+					,	proto					:				false
+					,	scripturl			:				false
 					,	smarttabs			:	true
-					,	shadow				:	false
+					,	shadow				:				false
 					,	sub						:	true
 					,	supernew			:	true
 					,	validthis			:	true
@@ -118,7 +105,7 @@ module.exports	=	function(	grunt	)	{
 					,	jquery				:	true
 					,	mootools			:	true
 					,	node					:	true
-					,	nonstandard		:	false
+					,	nonstandard		:				false
 					,	phantom				:	true
 					,	prototypejs		:	true
 					,	rhino					:	true
@@ -164,51 +151,42 @@ module.exports	=	function(	grunt	)	{
 						,	"parseDate"												:	true
 					}
 				}
-
-				,	gruntfile:	{
-					src:	'Gruntfile.js'
+				//	gruntfile
+				,	gruntfile	:	{
+					src	:	'Gruntfile.js'
 				}
-
-				,	src_files:	{
-					src:	'<%=	pkg.sldbfiles	%>'
+				//	src_files
+				,	src_files	:	{
+					src	:	'<%=	pkg.sldbfiles	%>'
 				}
 			}
-
-			,	mochacli:	{
-				options:	{
-					reporter:	'spec'
-					,	ui:			'bdd'
+			//	mochacli
+			,	mochacli		:	{
+				options	:	{
+					reporter	:	'spec'
+					,	ui			:	'bdd'
 				}
-				,	all:	[	'test/*.js'	]
+				,	all		:	[	'test/*.js'	]
 			}
-
-			,	qunit: {
-				files:	[	'test/**/*.html'	]
+			//	qunit
+			,	qunit				: {
+				files	:	[	'test/**/*.html'	]
 			}
-
-			,	lib_test:	{
-				files:		'<%=	jshint.lib_test.src	%>'
-				,	tasks:	[	'jshint:lib_test'	,	'qunit'	]
+			//	lib_test
+			,	lib_test		:	{
+				files		:	'<%=	jshint.lib_test.src	%>'
+				,	tasks	:	[	'jshint:lib_test',	'qunit'	]
 			}
-
-
-
 		}
 	);
-
-
-
-	// register plugins
+	//	register	plugins
 	grunt.loadNpmTasks(	'grunt-contrib-concat'	);
 	grunt.loadNpmTasks(	'grunt-grep'						);
 	grunt.loadNpmTasks(	'grunt-contrib-uglify'	);
 	grunt.loadNpmTasks(	'grunt-contrib-qunit'		);
 	grunt.loadNpmTasks(	'grunt-mocha-cli'				);
 	grunt.loadNpmTasks(	'grunt-contrib-jshint'	);
-
-
-
-	// register tasks
+	//	register	tasks
 	grunt.registerTask(	'lint'				,	[	'jshint'			]															);
 	grunt.registerTask(	'test'				,	[	'mochacli'		]															);
 	grunt.registerTask(	'quality'			,	[	'lint'				,	'test'				]							);
@@ -218,9 +196,4 @@ module.exports	=	function(	grunt	)	{
 	grunt.registerTask(	'qcc'					,	[	'quality'			,	'concatfiles'	,	'clean'		]	);
 	grunt.registerTask(	'all'					,	[	'quality'			,	'minify'			]							);
 	grunt.registerTask(	'default'			,	[	'quality'			]															);
-
-
-
 };
-
-

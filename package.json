@@ -1,41 +1,37 @@
 {
-	"title":			"SLDBrowser : Semantic Linked Data Browser"
-	,	"name":			"SLDBrowser"
-	,	"version":	"0.1.0"
-	,	"author":	{
-		"name":	"Clément Ménoret"
+	"title"							:	"SLDBrowser : Semantic Linked Data Browser"
+	,	"name"						:	"SLDBrowser"
+	,	"version"					:	"0.1.0"
+	,	"author"					:	{
+		"name"	:	"Clément Ménoret"
 	}
-	,	"license":	"Creative Commons (CC) BY-NC-ND"
-	,	"licenses":
-		[
-			"Creative Commons (CC) BY-NC-ND" 
-		]
-	,	"repository":	{
-		"type":		"git"
-		,	"url":	"https://github.com/clemeno/SLDBrowser.git"
+	,	"license"					:	"Creative Commons (CC) BY-NC-ND"
+	,	"licenses"				:	[	"Creative Commons (CC) BY-NC-ND" ]
+	,	"repository"			:	{
+		"type"	:	"git"
+		,	"url"	:	"https://github.com/clemeno/SLDBrowser.git"
 	}
-	,	"sldbfiles":
-		[
-			"utils.js"
-			,	"layout.js"
-			,	"webapp.model.js"
-			,	"webapp.data.js"
-			,	"webapp.loading.visuals.js"
-			,	"webapp.controller.js"
-		]
-	,	"scripts":	{
-		"test":	"grunt"
+	,	"sldbfiles"				:	[
+		"utils.js"
+		,	"layout.js"
+		,	"webapp.model.js"
+		,	"webapp.data.js"
+		,	"webapp.loading.visuals.js"
+		,	"webapp.controller.js"
+	]
+	,	"scripts"					:	{
+		"test"	:	"grunt"
 	}
-	,	"engines":	{
-		"node":	">= 0.10.0"
+	,	"engines"					:	{
+		"node"	:	">= 0.10.0"
 	}
-	,	"devDependencies":	{
-		"grunt":									"~0.4.2"
-		,	"grunt-contrib-jshint":	"~0.7.2"
-		,	"grunt-contrib-qunit":	"~0.3.0"
-		,	"grunt-mocha-cli":			"~1.8.0"
-		,	"grunt-contrib-concat":	"~0.3.0"
-		,	"grunt-grep":						"~0.7.0"
-		,	"grunt-contrib-uglify":	"~0.2.7"
+	,	"devDependencies"	:	{
+		"grunt"										:	"~0.4.2"
+		,	"grunt-contrib-jshint"	:	"~0.7.2"
+		,	"grunt-contrib-qunit"		:	"~0.3.0"
+		,	"grunt-mocha-cli"				:	"~1.8.0"
+		,	"grunt-contrib-concat"	:	"~0.3.0"
+		,	"grunt-grep"						:	"~0.7.0"
+		,	"grunt-contrib-uglify"	:	"~0.2.7"
 	}
 }

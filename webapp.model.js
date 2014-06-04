@@ -162,9 +162,8 @@ var	InternalTrippleStore	=	function(){
 	function	_removeTrippleFromIndex(	index,	a,	b,	c	)	{
 		var	bSuccess	=	false;
 		try	{
-			var	idToDel		=	index[	a	][	b	].indexOf(	c	)
-			,		bSuccess	=	(	idToDel	>	-1	)
-			;
+			var	idToDel		=	index[	a	][	b	].indexOf(	c	);
+			bSuccess	=	(	idToDel	>	-1	)
 			if	(	bSuccess	)	{
 				//	step	1:	remove	c	first,	if	any	matching	c	
 				index[	a	][	b	].splice(	idToDel,	1	);
