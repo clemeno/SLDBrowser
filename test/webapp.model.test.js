@@ -396,7 +396,7 @@ describe( 'testing webapp.model.js : Tripple, Mapping, InternalTrippleStore ', f
 		describe( '.prototype.toString', function() { 
 			it( 'should return a string representation of the content of this Mapping', function() { 
 				var map = new model.Mapping(); 
-				map.toString()
+				assert( typeof( map.toString() ) === 'string' ); 
 			} ); 
 		} ); 
 	} ); 
