@@ -1,5 +1,5 @@
-/*! SLDBrowser : Semantic Linked Data Browser - v0.1.0 - 2014-06-03
-* Copyright (c) 2014 Clément Ménoret; Licensed Creative Commons (CC) BY-NC-ND */
+/*! SLDBrowser : Semantic Linked Data Browser - v0.1.0 - 2014-06-04
+* Copyright (c) 2014 Clément Ménoret ; Licensed Creative Commons (CC) BY-NC-ND */
 // utils 
 // --- object --- 
 // keys 
