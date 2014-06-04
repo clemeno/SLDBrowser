@@ -191,8 +191,8 @@ module.exports	=	function(	grunt	)	{
 				,	tasks:	[	'jshint:lib_test'	,	'qunit'	]
 			}
 
-			
-			
+
+
 		}
 	);
 
@@ -203,7 +203,7 @@ module.exports	=	function(	grunt	)	{
 	grunt.loadNpmTasks(	'grunt-grep'						);
 	grunt.loadNpmTasks(	'grunt-contrib-uglify'	);
 	grunt.loadNpmTasks(	'grunt-contrib-qunit'		);
-	grunt.loadNpmTasks(	'grunt-mocha-cli' 			);
+	grunt.loadNpmTasks(	'grunt-mocha-cli'				);
 	grunt.loadNpmTasks(	'grunt-contrib-jshint'	);
 	grunt.loadNpmTasks(	'grunt-contrib-watch'		);
 
