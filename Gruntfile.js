@@ -65,103 +65,103 @@ module.exports	=	function(	grunt	)	{
 
 			,	jshint:	{
 				options:	{
-					bitwise:				false
-					,	camelcase:		false
-					,	curly:				false
-					,	eqeqeq:				false
-					,	es3:					false
-					,	forin:				false
-					,	freeze:				false
-					,	immed:				true
-					,	indent:				false
-					,	latedef:			true
-					,	newcap:				true
-					,	noarg:				true
-					,	noempty:			true
-					,	nonew:				false
-					,	plusplus:			false
-					,	quotmark:			false
-					,	undef:				true
-					,	unused:				false
-					,	strict:				false
-					,	trailing:			false
-					,	asi:					true
-					,	boss:					false
-					,	debug:				false
-					,	eqnull:				true
-					,	esnext:				true
-					,	evil:					false
-					,	expr:					true
-					,	funcscope:		false
-					,	gcl:					true
-					,	globalstrict:	false
-					,	iterator:			false
-					,	lastsemic:		true
-					,	laxbreak:			true
-					,	laxcomma:			true
-					,	loopfunc:			true
-					,	maxerr:				20
-					,	moz:					true
-					,	multistr:			true
-					,	notypeof:			false
-					,	proto:				false
-					,	scripturl:		false
-					,	smarttabs:		true
-					,	shadow:				false
-					,	sub:					true
-					,	supernew:			true
-					,	validthis:		true
-					,	browser:			true
-					,	couch:				true
-					,	devel:				true
-					,	dojo:					true
-					,	jquery:				true
-					,	mootools:			true
-					,	node:					true
-					,	nonstandard:	false
-					,	phantom:			true
-					,	prototypejs:	true
-					,	rhino:				true
-					,	worker:				true
-					,	wsh:					true
-					,	yui:					true
-					,	globals:	{
-							"jQuery":													true
-						,	"Masonry":												true
-						,	"Mapping":												true
-						,	"suggestionsFor":									true
-						,	"displayPageLoading":							true
-						,	"InternalTrippleStore":						true
-						,	"Tripple":												true
-						,	"imgdepictionuri":								true 
-						,	"imgdepictionstr":								true 
-						,	"commenturi":											true 
-						,	"commentstr":											true 
-						,	"labeluri":												true 
-						,	"getCleanTopbarUri":							true 
-						,	"getCleanTopbarEndpoint":					true 
-						,	"ITS":														true 
-						,	"rebuilddefaultworkspace":				true 
-						,	"hashtagworkspaceid":							true 
-						,	"objectids":											true 
-						,	"nextobjectid":										true 
-						,	"nextmapid":											true 
-						,	"nexttimelineid":									true 
-						,	"objectid_to_uri":								true 
-						,	"object_has_expanded_predicates":	true 
-						,	"webappfullcontainer":						true 
-						,	"msnry":													true 
-						,	"actionhistory":									true 
-						,	"actionhistory_pointer":					true 
-						,	"displayPageImageLoading":				true 
-						,	"imagesLoaded":										true 
-						,	"displayPageLoaded":							true 
-						,	"setCleanTopbarUri":							true 
-						,	"xmlDoc":													true 
-						,	"knownPredicates":								true 
-						,	"url_data":												true 
-						,	"OpenLayers":											true 
-						,	"parseDate":											true 
+					bitwise					:	false
+					,	camelcase			:	false
+					,	curly					:	false
+					,	eqeqeq				:	false
+					,	es3						:	false
+					,	forin					:	false
+					,	freeze				:	false
+					,	immed					:	true
+					,	indent				:	false
+					,	latedef				:	true
+					,	newcap				:	true
+					,	noarg					:	true
+					,	noempty				:	true
+					,	nonew					:	false
+					,	plusplus			:	false
+					,	quotmark			:	false
+					,	undef					:	true
+					,	unused				:	false
+					,	strict				:	false
+					,	trailing			:	false
+					,	asi						:	true
+					,	boss					:	false
+					,	debug					:	false
+					,	eqnull				:	true
+					,	esnext				:	true
+					,	evil					:	false
+					,	expr					:	true
+					,	funcscope			:	false
+					,	gcl						:	true
+					,	globalstrict	:	false
+					,	iterator			:	false
+					,	lastsemic			:	true
+					,	laxbreak			:	true
+					,	laxcomma			:	true
+					,	loopfunc			:	true
+					,	maxerr				:	20
+					,	moz						:	true
+					,	multistr			:	true
+					,	notypeof			:	false
+					,	proto					:	false
+					,	scripturl			:	false
+					,	smarttabs			:	true
+					,	shadow				:	false
+					,	sub						:	true
+					,	supernew			:	true
+					,	validthis			:	true
+					,	browser				:	true
+					,	couch					:	true
+					,	devel					:	true
+					,	dojo					:	true
+					,	jquery				:	true
+					,	mootools			:	true
+					,	node					:	true
+					,	nonstandard		:	false
+					,	phantom				:	true
+					,	prototypejs		:	true
+					,	rhino					:	true
+					,	worker				:	true
+					,	wsh						:	true
+					,	yui						:	true
+					,	globals				:	{
+						"jQuery"														:	true
+						,	"Masonry"													:	true
+						,	"Mapping"													:	true
+						,	"suggestionsFor"									:	true
+						,	"displayPageLoading"							:	true
+						,	"InternalTrippleStore"						:	true
+						,	"Tripple"													:	true
+						,	"imgdepictionuri"									:	true
+						,	"imgdepictionstr"									:	true
+						,	"commenturi"											:	true
+						,	"commentstr"											:	true
+						,	"labeluri"												:	true
+						,	"getCleanTopbarUri"								:	true
+						,	"getCleanTopbarEndpoint"					:	true
+						,	"ITS"															:	true
+						,	"rebuilddefaultworkspace"					:	true
+						,	"hashtagworkspaceid"							:	true
+						,	"objectids"												:	true
+						,	"nextobjectid"										:	true
+						,	"nextmapid"												:	true
+						,	"nexttimelineid"									:	true
+						,	"objectid_to_uri"									:	true
+						,	"object_has_expanded_predicates"	:	true
+						,	"webappfullcontainer"							:	true
+						,	"msnry"														:	true
+						,	"actionhistory"										:	true
+						,	"actionhistory_pointer"						:	true
+						,	"displayPageImageLoading"					:	true
+						,	"imagesLoaded"										:	true
+						,	"displayPageLoaded"								:	true
+						,	"setCleanTopbarUri"								:	true
+						,	"xmlDoc"													:	true
+						,	"knownPredicates"									:	true
+						,	"url_data"												:	true
+						,	"OpenLayers"											:	true
+						,	"parseDate"												:	true
 					}
 				}
 
@@ -209,15 +209,15 @@ module.exports	=	function(	grunt	)	{
 
 
 	// register tasks
-	grunt.registerTask(	'lint'				,	[	'jshint'	]																	);
-	grunt.registerTask(	'test'				,	[	'mochacli'	]																);
-	grunt.registerTask(	'quality'			,	[	'lint'				,	'test'	]										);
-	grunt.registerTask(	'concatfiles'	,	[	'concat'	]																	);
-	grunt.registerTask(	'clean'				,	[	'grep'	]																		);
+	grunt.registerTask(	'lint'				,	[	'jshint'			]															);
+	grunt.registerTask(	'test'				,	[	'mochacli'		]															);
+	grunt.registerTask(	'quality'			,	[	'lint'				,	'test'				]							);
+	grunt.registerTask(	'concatfiles'	,	[	'concat'			]															);
+	grunt.registerTask(	'clean'				,	[	'grep'				]															);
 	grunt.registerTask(	'minify'			,	[	'concatfiles'	,	'clean'				,	'uglify'	]	);
-	grunt.registerTask(	'qcc'					,	[	'quality'			,	'concatfiles'	,	'clean'	]		);
-	grunt.registerTask(	'all'					,	[	'quality'			,	'minify'	]									);
-	grunt.registerTask(	'default'			,	[	'quality'	]																	);
+	grunt.registerTask(	'qcc'					,	[	'quality'			,	'concatfiles'	,	'clean'		]	);
+	grunt.registerTask(	'all'					,	[	'quality'			,	'minify'			]							);
+	grunt.registerTask(	'default'			,	[	'quality'			]															);
 
 
 
