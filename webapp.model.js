@@ -213,7 +213,6 @@ var	InternalTrippleStore	=	function(){
 									tripples.push(	new	Tripple(	t.s	,	p_	,	o_	)	);	//	match
 							}	);
 						}	);
-
 					}
 				}
 			}	else	{
