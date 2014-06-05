@@ -1,18 +1,18 @@
 // controls -------------------------------------------------------
 
 // clear
-function clearbrowser_click() {
-	$( '#webappcontrol' ).html( '' );
-	$( hashtagworkspaceid ).html( '' );
+function	clearbrowser_click()	{
+	$( '#webappcontrol' ).html(	''	);
+	$( hashtagworkspaceid ).html(	''	);
 	rebuilddefaultworkspace();
-	ITS = new InternalTrippleStore();
-	objectids = [],
-	nextobjectid = 0;
-	nextmapid = 0;
-	nexttimelineid = 0;
-	objectid_to_uri = new Mapping();
-	object_has_expanded_predicates = {};
-	suggestionsFor = new Mapping();
+	ITS	=	new InternalTrippleStore();
+	objectids	=	[],
+	nextobjectid	=	0;
+	nextmapid	=	0;
+	nexttimelineid	=	0;
+	objectid_to_uri	=	new Mapping();
+	object_has_expanded_predicates	=	{};
+	suggestionsFor	=	new Mapping();
 }
 
 // browse
