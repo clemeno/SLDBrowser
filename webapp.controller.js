@@ -179,7 +179,7 @@ function	startbrowsing_click()	{
 		+					"'"	+	objectidstr
 		+					"','"	+	getCleanTopbarUri()
 		+					"'"
-		+				')">See	other	predicates...</button>'	+
+		+				')">See	other	predicates...</button>'
 		+			'<ul	class="predicatelist">'	+	predicateliststr	+	'</ul>'
 		+		'</div>'
 		'</div>'
