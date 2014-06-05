@@ -15,6 +15,17 @@
 
 --
 
+###1. SLDBrowser (dev)
+
+Semantic Linked Data Browser, a semantic web browser with 
+- ☆ Dynamic *SPARQL endpoint* (data-source) selection
+- ☆ Language *facet* (more *facets* later)
+- ☆ Knowledge discovery, recording and selection from the global uncoordinated distributed graph
+- ☆ Automatic (and later: crowdsourced) data visualisation suggestions
+- ☆ Visualisation map, timeline (later)
+
+\[ [Try it online (dev)](http://pirmil.eu/) \]
+
 **Labels:** 
 <ul>
  <li>☆ application feature <em>set</em></li>
@@ -26,19 +37,6 @@
  <li>□ manually (by the user) checked (<strong>ordered</strong>) <em>list</em></li>
  <li>◊ automatically checked (<strong>ordered</strong>) <em>list</em></li>
 </ol>
-
---
-
-###1. SLDBrowser (dev)
-
-Semantic Linked Data Browser, a semantic web browser with 
-- ☆ Dynamic *SPARQL endpoint* (data-source) selection
-- ☆ Language *facet* (more *facets* later)
-- ☆ Knowledge discovery, recording and selection from the global uncoordinated distributed graph
-- ☆ Automatic (and later: crowdsourced) data visualisation suggestions
-- ☆ Visualisation map, timeline (later)
-
-\[ [Try it online (dev)](http://pirmil.eu/) \]
 
 --
 
