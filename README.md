@@ -20,9 +20,9 @@
 Semantic Linked Data Browser, a semantic web browser with 
 - ☆ Dynamic *SPARQL endpoint* (data-source) selection
 - ☆ Language *facet* (more *facets* later)
-- ☆ Knowledge discovery, recording and selection from the global uncoordinated distributed graph
-- ☆ Automatic (and later: crowdsourced) data visualisation suggestions
-- ☆ Visualisation map, timeline (later)
+- ☆ *Knowledge* discovery, recording and selection from the global uncoordinated distributed graph
+- ☆ Automatic (and later: crowdsourced) data visualisation *suggestions*
+- ☆ *Visualisation* map, timeline (more *visualisations* later)
 
 \[ [Try it online (dev)](http://pirmil.eu/) \]
 
