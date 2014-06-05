@@ -64,7 +64,7 @@ Will locally install:
 
 --
 
-####2.3 **Grunt ** build
+####2.3 **Grunt** build
 
 Command **$** `grunt all`
 
