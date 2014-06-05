@@ -54,8 +54,8 @@ function	startbrowsing_click()	{
 	//	get	query	results
 	defaultquery_responsetext	=	$.ajax(
 		{
-			type		:	'POST',
-			,	url		:	defaultquery[	0	],
+			type		:	'POST'
+			,	url		:	defaultquery[	0	]
 			,	data	:	'query='	+	encodeURIComponent(	defaultquery[	1	]	)	//	+	'&timeout='	+	defaulttimeout,
 			,	async	:	false
 		}
