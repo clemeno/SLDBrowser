@@ -572,7 +572,7 @@ function	rebuilddefaultworkspace(	endpointstr,	uristr,	langstr	)	{
 		+		'</p>'
 		//	+	'<p>Default	endpoint	=	http://dbpedia.org/sparql	;'
 		//	+	'default	URI	=	&lt;http://dbpedia.org/resource/Tokyo&gt;</p>'
-		'		<div	id="nav">'
+		+		'<div	id="nav">'
 		//	'			<button	id="historyprev"	title="Previous	step"	disabled="disabled">&larr;</button>'
 		//	'			<label	for="historyprev">Previous</label>'
 		//	'			<button	id="historynext"	title="Next	step"	disabled="disabled">&rarr;</button>'
