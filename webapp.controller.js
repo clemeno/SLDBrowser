@@ -182,7 +182,7 @@ function	startbrowsing_click()	{
 		+				')">See	other	predicates...</button>'
 		+			'<ul	class="predicatelist">'	+	predicateliststr	+	'</ul>'
 		+		'</div>'
-		'</div>'
+		+	'</div>'
 	);
 	objecthtml_elem	=	objecthtml[	0	];
 	fragment_objecthtml	=	document.createDocumentFragment();
