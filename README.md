@@ -1,8 +1,4 @@
-#SLDBrowser
-
-[![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/) &nbsp; [![Build Status](https://travis-ci.org/clemeno/SLDBrowser.svg?branch=dev)](https://travis-ci.org/clemeno/SLDBrowser) 
-
---
+#SLDBrowser &nbsp; [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/) [![Build Status](https://travis-ci.org/clemeno/SLDBrowser.svg?branch=dev)](https://travis-ci.org/clemeno/SLDBrowser) 
 
 **Keywords:** `Semantic Web` `Linked Data` `browser` `exploration` `data visualisation` `suggestion` `crowdsourcing`
 
@@ -13,16 +9,23 @@
 2. Build
  - 2.1 Requires
  - 2.2 **npm** dependencies
- - 2.3 **Grunt ** build
+ - 2.3 **Grunt** build
 3. Deploy
 4. Temporary License
 
 --
 
 **Labels:** 
-- ☆ application feature set
-- □ manually (by the user) checked set
-- ◊ automatically checked set
+<ul>
+ <li>☆ application feature <em>set</em></li>
+ <li>□ manually (by the user) checked <em>set</em></li>
+ <li>◊ automatically checked <em>set</em></li>
+</ul>
+<ol>
+ <li>☆ application feature (<strong>ordered</strong>) <em>list</em></li>
+ <li>□ manually (by the user) checked (<strong>ordered</strong>) <em>list</em></li>
+ <li>◊ automatically checked (<strong>ordered</strong>) <em>list</em></li>
+</ol>
 
 --
 
@@ -44,7 +47,6 @@ Semantic Linked Data Browser, a semantic web browser with
 ###2.1 Requires
 
 Software installed **Node.js** with **npm** for your operating system and a **Grunt client** module installed. 
-
  1. □ **Node.js** with **npm** (http://nodejs.org/ with **npm** *included*) 
  2. □ **Grunt client** **$** `npm install -g grunt-cli` (http://gruntjs.com/) 
 
@@ -55,18 +57,12 @@ Software installed **Node.js** with **npm** for your operating system and a **Gr
 Command **$** `npm install` 
 
 Will locally install: 
-
- &nbsp;&nbsp;&nbsp;&nbsp;◊ **Grunt**
- 
- &nbsp;&nbsp;&nbsp;&nbsp;◊ **JSHint**
- 
- &nbsp;&nbsp;&nbsp;&nbsp;◊ **Mocha**
- 
- &nbsp;&nbsp;&nbsp;&nbsp;◊ **Concat**
- 
- &nbsp;&nbsp;&nbsp;&nbsp;◊ **Grep**
- 
- &nbsp;&nbsp;&nbsp;&nbsp;◊ **Uglify**
+- ◊ **Grunt**
+- ◊ **JSHint**
+- ◊ **Mocha**
+- ◊ **Concat**
+- ◊ **Grep**
+- ◊ **Uglify**
 
 --
 
@@ -75,32 +71,24 @@ Will locally install:
 Command **$** `grunt all`
 
 Will perform all **Grunt** *tasks*: 
-
- 1. &loz; lint
- 2. &loz; test
- 3. &loz; concat
- 4. &loz; clean
- 5. &loz; minify
+ 1. ◊ lint
+ 2. ◊ test
+ 3. ◊ concat
+ 4. ◊ clean
+ 5. ◊ minify
 
 --
 
 ###3. Deploy
 
 Put the following files &amp; folders to a web server: 
-
- &nbsp;&nbsp;&nbsp;&nbsp;□ *.html
- 
- &nbsp;&nbsp;&nbsp;&nbsp;□ *.css
- 
- &nbsp;&nbsp;&nbsp;&nbsp;□ *.cur
- 
- &nbsp;&nbsp;&nbsp;&nbsp;□ imagesloaded.pkgd.min.js
- 
- &nbsp;&nbsp;&nbsp;&nbsp;□ masonry.pkgd.min.js
- 
- &nbsp;&nbsp;&nbsp;&nbsp;□ img/*
- 
- &nbsp;&nbsp;&nbsp;&nbsp;□ min/*
+- □ *.html
+- □ *.css
+- □ *.cur
+- □ imagesloaded.pkgd.min.js
+- □ masonry.pkgd.min.js
+- □ img/*
+- □ min/*
 
 --
 
