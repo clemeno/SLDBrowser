@@ -173,8 +173,8 @@ function	startbrowsing_click()	{
 		+					"'"
 		+				')">See	URIs...</button>'
 		+			'<ul	class="refurislist">'	+	refurisliststr	+	'</ul>'
-		+		'</div>'	+
-		+		'<div	class="ib	hideable">'	+
+		+		'</div>'
+		+		'<div	class="ib	hideable">'
 		+			'<button	onclick="seeotherpredicates(this,'
 		+					"'"	+	objectidstr
 		+					"','"	+	getCleanTopbarUri()
