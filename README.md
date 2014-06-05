@@ -42,7 +42,7 @@ Semantic Linked Data Browser, a semantic web browser with
 
 ###2. Build
 
-###2.1 Requires
+####2.1 Requires
 
 Software installed **Node.js** with **npm** for your operating system and a **Grunt client** module installed. 
  1. □ **Node.js** with **npm** (http://nodejs.org/ with **npm** *included*) 
@@ -64,7 +64,7 @@ Will locally install:
 
 --
 
-###2.3 **Grunt ** build
+####2.3 **Grunt ** build
 
 Command **$** `grunt all`
 
