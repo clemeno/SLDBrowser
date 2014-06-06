@@ -1,5 +1,21 @@
 //	controls	-------------------------------------------------------
+/*
+	SLDBrowser : Semantic Linked Data Browser
+	Copyright (C) 2014  Clement Menoret
 
+	This program is free software: you can redistribute it and/or modify
+	it under the terms of the GNU General Public License as published by
+	the Free Software Foundation, either version 3 of the License, or
+	(at your option) any later version.
+
+	This program is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License for more details.
+
+	You should have received a copy of the GNU General Public License
+	along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
 //	clear
 function	clearbrowser_click()	{
 	$(	'#webappcontrol'		).html(	''	);
@@ -562,8 +578,9 @@ function	rebuilddefaultworkspace(	endpointstr,	uristr,	langstr	)	{
 		+		'<p>'
 		+			'<span	id="webapptitle">'
 		+				'<span	id="loading">(Please	enable	Javascript)</span>	'
-		+				'Semantic	Linked	Data	Browser	(dev)</span>	by	Clément	Ménoret	(CC)	BY-NC-ND	2014	-	'
-		+				'http://creativecommons.org/licenses/by-nc-nd/3.0	'
+		+				'Semantic	Linked	Data	Browser	(dev)</span> '
+		+				'SLDBrowser  Copyright (C) 2014  Clément Ménoret '
+		+				'under GPLv3 license http://www.gnu.org/licenses/gpl-3.0.html'
 		+			'<button	id="testbutton1"	title="test	button	#1"	onclick="testbutton1()">1</button>'
 		+			'<button	id="testbutton2"	title="test	button	#2"	onclick="testbutton2()">2</button>'
 		+			'<button	id="testbutton3"	title="test	button	#3"	onclick="testbutton3()">3</button>'

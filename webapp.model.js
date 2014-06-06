@@ -1,4 +1,21 @@
 // webapp model
+/*
+	SLDBrowser : Semantic Linked Data Browser
+	Copyright (C) 2014  Clement Menoret
+
+	This program is free software: you can redistribute it and/or modify
+	it under the terms of the GNU General Public License as published by
+	the Free Software Foundation, either version 3 of the License, or
+	(at your option) any later version.
+
+	This program is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License for more details.
+
+	You should have received a copy of the GNU General Public License
+	along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
 //	Tripple
 var	Tripple	=	function(	s,	p,	o	)	{
 	this.s	=	s	||	void	0;
@@ -113,33 +130,33 @@ Mapping.prototype.toString	=	function()	{
 
 
 
-//	internal	graph	:	Internal	Tripple	Store	Class	
-//	______________________________________________________________________________________________________	
-//	InternalTrippleStore	---------------------------------------------------------------------------------	
-//	______________________________________________________________________________________________________	
+//	internal	graph	:	Internal	Tripple	Store	Class
+//	______________________________________________________________________________________________________
+//	InternalTrippleStore	---------------------------------------------------------------------------------
+//	______________________________________________________________________________________________________
 var	InternalTrippleStore	=	function(){
-	//	constructor	
+	//	constructor
 	this.constructor.nbInstance	+=	1;
-	//	private	----------	
-		//	private	data	
+	//	private	----------
+		//	private	data
 	var	_spo	=	new	Mapping()
 	,		_pos	=	new	Mapping()
 	,		_osp	=	new	Mapping()
-		//	private	stats	
+		//	private	stats
 	,		_nb_committed_updates		=	0
 	,		_nb_operations_request	=	0
-		//	internal	private	methods	
+		//	internal	private	methods
 	,		_internal_statsUpdate_afterOp	=	function(	bSuccess	)	{
-				//	allways	
+				//	allways
 				_nb_operations_request	+=	1;
-				//	conditional	
+				//	conditional
 				if	(	bSuccess	)	{
 					_nb_committed_updates	+=	1;
 				}
 				return	bSuccess;
 			}
 	;
-	//	private	methods	
+	//	private	methods
 	function	_addTrippleToIndex(	index,	a,	b,	c	)	{
 		var	bSuccess	=	false;
 		try	{
@@ -165,15 +182,15 @@ var	InternalTrippleStore	=	function(){
 			var	idToDel		=	index[	a	][	b	].indexOf(	c	);
 			bSuccess	=	(	idToDel	>	-1	)
 			if	(	bSuccess	)	{
-				//	step	1:	remove	c	first,	if	any	matching	c	
+				//	step	1:	remove	c	first,	if	any	matching	c
 				index[	a	][	b	].splice(	idToDel,	1	);
 			}
-			//	then	or	just:	update	the	b	set	
+			//	then	or	just:	update	the	b	set
 			if	(	index[	a	][	b	].length	<	1	)	{
 				delete	index[	a	][	b	];
 				bSuccess	=	true;
 			}
-			//	then	or	just:	update	the	a	set	
+			//	then	or	just:	update	the	a	set
 			if	(	index[	a	].count()	<	1	)	{
 				delete	index[	a	];
 				bSuccess	=	true;
@@ -184,30 +201,30 @@ var	InternalTrippleStore	=	function(){
 			return	_internal_statsUpdate_afterOp(	bSuccess	);
 		}
 	}
-	//	privileged	----------	
-	//	privileged	methods	
-	//	privileged	tripple	combination	
+	//	privileged	----------
+	//	privileged	methods
+	//	privileged	tripple	combination
 	this.getTripplesMatching	=	function(	t	)	{
 		var	tripples	=	[];
 		try	{
-			//	wildcard	_	implementation	:	any	unknown/falsy/unset	t	attribute	
+			//	wildcard	_	implementation	:	any	unknown/falsy/unset	t	attribute
 			if	(	!!t.s	)	{
 				if	(	!!t.p	)	{
-					if	(	!!t.o	)	{	//	(	s,	p,	o	)	->	nothing	or	exactly	one	match	
+					if	(	!!t.o	)	{	//	(	s,	p,	o	)	->	nothing	or	exactly	one	match
 						if	(	_spo[	t.s	][	t.p	].hasValue(	t.o	)	)	{
 									tripples.push(	new	Tripple(	t.s	,	t.p	,	t.o	)	);	//	match
 						}
-					}	else	{	//	(	s,	p,	_	)	
+					}	else	{	//	(	s,	p,	_	)
 						_spo[	t.s	][	t.p	].forEach(	function(	o_	)	{
 									tripples.push(	new	Tripple(	t.s	,	t.p	,	o_	)	);	//	match
 						}	);
 					}
 				}	else	{
-					if	(	!!t.o	)	{	//	(	s,	_,	o	)	
+					if	(	!!t.o	)	{	//	(	s,	_,	o	)
 						_osp[	t.o	][	t.s	].forEach(	function(	p_	)	{
 									tripples.push(	new	Tripple(	t.s	,	p_	,	t.o	)	);	//	match
 						}	);
-					}	else	{	//	(	s,	_,	_	)	
+					}	else	{	//	(	s,	_,	_	)
 						_spo[	t.s	].forEach(	function(	O_,	p_	)	{
 							O_.forEach(	function(	o_	)	{
 									tripples.push(	new	Tripple(	t.s	,	p_	,	o_	)	);	//	match
@@ -217,11 +234,11 @@ var	InternalTrippleStore	=	function(){
 				}
 			}	else	{
 				if	(	!!t.p	)	{
-					if	(	!!t.o	)	{	//	(	_,	p,	o	)	
+					if	(	!!t.o	)	{	//	(	_,	p,	o	)
 						_pos[	t.p	][	t.o	].forEach(	function(	s_	)	{
 									tripples.push(	new	Tripple(	s_	,	t.p	,	t.o	)	);	//	match
 						}	);
-					}	else	{	//	(	_,	p,	_	)	
+					}	else	{	//	(	_,	p,	_	)
 						_pos[	t.p	].forEach(	function(	S_,	o_	)	{
 							S_.forEach(	function(	s_	)	{
 									tripples.push(	new	Tripple(	s_	,	t.p	,	o_	)	);	//	match
@@ -229,7 +246,7 @@ var	InternalTrippleStore	=	function(){
 						}	);
 					}
 				}	else	{
-					if	(	!!t.o	)	{	//	(	_,	_,	o	)	
+					if	(	!!t.o	)	{	//	(	_,	_,	o	)
 						_osp[	t.o	].forEach(	function(	P_,	s_	)	{
 							P_.forEach(	function(	p_	)	{
 									tripples.push(	new	Tripple(	s_	,	p_	,	t.o	)	);	//	match
@@ -250,7 +267,7 @@ var	InternalTrippleStore	=	function(){
 		}	finally	{
 			//	case	1	:	tripples.length	===	0	(if	"no	match")	;
 			//	case	2	:	tripples.length	===	1	(if	"exact	match!")	;
-			//	case	3	:	tripples.length	>	1	(if	"multiple	match")	
+			//	case	3	:	tripples.length	>	1	(if	"multiple	match")
 			return	tripples;
 		}
 	};
@@ -267,14 +284,14 @@ var	InternalTrippleStore	=	function(){
 		}	);
 		return	tripples;
 	};
-	//	>>>>>	based	on	this.getTripplesMatching's	implementation	<<<<<	
-	//	just	counts	the	number	of	tripples	matching	the	input	
+	//	>>>>>	based	on	this.getTripplesMatching's	implementation	<<<<<
+	//	just	counts	the	number	of	tripples	matching	the	input
 	this.countTripplesMatching	=	function(	t	)	{
-		var	n	=	0;//	no	matching	tripple	in	store	by	default	
+		var	n	=	0;//	no	matching	tripple	in	store	by	default
 		try	{
 			if	(	!!t.s	)	{
 				if	(	!!t.p	)	{
-					if	(	!!t.o	)	{	
+					if	(	!!t.o	)	{
 						if	(	_spo[	t.s	][	t.p	].hasValue(	t.o	)	)	{
 							n	+=	1;	//	count
 						}
@@ -311,7 +328,7 @@ var	InternalTrippleStore	=	function(){
 					}
 				}	else	{
 					if	(	!!t.o	)	{
-						_osp[	t.o	][	t.s	].forEach(	function(	p_	)	{	
+						_osp[	t.o	][	t.s	].forEach(	function(	p_	)	{
 							n	+=	1;	//	count
 						}	);
 					}	else	{
@@ -326,29 +343,29 @@ var	InternalTrippleStore	=	function(){
 				}
 			}
 		}	catch	(	noIndex	)	{
-			n	=	-1;	//	return	-1	on	failure	to	count	
+			n	=	-1;	//	return	-1	on	failure	to	count
 		}	finally	{
 			return	n;
 		}
 	};
-	//	privileged	add	
+	//	privileged	add
 	this.addTripple	=	function(	t	)	{
-		return	(	
+		return	(
 			(
 				_addTrippleToIndex(	_spo,	t.s,	t.p,	t.o	)
 			)	&&	(
 				_addTrippleToIndex(	_pos,	t.p,	t.o,	t.s	)
 			)	&&	(
 				_addTrippleToIndex(	_osp,	t.o,	t.s,	t.p	)
-			)	
+			)
 		);
 	};
-	//	privileged	remove	
+	//	privileged	remove
 	this.removeTripple	=	function(	t	)	{
 		var	failures	=	[];
-		this.getTripplesMatching(	t	).forEach(	
+		this.getTripplesMatching(	t	).forEach(
 			function(	t_	)	{
-				if	(	
+				if	(
 					!(
 						(
 							_removeTrippleFromIndex(	_spo,	t_.s,	t_.p,	t_.o	)
@@ -365,44 +382,44 @@ var	InternalTrippleStore	=	function(){
 		);
 		return	failures;	//	if	(	failures.length	===	0	)	{/*	full	success	!	*/	}
 	};
-	//	public	----------	
-	//	public	attr	
+	//	public	----------
+	//	public	attr
 };
-//	public	----------	
-//	public	meth	
-//	prototype	----------	
-//	prototype	attr	
-//	public	static	----------	
+//	public	----------
+//	public	meth
+//	prototype	----------
+//	prototype	attr
+//	public	static	----------
 InternalTrippleStore.nbInstance	=	0;
-//	//	tests	
+//	//	tests
 //	function	testbutton1()	{
-//		var	
+//		var
 //			store	=	new	InternalTrippleStore(),
-//			testTripples	=	new	Array(	
+//			testTripples	=	new	Array(
 //				new	Tripple(	':Benabar'	,':job',':Singer'	),
 //				new	Tripple(	':Lorie'		,':job',':Singer'	),
 //				new	Tripple(	':Benabar'	,':sex',':Male'		),
-//				new	Tripple(	':Lorie'		,':sex',':Female'	)	
+//				new	Tripple(	':Lorie'		,':sex',':Female'	)
 //			),
-//			whoHasJobSinger	=	new	Tripple(	false,':job',':Singer'	)	
+//			whoHasJobSinger	=	new	Tripple(	false,':job',':Singer'	)
 //		;
-//		testTripples.forEach(	
+//		testTripples.forEach(
 //			function(	t	)	{
 //				if	(	!store.addTripple(	t	)	)	{alert(	t	+	'	not	added,try	again	later'	);}
 //			}
 //		);
-//		alert(	
-//			'Number	of	tripples	matching	whoHasJobSinger:	'	+	"\n"	+	
-//			store.countTripplesMatching(	whoHasJobSinger	)	
+//		alert(
+//			'Number	of	tripples	matching	whoHasJobSinger:	'	+	"\n"	+
+//			store.countTripplesMatching(	whoHasJobSinger	)
 //		);
-//		alert(	
-//			'Tripples	matching	whoHasJobSinger:	'	+	"\n"	+	
-//			store.getTripplesMatching(	whoHasJobSinger	).join(	"\n"	)	
+//		alert(
+//			'Tripples	matching	whoHasJobSinger:	'	+	"\n"	+
+//			store.getTripplesMatching(	whoHasJobSinger	).join(	"\n"	)
 //		);
 //	}
 //	_______________________________________________________________________________________________________
-//	/InternalTrippleStore	---------------------------------------------------------------------------------	
-//	_______________________________________________________________________________________________________	
+//	/InternalTrippleStore	---------------------------------------------------------------------------------
+//	_______________________________________________________________________________________________________
 
 
 
@@ -427,8 +444,8 @@ knownPredicates[	'geo'			][	'latitude'	][	'wgs84'			]	=	[	'http://www.w3.org/200
 
 
 
-module.exports.Tripple	=	Tripple;//@grep	for_mocha	
-module.exports.Mapping	=	Mapping;//@grep	for_mocha	
-module.exports.InternalTrippleStore	=	InternalTrippleStore;//@grep	for_mocha	
-module.exports.knownPredicates	=	knownPredicates;//@grep	for_mocha	
-module.exports.suggestionsFor	=	suggestionsFor;//@grep	for_mocha	
+module.exports.Tripple	=	Tripple;//@grep	for_mocha
+module.exports.Mapping	=	Mapping;//@grep	for_mocha
+module.exports.InternalTrippleStore	=	InternalTrippleStore;//@grep	for_mocha
+module.exports.knownPredicates	=	knownPredicates;//@grep	for_mocha
+module.exports.suggestionsFor	=	suggestionsFor;//@grep	for_mocha
