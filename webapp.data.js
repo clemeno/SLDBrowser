@@ -24,6 +24,7 @@ var	hashtagworkspaceid							=	'#webappfullcontent'
 ,		nextobjectid										=	0
 ,		nextmapid												=	0
 ,		nexttimelineid									=	0
+,		nextsuggestionseditorid					=	0
 ,		objectid_to_uri									=	new	Mapping()
 ,		object_has_expanded_predicates	=	new	Mapping()
 ;

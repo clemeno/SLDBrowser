@@ -626,6 +626,7 @@ var	hashtagworkspaceid							=	'#webappfullcontent'
 ,		nextobjectid										=	0
 ,		nextmapid												=	0
 ,		nexttimelineid									=	0
+,		nextsuggestionseditorid					=	0
 ,		objectid_to_uri									=	new	Mapping()
 ,		object_has_expanded_predicates	=	new	Mapping()
 ;
@@ -1252,10 +1253,12 @@ function	rebuilddefaultworkspace(	endpointstr,	uristr,	langstr	)	{
 		+				'<div>Internal representation '
 		+					'<button	id="testbutton1"	title="InternalTrippleStore state"	'
 		+						'onclick="testbutton1()">Current knowledge</button>'
-		+					'<button	id="testbutton2"	title="Suggestions about predicates"	'
-		+						'onclick="testbutton2()">Suggestions tree</button>'
-		+					'<button	id="testbutton3"	title="Suggestions state"	'
+		+					'<button	id="testbutton3"	title="Visualisation suggestions state"	'
 		+						'onclick="testbutton3()">Current suggestions</button>'
+		+					'<button	id="testbutton2"	title="Suggestions about predicates visualisation"	'
+		+						'onclick="testbutton2()">Suggestions tree</button>'
+		+					'<button	id="testbutton4"	title="Edit suggestions about predicates visualisation"	'
+		+						'onclick="testbutton4()">Edit suggestions</button>'
 		+				'</div>'
 		+		'</p>'
 		//	+	'<p>Default	endpoint	=	http://dbpedia.org/sparql	;'
@@ -1270,7 +1273,6 @@ function	rebuilddefaultworkspace(	endpointstr,	uristr,	langstr	)	{
 		/*
 			http://dbpedia.org/sparql
 			http://lod.openlinksw.com/sparql
-
 		*/
 		+			'<label	for="defaultentryuri"> URI	&lt; </label>'
 		+			'<input	id="defaultentryuri"	value="http://fr.dbpedia.org/resource/Al_Pacino"	/>'
@@ -1424,6 +1426,42 @@ function	testbutton3()	{
 	}
 	alert(	str	);
 }
+function	testbutton4()	{
+	displayPageLoading();
+	if ( nextsuggestionseditorid	===	0 )	{
+		var	suggestionseditorhtmls					=	[]
+		,		suggestionseditorhtml						=	null
+		,		suggestionseditorhtml_elem			=	null
+		,		fragment_suggestionseditorhtml	=	null
+		;
+		suggestionseditorhtml	=	$(
+			'<div	class="item	map"	id="suggestionseditoritem'	+	nextsuggestionseditorid	+	'">'
+			+		'<button	onclick="removeitem('	+	"'"	+	'suggestionseditoritem'	+	nextsuggestionseditorid	+	"'"	+	');'
+			+			'nextsuggestionseditorid	-=	1;">X</button> '
+			+		'<button	onclick="nodetogglecontent(this,'
+			+			"'"	+	'suggestionseditoritem'	+	nextsuggestionseditorid	+	"'"	+	')">-</button> '
+			+		'Suggestions editor	'
+			+		'<div	class="canevas	hideable"	id="suggestionseditor'	+	nextsuggestionseditorid	+	'"></div>'
+			+	'</div>'
+		);
+		suggestionseditorhtml_elem	=	suggestionseditorhtml[	0	];
+		fragment_suggestionseditorhtml	=	document.createDocumentFragment();
+		fragment_suggestionseditorhtml.appendChild(	suggestionseditorhtml_elem	);
+		webappfullcontainer.insertBefore(	fragment_suggestionseditorhtml,	webappfullcontainer.firstChild	);
+		suggestionseditorhtmls.push(	suggestionseditorhtml_elem	);
+		msnry.prepended(	suggestionseditorhtmls	);
+		$(	suggestionseditorhtml	).hide().appendTo(	'#suggestionseditoritem'	+	nextsuggestionseditorid	).fadeIn();
+		$(	'#suggestionseditoritem'	+	nextsuggestionseditorid	).draggable(
+			{
+				containment	:	'parent'
+				,	opacity		:	0.5
+				,	cancel		:	'.selectable'
+			}
+		);
+		nextsuggestionseditorid	+=	1;	//	ready	for	next	timeline
+	}
+	displayPageLoaded();
+}
 function	testbuttonM()	{
 	displayPageLoading();
 	var	maphtmls					=	[]
@@ -1434,12 +1472,12 @@ function	testbuttonM()	{
 	;
 	maphtml	=	$(
 		'<div	class="item	map"	id="mapitem'	+	nextmapid	+	'">'
-		+		'	<button	onclick="removeitem('	+	"'"	+	'mapitem'	+	nextmapid	+	"'"	+	')">X</button>'
-		+		'	<button	onclick="nodetogglecontent(this,'	+	"'"	+	'mapitem'	+	nextmapid	+	"'"	+	')">-</button>'
+		+		'<button	onclick="removeitem('	+	"'"	+	'mapitem'	+	nextmapid	+	"'"	+	')">X</button>'
+		+		'<button	onclick="nodetogglecontent(this,'	+	"'"	+	'mapitem'	+	nextmapid	+	"'"	+	')">-</button>'
 		+		'	Visualisation:	map	|	<span	class="timestamp">'
 		+			(new	Date()).toLocaleDateString()	+	'&nbsp;'	+	(new	Date()).toLocaleTimeString()
 		+		'</span>'
-		+		'	<div	class="canevas	hideable"	id="map'	+	nextmapid	+	'"></div>'
+		+		'<div	class="canevas	hideable"	id="map'	+	nextmapid	+	'"></div>'
 		+	'</div>'
 	);
 	maphtml_elem	=	maphtml[	0	];
@@ -1480,7 +1518,7 @@ function	testbuttonM()	{
 			//		}
 			//	)
 		]
-		,	center				:	[0,	0]
+		,	center				:	[	0,	0	]
 		,	numZoomLevels	:	22
 		,	zoom					:	1
 	}	);

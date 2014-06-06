@@ -166,6 +166,7 @@ module.exports	=	function(	grunt	)	{
 						,	"url_data"												:	true
 						,	"OpenLayers"											:	true
 						,	"parseDate"												:	true
+						,	"nextsuggestionseditorid"					:	true
 					}
 				}
 				//	gruntfile
