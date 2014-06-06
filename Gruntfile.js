@@ -51,7 +51,7 @@ module.exports	=	function(	grunt	)	{
 			}
 			//	jshint
 			,	jshint			:	{
-				options	:	{
+				options			:	{
 					bitwise					:				false
 					,	camelcase			:				false
 					,	curly					:				false
@@ -187,13 +187,13 @@ module.exports	=	function(	grunt	)	{
 	grunt.loadNpmTasks(	'grunt-mocha-cli'				);
 	grunt.loadNpmTasks(	'grunt-contrib-jshint'	);
 	//	register	tasks
-	grunt.registerTask(	'lint'				,	[	'jshint'			]															);
-	grunt.registerTask(	'test'				,	[	'mochacli'		]															);
-	grunt.registerTask(	'quality'			,	[	'lint'				,	'test'				]							);
-	grunt.registerTask(	'concatfiles'	,	[	'concat'			]															);
-	grunt.registerTask(	'clean'				,	[	'grep'				]															);
+	grunt.registerTask(	'lint'				,	[	'jshint'																	]	);
+	grunt.registerTask(	'test'				,	[	'mochacli'																]	);
+	grunt.registerTask(	'concatfiles'	,	[	'concat'																	]	);
+	grunt.registerTask(	'clean'				,	[	'grep'																		]	);
+	grunt.registerTask(	'quality'			,	[	'lint'				,	'test'										]	);
 	grunt.registerTask(	'minify'			,	[	'concatfiles'	,	'clean'				,	'uglify'	]	);
 	grunt.registerTask(	'qcc'					,	[	'quality'			,	'concatfiles'	,	'clean'		]	);
-	grunt.registerTask(	'all'					,	[	'quality'			,	'minify'			]							);
-	grunt.registerTask(	'default'			,	[	'quality'			]															);
+	grunt.registerTask(	'all'					,	[	'quality'			,	'minify'									]	);
+	grunt.registerTask(	'default'			,	[	'quality'																	]	);
 };

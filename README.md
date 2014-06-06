@@ -92,4 +92,4 @@ Put the following files &amp; folders to a web server:
 
 ###4. Temporary License
 
-Copyright © 2014 Clément Ménoret ; Creative Commons (CC) BY-NC-ND
+Copyright © 2014 Clément Ménoret

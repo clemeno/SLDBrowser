@@ -5,8 +5,8 @@
 	,	"author"					:	{
 		"name"	:	"Clément Ménoret"
 	}
-	,	"license"					:	"Creative Commons (CC) BY-NC-ND"
-	,	"licenses"				:	[	"Creative Commons (CC) BY-NC-ND" ]
+	,	"license"					:	""
+	,	"licenses"				:	[	"" ]
 	,	"repository"			:	{
 		"type"	:	"git"
 		,	"url"	:	"https://github.com/clemeno/SLDBrowser.git"
