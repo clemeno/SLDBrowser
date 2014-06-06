@@ -577,38 +577,36 @@ function	rebuilddefaultworkspace(	endpointstr,	uristr,	langstr	)	{
 		'	<div	class="topdiv">'
 		+		'<p>'
 		+			'<span	id="webapptitle">'
-		+				'<span	id="loading">(Please	enable	Javascript)</span>	'
-		+				'Semantic	Linked	Data	Browser	(dev)</span> '
+		+				'<span	id="loading">(Please enable Javascript)</span>	'
+		+				'Semantic Linked Data Browser (dev)</span> '
 		+				'SLDBrowser  Copyright (C) 2014  Clément Ménoret '
 		+				'under GPLv3 license http://www.gnu.org/licenses/gpl-3.0.html'
-		+				'<div>'
-		+					'<button	id="testbutton1"	title="test	button	#1"	onclick="testbutton1()">Current knowledge</button>'
-		+					'<button	id="testbutton2"	title="test	button	#2"	onclick="testbutton2()">Suggestions for</button>'
-		+					'<button	id="testbutton3"	title="test	button	#3"	onclick="testbutton3()">Current suggestions</button>'
-		+					'<button	id="testbuttonM"	title="test	button	#M"	onclick="testbuttonM()">'
-		+						'Map visualisation</button>'
-		+					'<button	id="testbuttonT"	title="test	button	#T"	onclick="testbuttonT()">'
-		+						'Timeline visualisation</button>'
+		+				'<div>Internal representation '
+		+					'<button	id="testbutton1"	title="InternalTrippleStore state"	'
+		+						'onclick="testbutton1()">Current knowledge</button>'
+		+					'<button	id="testbutton2"	title="Suggestions about predicates"	'
+		+						'onclick="testbutton2()">Suggestions tree</button>'
+		+					'<button	id="testbutton3"	title="Suggestions state"	'
+		+						'onclick="testbutton3()">Current suggestions</button>'
 		+				'</div>'
 		+		'</p>'
 		//	+	'<p>Default	endpoint	=	http://dbpedia.org/sparql	;'
 		//	+	'default	URI	=	&lt;http://dbpedia.org/resource/Tokyo&gt;</p>'
 		+		'<div	id="nav">'
-		//	'			<button	id="historyprev"	title="Previous	step"	disabled="disabled">&larr;</button>'
+		//	'			<button	id="historyprev"	title="Previous step"	disabled="disabled">&larr;</button>'
 		//	'			<label	for="historyprev">Previous</label>'
-		//	'			<button	id="historynext"	title="Next	step"	disabled="disabled">&rarr;</button>'
+		//	'			<button	id="historynext"	title="Next step"	disabled="disabled">&rarr;</button>'
 		//	'			<label	for="historynext">Next</label>'
-		+			'<button	id="rebuildlayout"	title="Rebuild	layout"	onclick="rebuildlayout()">⌗</button>'
-		+			'<label	for="defaultendpoint">Endpoint	</label>'
+		+			'<label	for="defaultendpoint">Endpoint </label>'
 		+			'<input	id="defaultendpoint"	value="http://fr.dbpedia.org/sparql"	/>'
 		/*
 			http://dbpedia.org/sparql
 			http://lod.openlinksw.com/sparql
 
 		*/
-		+			'<label	for="defaultentryuri">URI	&lt;</label>'
+		+			'<label	for="defaultentryuri"> URI	&lt; </label>'
 		+			'<input	id="defaultentryuri"	value="http://fr.dbpedia.org/resource/Al_Pacino"	/>'
-		+			'<label	for="defaultentryuri">&gt;</label>'
+		+			'<label	for="defaultentryuri"> &gt; </label>'
 		+			'<select	id="langselector">'
 		+				'<optgroup	label="Popular">'
 		+					'<option	value="en"	selected>(en)	English	(default)</option>'
@@ -658,10 +656,15 @@ function	rebuilddefaultworkspace(	endpointstr,	uristr,	langstr	)	{
 		+					'<option	value="zh-yue">(zh-yue) 粵語</option>'
 		+				'</optgroup>'
 		+			'</select>'
-		+			'<button	id="startbrowsing"	title="Start	browsing	from	the	URI"	'
+		+			'<button	id="startbrowsing"	title="Start browsing from the URI"	'
 		+				'onclick="startbrowsing_click()">►</button>'
-		+			'<button	id="clearbrowser"	title="Reset	the	browser"	onclick="clearbrowser_click()">￭</button>'
+		+			'<button	id="clearbrowser"	title="Reset the browser"	onclick="clearbrowser_click()">￭</button>'
 		+		'</div>'
+		+		'<div>Layout '
+		+			'<button	id="rebuildlayout"	title="Reorganise layout"	onclick="rebuildlayout()">⌗</button>'
+		+			' &bull; Visualisation '
+		+			'<button	id="testbuttonM"	title="Map visualisation"	onclick="testbuttonM()">Map</button>'
+		+			'<button	id="testbuttonT"	title="Timeline visualisation"	onclick="testbuttonT()">Timeline</button>'
 		+	'</div>'
 	).hide().appendTo(	'#webappcontrol'	).fadeIn(	1000	);
 	try	{
@@ -719,7 +722,7 @@ function	rebuilddefaultworkspace(	endpointstr,	uristr,	langstr	)	{
 var	ITS	=	new	InternalTrippleStore();
 function	testbutton1()	{
 	alert(
-		'Number of known	Tripples = '	+	ITS.countTripplesMatching(	new	Tripple()	)	+	"\n"	+
+		'Number of known Tripples = '	+	ITS.countTripplesMatching(	new	Tripple()	)	+	"\n"	+
 		ITS.getAllTripples().join(	"\n"	)
 	);
 }
