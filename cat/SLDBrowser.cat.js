@@ -1,4 +1,4 @@
-/*! SLDBrowser : Semantic Linked Data Browser - v0.1.0 - 2014-06-06
+/*! SLDBrowser : Semantic Linked Data Browser - v0.1.0 - 2014-06-07
 * Copyright (c) 2014 Clément Ménoret ; Licensed  */
 //	utils
 /*
@@ -692,9 +692,10 @@ function	clearbrowser_click()	{
 	rebuilddefaultworkspace();
 	ITS	=	new	InternalTrippleStore();
 	objectids	=	[];
-	nextobjectid		=	0;
-	nextmapid				=	0;
-	nexttimelineid	=	0;
+	nextobjectid						=	0;
+	nextmapid								=	0;
+	nexttimelineid					=	0;
+	nextsuggestionseditorid	=	0;
 	objectid_to_uri	=	new	Mapping();
 	object_has_expanded_predicates	=	{};
 	suggestionsFor	=	new	Mapping();
@@ -1279,51 +1280,51 @@ function	rebuilddefaultworkspace(	endpointstr,	uristr,	langstr	)	{
 		+			'<label	for="defaultentryuri"> &gt; </label>'
 		+			'<select	id="langselector">'
 		+				'<optgroup	label="Popular">'
-		+					'<option	value="en"	selected>(en)	English	(default)</option>'
-		+					'<option	value="ja">(ja)	日本語</option>'
-		+					'<option	value="fr">(fr)	Français</option>'
-		+					'<option	value="es">(es)	Español</option>'
-		+					'<option	value="de">(de)	Deutsch</option>'
-		+					'<option	value="it">(it)	Italiano</option>'
-		+					'<option	value="zh">(zh)	中文</option>'
+		+					'<option	value="en"	selected	>(en)	English	(default)</	option>'
+		+					'<option	value="ja"						>(ja)	日本語</							option>'
+		+					'<option	value="fr"						>(fr)	Français</					option>'
+		+					'<option	value="es"						>(es)	Español</						option>'
+		+					'<option	value="de"						>(de)	Deutsch</						option>'
+		+					'<option	value="it"						>(it)	Italiano</					option>'
+		+					'<option	value="zh"						>(zh)	中文</								option>'
 		+				'</optgroup>'
 		+				'<optgroup	label="(a-z) Sorted">'
-		+					'<option	value="az">(az) Azərbaycanca</option>'
-		+					'<option	value="bg">(bg) Български</option>'
-		+					'<option	value="br">(br) Brezhoneg</option>'
-		+					'<option	value="ca">(ca) Català</option>'
-		+					'<option	value="cs">(cs) Čeština</option>'
-		+					'<option	value="da">(da) Dansk</option>'
-		+					'<option	value="de">(de) Deutsch</option>'
-		+					'<option	value="en">(en) English (default)</option>'
-		+					'<option	value="es">(es) Español</option>'
-		+					'<option	value="et">(et) Eesti</option>'
-		+					'<option	value="eo">(eo) Esperanto</option>'
-		+					'<option	value="eu">(eu) Euskara</option>'
-		+					'<option	value="fa">(fa) فارسی</option>'
-		+					'<option	value="fr">(fr) Français</option>'
-		+					'<option	value="ko">(ko) 한국어</option>'
-		+					'<option	value="id">(id) Bahasa Indonesia</option>'
-		+					'<option	value="is">(is) Íslenska</option>'
-		+					'<option	value="it">(it) Italiano</option>'
-		+					'<option	value="ja">(ja) 日本語</option>'
-		+					'<option	value="la">(la) Latina</option>'
-		+					'<option	value="nl">(nl) Nederlands</option>'
-		+					'<option	value="no">(no) Norsk	bokmål</option>'
-		+					'<option	value="pl">(pl) Polski</option>'
-		+					'<option	value="pt">(pt) Português</option>'
-		+					'<option	value="qu">(qu) Runa Simi</option>'
-		+					'<option	value="ru">(ru) Русский</option>'
-		+					'<option	value="simple">(simple) Simple English</option>'
-		+					'<option	value="sr">(sr) Српски / srpski</option>'
-		+					'<option	value="fi">(fi) Suomi</option>'
-		+					'<option	value="sv">(sv) Svenska</option>'
-		+					'<option	value="tl">(tl) Tagalog</option>'
-		+					'<option	value="tr">(tr) Türkçe</option>'
-		+					'<option	value="uk">(uk) Українська</option>'
-		+					'<option	value="vi">(vi) Tiếng Việt</option>'
-		+					'<option	value="zh">(zh) 中文</option>'
-		+					'<option	value="zh-yue">(zh-yue) 粵語</option>'
+		+					'<option	value="az"			>(az) Azərbaycanca</				option>'
+		+					'<option	value="bg"			>(bg) Български</						option>'
+		+					'<option	value="br"			>(br) Brezhoneg</						option>'
+		+					'<option	value="ca"			>(ca) Català</							option>'
+		+					'<option	value="cs"			>(cs) Čeština</							option>'
+		+					'<option	value="da"			>(da) Dansk</								option>'
+		+					'<option	value="de"			>(de) Deutsch</							option>'
+		+					'<option	value="en"			>(en) English (default)</		option>'
+		+					'<option	value="es"			>(es) Español</							option>'
+		+					'<option	value="et"			>(et) Eesti</								option>'
+		+					'<option	value="eo"			>(eo) Esperanto</						option>'
+		+					'<option	value="eu"			>(eu) Euskara</							option>'
+		+					'<option	value="fa"			>(fa) فارسی</							option>'
+		+					'<option	value="fr"			>(fr) Français</						option>'
+		+					'<option	value="ko"			>(ko) 한국어</								option>'
+		+					'<option	value="id"			>(id) Bahasa Indonesia</		option>'
+		+					'<option	value="is"			>(is) Íslenska</						option>'
+		+					'<option	value="it"			>(it) Italiano</						option>'
+		+					'<option	value="ja"			>(ja) 日本語</								option>'
+		+					'<option	value="la"			>(la) Latina</							option>'
+		+					'<option	value="nl"			>(nl) Nederlands</					option>'
+		+					'<option	value="no"			>(no) Norsk	bokmål</				option>'
+		+					'<option	value="pl"			>(pl) Polski</							option>'
+		+					'<option	value="pt"			>(pt) Português</						option>'
+		+					'<option	value="qu"			>(qu) Runa Simi</						option>'
+		+					'<option	value="ru"			>(ru) Русский</							option>'
+		+					'<option	value="simple"	>(simple) Simple English</	option>'
+		+					'<option	value="sr"			>(sr) Српски / srpski</			option>'
+		+					'<option	value="fi"			>(fi) Suomi</								option>'
+		+					'<option	value="sv"			>(sv) Svenska</							option>'
+		+					'<option	value="tl"			>(tl) Tagalog</							option>'
+		+					'<option	value="tr"			>(tr) Türkçe</							option>'
+		+					'<option	value="uk"			>(uk) Українська</					option>'
+		+					'<option	value="vi"			>(vi) Tiếng Việt</					option>'
+		+					'<option	value="zh"			>(zh) 中文</									option>'
+		+					'<option	value="zh-yue"	>(zh-yue) 粵語</							option>'
 		+				'</optgroup>'
 		+			'</select>'
 		+			'<button	id="startbrowsing"	title="Start browsing from the URI"	'
@@ -1377,7 +1378,7 @@ function	rebuilddefaultworkspace(	endpointstr,	uristr,	langstr	)	{
 				}
 			}
 		}	else	{
-			$(	'#langselector	option[value="en"]'	).attr(	'selected',	true	);	//	default
+			$(	'#langselector optgroup[label="Popular"] option[value="en"]'	).attr(	'selected',	true	);	//	default
 		}
 	}	finally	{
 		$(	'#spacetop'	).css(	'height',	function(){return	(	24	+	$(	'#webappcontrol'	).height()	)	+	'px';}	);
@@ -1429,18 +1430,20 @@ function	testbutton3()	{
 function	testbutton4()	{
 	displayPageLoading();
 	if ( nextsuggestionseditorid	===	0 )	{
-		var	suggestionseditorhtmls					=	[]
-		,		suggestionseditorhtml						=	null
-		,		suggestionseditorhtml_elem			=	null
-		,		fragment_suggestionseditorhtml	=	null
+		var	suggestionseditorhtmls									=	[]
+		,		suggestionseditorhtml										=	null
+		,		suggestionseditorhtml_elem							=	null
+		,		fragment_suggestionseditorhtml					=	null
+		,		detectionselectorcontenthtml						=	''
+		,		detectionvisualisatontablecontenthtml		=	''
 		;
 		suggestionseditorhtml	=	$(
-			'<div	class="item	map"	id="suggestionseditoritem'	+	nextsuggestionseditorid	+	'">'
+			'<div	class="item	timeline"	id="suggestionseditoritem'	+	nextsuggestionseditorid	+	'">'
 			+		'<button	onclick="removeitem('	+	"'"	+	'suggestionseditoritem'	+	nextsuggestionseditorid	+	"'"	+	');'
 			+			'nextsuggestionseditorid	-=	1;">X</button> '
 			+		'<button	onclick="nodetogglecontent(this,'
 			+			"'"	+	'suggestionseditoritem'	+	nextsuggestionseditorid	+	"'"	+	')">-</button> '
-			+		'Suggestions editor	'
+			+		'<h2	style="display:inline;">Suggestions editor</h2>'
 			+		'<div	class="canevas	hideable"	id="suggestionseditor'	+	nextsuggestionseditorid	+	'"></div>'
 			+	'</div>'
 		);
@@ -1450,15 +1453,105 @@ function	testbutton4()	{
 		webappfullcontainer.insertBefore(	fragment_suggestionseditorhtml,	webappfullcontainer.firstChild	);
 		suggestionseditorhtmls.push(	suggestionseditorhtml_elem	);
 		msnry.prepended(	suggestionseditorhtmls	);
-		$(	suggestionseditorhtml	).hide().appendTo(	'#suggestionseditoritem'	+	nextsuggestionseditorid	).fadeIn();
+		//	fill	'#suggestionseditor'	+	nextsuggestionseditorid	with	html	content
+		$(
+			'<div	class="suggestionseditorcontent">'
+			+		'<div	class="section detectioneditor">'
+			+			'<h3>Detection editor</h3>'
+			+			'<div>'
+			+				'<table	id="detectionvisualisatontable'	+	nextsuggestionseditorid	+	'">'
+			+					'<tr>'
+			+						'<th	class="a"	>category</				th>'
+			+						'<th	class="b"	>format</					th>'
+			+						'<th	class="c"	>specification</	th>'
+			+						'<th	class="d"	>uri</						th>'
+			+						'<th	class="x"	></								th>'
+			+					'</tr>'
+			+				'<table>'
+			+			'</div>'
+			+			'<span	class="interaction">'
+			+				'<input	type="text"	id="adetectioninput"								></input>'
+			+				'<input	type="text"	id="bdetectioninput"								></input>'
+			+				'<input	type="text"	id="cdetectioninput"								></input>'
+			+				'<input	type="text"	id="uridetectioninput"	class="uri"	></input>'
+			+				'<button	id="updatedetectiontree"	disabled>Update</button>'
+			+			'</span>'
+			+		'</div>'
+			+		'<div	class="section	detectionvisualisationeditor">'
+			+			'<h3>Detection-visualisation matching editor</h3>'
+			+			'<div>'
+			+				'<table	id="detectionvisualisatontable'	+	nextsuggestionseditorid	+	'">'
+			+					'<tr>'
+			+						'<th	class="y"	>Detection</			th>'
+			+						'<th	class="z"	>Visualisation</	th>'
+			+						'<th	class="x"	></								th>'
+			+					'</tr>'
+			+					'<tr>	<td	>geo</				td>	<td	>map</						td>	<td	><button	disabled>X</button></	td>	</tr>'
+			+					'<tr>	<td	>date</				td>	<td	>timeline</				td>	<td	><button	disabled>X</button></	td>	</tr>'
+			+				'<table>'
+			+			'</div>'
+			+			'<span	class="interaction">'
+			+				'<select	id="detectionselector'	+	nextsuggestionseditorid	+	'">'
+			+				'</select>'
+			+				'<select	id="visualisationselector'	+	nextsuggestionseditorid	+	'">'
+			+					'<option	value="map"				>map</			option>'
+			+					'<option	value="timeline"	>timeline</	option>'
+			+				'</select>'
+			+				'<button	id="updatedetectionvisualisaton"	disabled>Update</button>'
+			+			'</span>'
+			+		'</div>'
+			+	'</div>'
+		).hide().appendTo(	'#suggestionseditor'	+	nextsuggestionseditorid	).fadeIn();
+		//	next	loop	variables	for	knownPredicates
+		//	category			as	a
+		//	format				as	b
+		//	specification	as	c
+		//	uri						as	d
+		//	fill	detectionvisualisatontable'	+	nextsuggestionseditorid	+	'	with	current	knownPredicates	state
+		knownPredicates.forEach(	function(	A,	a	)	{
+			A.forEach(	function(	B,	b	)	{
+				B.forEach(	function(	C,	c	)	{
+					C.forEach(	function(	d	)	{
+						detectionvisualisatontablecontenthtml	+=	'<tr>'
+							+		'<td>'	+	a	+	'</td><td>'	+	b	+	'</td><td>'	+	c	+	'</td><td>'	+	d	+	'</td>'
+							+		'<td><button	disabled>X</button></td>'
+							+	'</tr>'
+							;
+					}	);
+				}	);
+			}	);
+		}	);
+		$(	detectionvisualisatontablecontenthtml	).hide().appendTo(
+			'#detectionvisualisatontable'	+	nextsuggestionseditorid
+		).fadeIn();
+		//	fill	detectionselector	with	options
+		knownPredicates.forEach(	function(	A,	a	)	{
+			detectionselectorcontenthtml	+=	'<option	value="'	+	a	+	'">'	+	a	+	'</option>';
+			A.forEach(	function(	B,	b	)	{
+				detectionselectorcontenthtml	+=	'<option	value="'	+	a	+	'.'	+	b	+	'">'	+	a	+	'.'	+	b	+	'</option>';
+				B.forEach(	function(	C,	c	)	{
+					detectionselectorcontenthtml	+=	'<option	'
+						+		'value="'	+	a	+	'.'	+	b	+	'.'	+	c	+	'">'	+	a	+	'.'	+	b	+	'.'	+	c	+	'</option>'
+						;
+					C.forEach(	function(	d	)	{
+						detectionselectorcontenthtml	+=	'<option	'
+							+		'value="'	+	a	+	'.'	+	b	+	'.'	+	c	+	'#'	+	d	+	'">'	+	a	+	'.'	+	b	+	'.'	+	c	+	'#'	+	d	+	'</option>'
+							;
+					}	);
+				}	);
+			}	);
+		}	);
+		$(	detectionselectorcontenthtml	).hide().appendTo(	'#detectionselector'	+	nextsuggestionseditorid	).fadeIn();
+		//	make	the	item	draggable
 		$(	'#suggestionseditoritem'	+	nextsuggestionseditorid	).draggable(
 			{
 				containment	:	'parent'
 				,	opacity		:	0.5
-				,	cancel		:	'.selectable'
+				,	cancel		:	'.interaction'
 			}
 		);
 		nextsuggestionseditorid	+=	1;	//	ready	for	next	timeline
+		msnry.layout();
 	}
 	displayPageLoaded();
 }
@@ -1532,7 +1625,7 @@ function	testbuttonM()	{
 		,		vectorLayer	=	new	OpenLayers.Layer.Vector(
 					'Simple	Geometry'
 					,	{
-						styleMap:	new	OpenLayers.StyleMap(
+						styleMap		:	new	OpenLayers.StyleMap(
 							{
 								'default':	{
 									strokeColor					:	'#000000'
@@ -1555,7 +1648,7 @@ function	testbuttonM()	{
 								}
 							}
 						)
-						,	renderers:	renderer
+						,	renderers	:	renderer
 					}
 				)
 		,		projections	=	new	Mapping()
@@ -1673,6 +1766,7 @@ function	testbuttonM()	{
 		}
 	);
 	nextmapid	+=	1;	//	ready	for	next	map
+	msnry.layout();
 	displayPageLoaded();
 }
 function	testbuttonT()	{
@@ -1853,6 +1947,7 @@ function	testbuttonT()	{
 		}
 	);
 	nexttimelineid	+=	1;	//	ready	for	next	timeline
+	msnry.layout();
 	displayPageLoaded();
 }
 if	(	window.location.href.indexOf(	'?'	)	>	-1	)	{

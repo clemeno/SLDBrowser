@@ -173,6 +173,57 @@ h6.timelineMajorMarker	{
 	border-radius:6px;
 }
 
+.suggestionseditorcontent	input	{
+	width:68px;
+}
+.suggestionseditorcontent	input.uri	{
+	width:180px;
+}
+.suggestionseditorcontent	select	{
+	width:auto;
+	max-width:320px;
+}
+.suggestionseditorcontent	tr	{
+	border-bottom:1px	solid	rgba(	80,	80,	80,	0.8	);
+}
+.suggestionseditorcontent	th {
+	padding:2px;
+	padding-right:8px;
+	font-weight:bold;
+}
+.suggestionseditorcontent	td	{
+	padding:2px;
+}
+.suggestionseditorcontent	td	button	{
+	font-size:1em;
+}
+.suggestionseditorcontent	.section	{
+	margin-top:8px;
+	padding-top:4px;
+	border-top:1px	solid	rgba(	160,	160,	160,	0.8	);
+}
+th.a	{
+	width:65px;
+}
+th.b	{
+	width:65px;
+}
+th.c	{
+	width:65px;
+}
+th.d	{
+	width:210px;
+}
+th.x	{
+	width:auto;
+}
+th.y	{
+	width:315px;
+}
+th.z	{
+	width:110px;
+}
+
 .object	{
 	/*display:inline-block;*/
 	/*float:left;*/
