@@ -1,4 +1,4 @@
-/*! SLDBrowser : Semantic Linked Data Browser - v0.1.0 - 2014-06-07
+/*! SLDBrowser : Semantic Linked Data Browser - v0.1.0 - 2014-06-08
 * Copyright (c) 2014 Clément Ménoret ; Licensed  */
 //	utils
 /*
@@ -1474,7 +1474,9 @@ function	testbutton4()	{
 			+				'<input	type="text"	id="bdetectioninput"								></input>'
 			+				'<input	type="text"	id="cdetectioninput"								></input>'
 			+				'<input	type="text"	id="uridetectioninput"	class="uri"	></input>'
-			+				'<button	id="updatedetectiontree"	disabled>Update</button>'
+			+				'<button	id="updatedetectiontree"	onclick="updatedetectiontree_click('
+			+						nextsuggestionseditorid
+			+					')">Update</button>'
 			+			'</span>'
 			+		'</div>'
 			+		'<div	class="section	detectionvisualisationeditor">'
@@ -1552,6 +1554,27 @@ function	testbutton4()	{
 		);
 		nextsuggestionseditorid	+=	1;	//	ready	for	next	timeline
 		msnry.layout();
+	}
+	displayPageLoaded();
+}
+function	updatedetectiontree_click(	thissuggestionseditorid	)	{
+	displayPageLoading();
+	var	a		=	$(	'#suggestionseditor'	+	thissuggestionseditorid	+	' #adetectioninput'		).val().trim()	||	''
+	,		b		=	$(	'#suggestionseditor'	+	thissuggestionseditorid	+	' #bdetectioninput'		).val().trim()	||	''
+	,		c		=	$(	'#suggestionseditor'	+	thissuggestionseditorid	+	' #cdetectioninput'		).val().trim()	||	''
+	,		uri	=	$(	'#suggestionseditor'	+	thissuggestionseditorid	+	' #uridetectioninput'	).val().trim()	||	''
+	;
+	if	(	uri	!==	''	)	{
+		if	(	!knownPredicates[	a	]	)	{
+			knownPredicates[	a	]	=	new	Mapping();
+		}
+		if	(	!knownPredicates[	a	][	b	]	)	{
+			knownPredicates[	a	][	b	]	=	new	Mapping();
+		}
+		if	(	!knownPredicates[	a	][	b	][	c	]	)	{
+			knownPredicates[	a	][	b	][	c	]	=	[];
+		}
+		knownPredicates[	a	][	b	][	c	].push(	uri	);
 	}
 	displayPageLoaded();
 }
