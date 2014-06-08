@@ -1,4 +1,4 @@
-#SLDBrowser &nbsp; [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/) [![Build Status](https://travis-ci.org/clemeno/SLDBrowser.svg?branch=dev)](https://travis-ci.org/clemeno/SLDBrowser) 
+#SLDBrowser &nbsp; [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/) [![Build Status](https://travis-ci.org/clemeno/SLDBrowser.svg?branch=dev)](https://travis-ci.org/clemeno/SLDBrowser)
 
 **Keywords:** `Semantic Web` `Linked Data` `browser` `exploration` `data visualisation` `suggestion` `crowdsourcing`
 
@@ -17,7 +17,7 @@
 
 ###1. SLDBrowser (dev)
 
-Semantic Linked Data Browser, a semantic web browser with 
+Semantic Linked Data Browser, a semantic web browser with
 - ☆ Dynamic *SPARQL endpoint* (data-source) selection
 - ☆ Language *facet* (more *facets* later)
 - ☆ *Knowledge* discovery, recording and selection from the global uncoordinated distributed graph
@@ -26,7 +26,7 @@ Semantic Linked Data Browser, a semantic web browser with
 
 \[ [Try it online (dev)](http://pirmil.eu/) \]
 
-**Labels:** 
+**Labels:**
 <ul>
  <li>☆ application feature <em>set</em></li>
  <li>□ manually (by the user) checked <em>set</em></li>
@@ -44,17 +44,17 @@ Semantic Linked Data Browser, a semantic web browser with
 
 ####2.1 Requires
 
-Software installed **Node.js** with **npm** for your operating system and a **Grunt client** module installed. 
- 1. □ **Node.js** with **npm** (http://nodejs.org/ with **npm** *included*) 
- 2. □ **Grunt client** **$** `npm install -g grunt-cli` (http://gruntjs.com/) 
+Software installed **Node.js** with **npm** for your operating system and a **Grunt client** module installed.
+ 1. □ **Node.js** with **npm** (http://nodejs.org/ with **npm** *included*)
+ 2. □ **Grunt client** **$** `npm install -g grunt-cli` (http://gruntjs.com/)
 
 --
 
 ####2.2 **npm** dependencies
 
-Command **$** `npm install` 
+Command **$** `npm install`
 
-Will locally install: 
+Will locally install:
 - ◊ **Grunt**
 - ◊ **JSHint**
 - ◊ **Mocha**
@@ -68,7 +68,7 @@ Will locally install:
 
 Command **$** `grunt all`
 
-Will perform all **Grunt** *tasks*: 
+Will perform all **Grunt** *tasks*:
  1. ◊ lint
  2. ◊ test
  3. ◊ concat
@@ -79,7 +79,7 @@ Will perform all **Grunt** *tasks*:
 
 ###3. Deploy
 
-Put the following files &amp; folders to a web server: 
+Put the following files &amp; folders to a web server:
 - □ *.html
 - □ *.css
 - □ *.cur
@@ -95,6 +95,7 @@ Put the following files &amp; folders to a web server:
 Copyright © 2014 Clément Ménoret
 
 >	SLDBrowser : Semantic Linked Data Browser
+>
 >	Copyright (C) 2014  Clement Menoret
 >
 >	This program is free software: you can redistribute it and/or modify
