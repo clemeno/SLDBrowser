@@ -847,7 +847,8 @@ function	testbutton4()	{
 					C.forEach(	function(	d	)	{
 						detectionvisualisatontablecontenthtml	+=	'<tr>'
 							+		'<td>'	+	a	+	'</td><td>'	+	b	+	'</td><td>'	+	c	+	'</td><td>'	+	d	+	'</td>'
-							+		'<td><button	disabled>X</button></td>'
+							+		'<td><button	onclick="removedetectiontree_click(this,'
+							+			nextsuggestionseditorid	+	')">X</button></td>'
 							+	'</tr>'
 							;
 					}	);
@@ -889,25 +890,25 @@ function	testbutton4()	{
 	displayPageLoaded();
 }
 function	removedetectiontree_click(	this_element,	id	)	{
-	var	jRow													=	$(	this_element	).parent()
-	,		a															=	jRow.children(	'td:nth-child(1)'	).text().trim()	||	''
-	,		b															=	jRow.children(	'td:nth-child(2)'	).text().trim()	||	''
-	,		c															=	jRow.children(	'td:nth-child(3)'	).text().trim()	||	''
-	,		uri														=	jRow.children(	'td:nth-child(4)'	).text().trim()	||	''
-	,		idToDel												=	knownPredicates[	a	][	b	][	c	].indexOf(	uri	)
+	var	jRow													=	$(	this_element	).parent().parent()	//	button	<	td	<	tr
+	,		e															=	jRow.find(	'td:nth-child(1)'	).html().trim()	||	''
+	,		f															=	jRow.find(	'td:nth-child(2)'	).html().trim()	||	''
+	,		g															=	jRow.find(	'td:nth-child(3)'	).html().trim()	||	''
+	,		uri														=	jRow.find(	'td:nth-child(4)'	).html().trim()	||	''
+	,		idToDel												=	knownPredicates[	e	][	f	][	g	].indexOf(	uri	)
 	,		detectionselectorcontenthtml	=	''
 	;
 	if	(	idToDel	>	-1	)	{
-		knownPredicates[	a	][	b	][	c	].splice(	idToDel,	1	);
+						knownPredicates[	e	][	f	][	g	].splice(	idToDel,	1	);
 	}
-	if	(	knownPredicates[	a	][	b	][	c	].length	<	1	)	{
-		delete	knownPredicates[	a	][	b	][	c	];
+	if	(			knownPredicates[	e	][	f	][	g	].length	<	1	)	{
+		delete	knownPredicates[	e	][	f	][	g	];
 	}
-	if	(	knownPredicates[	a	][	b	].count()	<	1	)	{
-		delete	knownPredicates[	a	][	b	];
+	if	(			knownPredicates[	e	][	f	].count()	<	1	)	{
+		delete	knownPredicates[	e	][	f	];
 	}
-	if	(	knownPredicates[	a	].count()	<	1	)	{
-		delete	knownPredicates[	a	];
+	if	(			knownPredicates[	e	].count()	<	1	)	{
+		delete	knownPredicates[	e	];
 	}
 	jRow.hide().remove();
 	$(	'#detectionselector'	+	id	+	' option'	).hide().remove();
@@ -929,13 +930,13 @@ function	removedetectiontree_click(	this_element,	id	)	{
 	}	);
 	$(	detectionselectorcontenthtml	).hide().appendTo(	'#detectionselector'	+	id	).fadeIn();
 }
-function	addindetectiontable(	a,	b,	c,	d,	id	)	{
+function	addindetectiontable(	e,	f,	g,	uri,	id	)	{
 	var	detectionselectorcontenthtml	=	'';
 	//	table
 	$(
 		'<tr>'
-		+		'<td>'	+	a	+	'</td><td>'	+	b	+	'</td><td>'	+	c	+	'</td><td>'	+	d	+	'</td>'
-		+		'<td><button	disabled>X</button></td>'
+		+		'<td>'	+	e	+	'</td><td>'	+	f	+	'</td><td>'	+	g	+	'</td><td>'	+	uri	+	'</td>'
+		+		'<td><button	onclick="removedetectiontree_click(this,'	+	id	+	')">X</button></td>'
 		+	'</tr>'
 	).hide().appendTo(	'#detectionvisualisatontable'	+	id	).fadeIn();
 	//	select
@@ -958,12 +959,12 @@ function	addindetectiontable(	a,	b,	c,	d,	id	)	{
 		}	);
 		$(	detectionselectorcontenthtml	).hide().appendTo(	'#detectionselector'	+	id	).fadeIn();
 }
-function	updatedetectiontree_click(	thissuggestionseditorid	)	{
+function	updatedetectiontree_click(	id	)	{
 	displayPageLoading();
-	var	a		=	$(	'#suggestionseditor'	+	thissuggestionseditorid	+	' #adetectioninput'		).val().trim()	||	''
-	,		b		=	$(	'#suggestionseditor'	+	thissuggestionseditorid	+	' #bdetectioninput'		).val().trim()	||	''
-	,		c		=	$(	'#suggestionseditor'	+	thissuggestionseditorid	+	' #cdetectioninput'		).val().trim()	||	''
-	,		uri	=	$(	'#suggestionseditor'	+	thissuggestionseditorid	+	' #uridetectioninput'	).val().trim()	||	''
+	var	a		=	$(	'#suggestionseditor'	+	id	+	' #adetectioninput'		).val().trim()	||	''
+	,		b		=	$(	'#suggestionseditor'	+	id	+	' #bdetectioninput'		).val().trim()	||	''
+	,		c		=	$(	'#suggestionseditor'	+	id	+	' #cdetectioninput'		).val().trim()	||	''
+	,		uri	=	$(	'#suggestionseditor'	+	id	+	' #uridetectioninput'	).val().trim()	||	''
 	;
 	if	(	uri	!==	''	)	{
 		if	(	!knownPredicates[	a	]	)	{
@@ -977,7 +978,7 @@ function	updatedetectiontree_click(	thissuggestionseditorid	)	{
 		}
 		if	(	!knownPredicates[	a	][	b	][	c	].hasValue(	uri	)	)	{
 					knownPredicates[	a	][	b	][	c	].push(			uri	);
-			addindetectiontable(	a,		b,		c,						uri,	thissuggestionseditorid	);
+			addindetectiontable(	a,		b,		c,						uri,	id	);
 		}	else	{
 			alert(	'Detection already active'	);
 		}
