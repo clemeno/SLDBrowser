@@ -1,4 +1,4 @@
-/*! SLDBrowser : Semantic Linked Data Browser - v0.1.0 - 2014-06-09
+/*! SLDBrowser : Semantic Linked Data Browser - v0.1.0 - 2014-06-10
 * http://pirmil.eu
 * Copyright (c) 2014 Clément Ménoret ;
  Licensed SLDBrowser : Semantic Linked Data Browser
@@ -1573,6 +1573,76 @@ function	testbutton4()	{
 	}
 	displayPageLoaded();
 }
+function	removedetectiontree_click(	this_element,	id	)	{
+	var	jRow													=	$(	this_element	).parent()
+	,		a															=	jRow.children(	'td:nth-child(1)'	).text().trim()	||	''
+	,		b															=	jRow.children(	'td:nth-child(2)'	).text().trim()	||	''
+	,		c															=	jRow.children(	'td:nth-child(3)'	).text().trim()	||	''
+	,		uri														=	jRow.children(	'td:nth-child(4)'	).text().trim()	||	''
+	,		idToDel												=	knownPredicates[	a	][	b	][	c	].indexOf(	uri	)
+	,		detectionselectorcontenthtml	=	''
+	;
+	if	(	idToDel	>	-1	)	{
+		knownPredicates[	a	][	b	][	c	].splice(	idToDel,	1	);
+	}
+	if	(	knownPredicates[	a	][	b	][	c	].length	<	1	)	{
+		delete	knownPredicates[	a	][	b	][	c	];
+	}
+	if	(	knownPredicates[	a	][	b	].count()	<	1	)	{
+		delete	knownPredicates[	a	][	b	];
+	}
+	if	(	knownPredicates[	a	].count()	<	1	)	{
+		delete	knownPredicates[	a	];
+	}
+	jRow.hide().remove();
+	$(	'#detectionselector'	+	id	+	' option'	).hide().remove();
+	knownPredicates.forEach(	function(	A,	a	)	{
+		detectionselectorcontenthtml	+=	'<option	value="'	+	a	+	'">'	+	a	+	'</option>';
+		A.forEach(	function(	B,	b	)	{
+			detectionselectorcontenthtml	+=	'<option	value="'	+	a	+	'.'	+	b	+	'">'	+	a	+	'.'	+	b	+	'</option>';
+			B.forEach(	function(	C,	c	)	{
+				detectionselectorcontenthtml	+=	'<option	'
+					+		'value="'	+	a	+	'.'	+	b	+	'.'	+	c	+	'">'	+	a	+	'.'	+	b	+	'.'	+	c	+	'</option>'
+					;
+				C.forEach(	function(	d	)	{
+					detectionselectorcontenthtml	+=	'<option	'
+						+		'value="'	+	a	+	'.'	+	b	+	'.'	+	c	+	'#'	+	d	+	'">'	+	a	+	'.'	+	b	+	'.'	+	c	+	'#'	+	d	+	'</option>'
+						;
+				}	);
+			}	);
+		}	);
+	}	);
+	$(	detectionselectorcontenthtml	).hide().appendTo(	'#detectionselector'	+	id	).fadeIn();
+}
+function	addindetectiontable(	a,	b,	c,	d,	id	)	{
+	var	detectionselectorcontenthtml	=	'';
+	//	table
+	$(
+		'<tr>'
+		+		'<td>'	+	a	+	'</td><td>'	+	b	+	'</td><td>'	+	c	+	'</td><td>'	+	d	+	'</td>'
+		+		'<td><button	disabled>X</button></td>'
+		+	'</tr>'
+	).hide().appendTo(	'#detectionvisualisatontable'	+	id	).fadeIn();
+	//	select
+	$(	'#detectionselector'	+	id	+	' option'	).hide().remove();
+	knownPredicates.forEach(	function(	A,	a	)	{
+			detectionselectorcontenthtml	+=	'<option	value="'	+	a	+	'">'	+	a	+	'</option>';
+			A.forEach(	function(	B,	b	)	{
+				detectionselectorcontenthtml	+=	'<option	value="'	+	a	+	'.'	+	b	+	'">'	+	a	+	'.'	+	b	+	'</option>';
+				B.forEach(	function(	C,	c	)	{
+					detectionselectorcontenthtml	+=	'<option	'
+						+		'value="'	+	a	+	'.'	+	b	+	'.'	+	c	+	'">'	+	a	+	'.'	+	b	+	'.'	+	c	+	'</option>'
+						;
+					C.forEach(	function(	d	)	{
+						detectionselectorcontenthtml	+=	'<option	'
+							+		'value="'	+	a	+	'.'	+	b	+	'.'	+	c	+	'#'	+	d	+	'">'	+	a	+	'.'	+	b	+	'.'	+	c	+	'#'	+	d	+	'</option>'
+							;
+					}	);
+				}	);
+			}	);
+		}	);
+		$(	detectionselectorcontenthtml	).hide().appendTo(	'#detectionselector'	+	id	).fadeIn();
+}
 function	updatedetectiontree_click(	thissuggestionseditorid	)	{
 	displayPageLoading();
 	var	a		=	$(	'#suggestionseditor'	+	thissuggestionseditorid	+	' #adetectioninput'		).val().trim()	||	''
@@ -1582,15 +1652,20 @@ function	updatedetectiontree_click(	thissuggestionseditorid	)	{
 	;
 	if	(	uri	!==	''	)	{
 		if	(	!knownPredicates[	a	]	)	{
-			knownPredicates[	a	]	=	new	Mapping();
+					knownPredicates[	a	]	=	new	Mapping();
 		}
 		if	(	!knownPredicates[	a	][	b	]	)	{
-			knownPredicates[	a	][	b	]	=	new	Mapping();
+					knownPredicates[	a	][	b	]	=	new	Mapping();
 		}
 		if	(	!knownPredicates[	a	][	b	][	c	]	)	{
-			knownPredicates[	a	][	b	][	c	]	=	[];
+					knownPredicates[	a	][	b	][	c	]	=	[];
 		}
-		knownPredicates[	a	][	b	][	c	].push(	uri	);
+		if	(	!knownPredicates[	a	][	b	][	c	].hasValue(	uri	)	)	{
+					knownPredicates[	a	][	b	][	c	].push(			uri	);
+			addindetectiontable(	a,		b,		c,						uri,	thissuggestionseditorid	);
+		}	else	{
+			alert(	'Detection already active'	);
+		}
 	}
 	displayPageLoaded();
 }
