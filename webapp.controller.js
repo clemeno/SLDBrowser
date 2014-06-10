@@ -922,7 +922,8 @@ function	removedetectiontree_click(	this_element,	id	)	{
 					;
 				C.forEach(	function(	d	)	{
 					detectionselectorcontenthtml	+=	'<option	'
-						+		'value="'	+	a	+	'.'	+	b	+	'.'	+	c	+	'#'	+	d	+	'">'	+	a	+	'.'	+	b	+	'.'	+	c	+	'#'	+	d	+	'</option>'
+						+		'value="'	+	a	+	'.'	+	b	+	'.'	+	c	+	'#'	+	d	+	'">'	+	a	+	'.'	+	b	+	'.'	+	c	+	'#'	+	d
+						+	'</option>'
 						;
 				}	);
 			}	);
@@ -1398,6 +1399,14 @@ $(	hashtagworkspaceid	).resizable(
 		,	cancel		:	'.selectable'
 	}
 );
+$(	'#defaultentryuri'	).focus().select();	//	default initial	focus	plus	caret	end
+//	user	events	listeners
+$(	'#defaultendpoint'	).keyup(	function(	e	) {
+	if(	e.keyCode == 13	) {	e.preventDefault();	startbrowsing_click();	}
+}	);
+$(	'#defaultentryuri'	).keyup(	function(	e	) {
+	if(	e.keyCode == 13	) {	e.preventDefault();	startbrowsing_click();	}
+}	);
 //	----------------------------------------------------------------------------------------------------
 //	----------------------------------------	</START>	------------------------------------------------------------
 //	----------------------------------------------------------------------------------------------------
