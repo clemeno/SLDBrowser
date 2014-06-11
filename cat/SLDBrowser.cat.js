@@ -1,4 +1,4 @@
-/*! SLDBrowser : Semantic Linked Data Browser - v0.1.0 - 2014-06-10
+/*! SLDBrowser : Semantic Linked Data Browser - v0.1.0 - 2014-06-11
 * http://pirmil.eu
 * Copyright (c) 2014 Clément Ménoret ;
  Licensed SLDBrowser : Semantic Linked Data Browser
@@ -2084,7 +2084,7 @@ $(	hashtagworkspaceid	).resizable(
 		,	cancel		:	'.selectable'
 	}
 );
-$(	'#defaultentryuri'	).focus().select();	//	default initial	focus	plus	caret	end
+$(	'#defaultentryuri'	).focus().select();	//	default initial	focus
 //	user	events	listeners
 $(	'#defaultendpoint'	).keyup(	function(	e	) {
 	if(	e.keyCode == 13	) {	e.preventDefault();	startbrowsing_click();	}
