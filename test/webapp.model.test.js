@@ -4,7 +4,7 @@ var	assert	=	require(	'assert'	),	utils	=	require(	'../utils'	),	model	=	require
 describe(	'testing webapp.model.js : Tripple, Mapping, InternalTrippleStore ',	function()	{
 	describe(	'Tripple',	function()	{
 		describe(	'constructor',	function()	{
-			it(	'should	be	able	to	store	unset:	s,	p,	o',	function()	{
+			it(	'should be able to store unset: s, p, o',	function()	{
 				var	t	=	new	model.Tripple();
 				assert(	typeof(	t	)	==	'object'	);
 				assert.equal(	t.s,	void	0	);
@@ -197,7 +197,7 @@ describe(	'testing webapp.model.js : Tripple, Mapping, InternalTrippleStore ',	f
 			}	);
 		}	);
 		describe(	'.prototype.hasValue',	function()	{
-			it(	'should	return	true	if	one	of	the	values	referenced	in	the	Mapping	matches',	function()	{
+			it(	'should return true	if one of the values referenced in the Mapping matches',	function()	{
 				var	map	=	new	model.Mapping();
 				map.lol	=	'haha';
 				map[	'fsrgzg'	]	=	'rsgg';
@@ -403,7 +403,7 @@ describe(	'testing webapp.model.js : Tripple, Mapping, InternalTrippleStore ',	f
 	}	);
 	describe(	'InternalTrippleStore',	function()	{
 		describe(	'constructor',	function()	{
-			it(	'should initially be	a	new	registered	instance	of	InternalTrippleStore',	function()	{
+			it(	'should initially be a new registered instance of InternalTrippleStore',	function()	{
 				var	nbinstance_before	=	model.InternalTrippleStore.nbInstance
 				,		ITS								=	new	model.InternalTrippleStore()
 				,		nbinstance_after	=	model.InternalTrippleStore.nbInstance
