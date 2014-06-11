@@ -31,7 +31,7 @@
 	,	"devDependencies"	:	{
 		"grunt"										:	"~0.4.5"
 		,	"grunt-contrib-jshint"	:	"~0.10.0"
-		,	"grunt-contrib-qunit"		:	"~0.4.0"
+		,	"grunt-contrib-qunit"		:	"~0.5.1"
 		,	"grunt-mocha-cli"				:	"~1.8.0"
 		,	"grunt-contrib-concat"	:	"~0.4.0"
 		,	"grunt-grep"						:	"~0.7.0"
