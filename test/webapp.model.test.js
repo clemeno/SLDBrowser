@@ -6,6 +6,7 @@ describe(	'testing webapp.model.js : Tripple, Mapping, InternalTrippleStore ',	f
 		describe(	'constructor',	function()	{
 			it(	'should	be	able	to	store	unset:	s,	p,	o',	function()	{
 				var	t	=	new	model.Tripple();
+				assert(	typeof(	t	)	==	'object'	);
 				assert.equal(	t.s,	void	0	);
 				assert.equal(	t.p,	void	0	);
 				assert.equal(	t.o,	void	0	);
@@ -402,6 +403,14 @@ describe(	'testing webapp.model.js : Tripple, Mapping, InternalTrippleStore ',	f
 	}	);
 	describe(	'InternalTrippleStore',	function()	{
 		describe(	'constructor',	function()	{
+			it(	'should initially be	a	new	registered	instance	of	InternalTrippleStore',	function()	{
+				var	nbinstance_before	=	model.InternalTrippleStore.nbInstance
+				,		ITS								=	new	model.InternalTrippleStore()
+				,		nbinstance_after	=	model.InternalTrippleStore.nbInstance
+				;
+				assert(	typeof(	ITS	)	==	'object'	);
+				assert(	nbinstance_before	<	nbinstance_after	);
+			}	);
 		}	);
 	}	);
 }	);
