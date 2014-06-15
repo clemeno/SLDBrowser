@@ -412,5 +412,30 @@ describe(	'testing webapp.model.js : Tripple, Mapping, InternalTrippleStore ',	f
 				assert(	nbinstance_before	<	nbinstance_after	);
 			}	);
 		}	);
+		//	add	test	addTripple	here
+		describe(	'getTripplesMatching',	function()	{
+			it(	'should return the tripple matching the input tripple and only this tripple when there is an exact match',	function()	{
+				var	s		=	'a'
+				,		p		=	'b'
+				,		o		=	'c'
+				,		t		=	new	model.Tripple(	s		,	p		,	o		)
+				,		t2	=	new	model.Tripple(	s		,	p		,	'z'	)
+				,		t3	=	new	model.Tripple(	s		,	'y'	,	'z'	)
+				,		t4	=	new	model.Tripple(	'x'	,	'y'	,	'z'	)
+				,		t5	=	new	model.Tripple(	'x'	,	p		,	'z'	)
+				,		t6	=	new	model.Tripple(	'x'	,	p		,	o		)
+				,		ITS	=	new	model.InternalTrippleStore()
+				;
+				ITS.addTripple(	t2	);
+				ITS.addTripple(	t3	);
+				ITS.addTripple(	t		);
+				ITS.addTripple(	t4	);
+				ITS.addTripple(	t5	);
+				ITS.addTripple(	t6	);
+				assert.equal(	ITS.getTripplesMatching(	t	)[	0	].s,	t.s	);
+				assert.equal(	ITS.getTripplesMatching(	t	)[	0	].p,	t.p	);
+				assert.equal(	ITS.getTripplesMatching(	t	)[	0	].o,	t.o	);
+			}	);
+		}	);
 	}	);
 }	);
