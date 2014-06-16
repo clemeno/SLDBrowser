@@ -1,4 +1,4 @@
-/*! SLDBrowser : Semantic Linked Data Browser - v0.1.0 - 2014-06-15
+/*! SLDBrowser : Semantic Linked Data Browser - v0.1.0 - 2014-06-16
 * http://pirmil.eu
 * Copyright (c) 2014 Clément Ménoret ;
  Licensed SLDBrowser : Semantic Linked Data Browser
@@ -204,13 +204,13 @@ var	webappfullcontainer	=	document.querySelector(	'#webappfullcontent'	)
 	You should have received a copy of the GNU General Public License
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-//	Tripple
-var	Tripple	=	function(	s,	p,	o	)	{
+//	Triple
+var	Triple	=	function(	s,	p,	o	)	{
 	this.s	=	s	||	void	0;
 	this.p	=	p	||	void	0;
 	this.o	=	o	||	void	0;
 };
-Tripple.prototype.toString	=	function()	{
+Triple.prototype.toString	=	function()	{
 	if	(	(	this	===	void	0	)	||	(	this	===	null	)	)	{	throw	new	TypeError;	}
 	return	'( '	+	this.s	+	', '	+	this.p	+	', '	+	this.o	+	' )';
 };
@@ -318,11 +318,11 @@ Mapping.prototype.toString	=	function()	{
 
 
 
-//	internal	graph	:	Internal	Tripple	Store	Class
+//	internal	graph	:	Internal	Triple	Store	Class
 //	______________________________________________________________________________________________________
-//	InternalTrippleStore	---------------------------------------------------------------------------------
+//	InternalTripleStore	---------------------------------------------------------------------------------
 //	______________________________________________________________________________________________________
-var	InternalTrippleStore	=	function(){
+var	InternalTripleStore	=	function(){
 	//	constructor
 	this.constructor.nbInstance	+=	1;
 	//	private	----------
@@ -345,7 +345,7 @@ var	InternalTrippleStore	=	function(){
 			}
 	;
 	//	private	methods
-	function	_addTrippleToIndex(	index,	a,	b,	c	)	{
+	function	_addTripleToIndex(	index,	a,	b,	c	)	{
 		var	bSuccess	=	false;
 		try	{
 			if	(	!index.hasKey(	a	)	)	{
@@ -364,7 +364,7 @@ var	InternalTrippleStore	=	function(){
 			return	_internal_statsUpdate_afterOp(	bSuccess	);
 		}
 	}
-	function	_removeTrippleFromIndex(	index,	a,	b,	c	)	{
+	function	_removeTripleFromIndex(	index,	a,	b,	c	)	{
 		var	bSuccess	=	false;
 		try	{
 			var	idToDel		=	index[	a	][	b	].indexOf(	c	);
@@ -383,7 +383,7 @@ var	InternalTrippleStore	=	function(){
 				delete	index[	a	];
 				bSuccess	=	true;
 			}
-		}	catch	(	unknownTripple	)	{
+		}	catch	(	unknownTriple	)	{
 			bSuccess	=	false;
 		}	finally	{
 			return	_internal_statsUpdate_afterOp(	bSuccess	);
@@ -391,31 +391,31 @@ var	InternalTrippleStore	=	function(){
 	}
 	//	privileged	----------
 	//	privileged	methods
-	//	privileged	tripple	combination
-	this.getTripplesMatching	=	function(	t	)	{
-		var	tripples	=	[];
+	//	privileged	triple	combination
+	this.getTriplesMatching	=	function(	t	)	{
+		var	triples	=	[];
 		try	{
 			//	wildcard	_	implementation	:	any	unknown/falsy/unset	t	attribute
 			if	(	!!t.s	)	{
 				if	(	!!t.p	)	{
 					if	(	!!t.o	)	{	//	(	s,	p,	o	)	->	nothing	or	exactly	one	match
 						if	(	_spo[	t.s	][	t.p	].hasValue(	t.o	)	)	{
-									tripples.push(	new	Tripple(	t.s	,	t.p	,	t.o	)	);	//	match
+									triples.push(	new	Triple(	t.s	,	t.p	,	t.o	)	);	//	match
 						}
 					}	else	{	//	(	s,	p,	_	)
 						_spo[	t.s	][	t.p	].forEach(	function(	o_	)	{
-									tripples.push(	new	Tripple(	t.s	,	t.p	,	o_	)	);	//	match
+									triples.push(	new	Triple(	t.s	,	t.p	,	o_	)	);	//	match
 						}	);
 					}
 				}	else	{
 					if	(	!!t.o	)	{	//	(	s,	_,	o	)
 						_osp[	t.o	][	t.s	].forEach(	function(	p_	)	{
-									tripples.push(	new	Tripple(	t.s	,	p_	,	t.o	)	);	//	match
+									triples.push(	new	Triple(	t.s	,	p_	,	t.o	)	);	//	match
 						}	);
 					}	else	{	//	(	s,	_,	_	)
 						_spo[	t.s	].forEach(	function(	O_,	p_	)	{
 							O_.forEach(	function(	o_	)	{
-									tripples.push(	new	Tripple(	t.s	,	p_	,	o_	)	);	//	match
+									triples.push(	new	Triple(	t.s	,	p_	,	o_	)	);	//	match
 							}	);
 						}	);
 					}
@@ -424,12 +424,12 @@ var	InternalTrippleStore	=	function(){
 				if	(	!!t.p	)	{
 					if	(	!!t.o	)	{	//	(	_,	p,	o	)
 						_pos[	t.p	][	t.o	].forEach(	function(	s_	)	{
-									tripples.push(	new	Tripple(	s_	,	t.p	,	t.o	)	);	//	match
+									triples.push(	new	Triple(	s_	,	t.p	,	t.o	)	);	//	match
 						}	);
 					}	else	{	//	(	_,	p,	_	)
 						_pos[	t.p	].forEach(	function(	S_,	o_	)	{
 							S_.forEach(	function(	s_	)	{
-									tripples.push(	new	Tripple(	s_	,	t.p	,	o_	)	);	//	match
+									triples.push(	new	Triple(	s_	,	t.p	,	o_	)	);	//	match
 							}	);
 						}	);
 					}
@@ -437,14 +437,14 @@ var	InternalTrippleStore	=	function(){
 					if	(	!!t.o	)	{	//	(	_,	_,	o	)
 						_osp[	t.o	].forEach(	function(	P_,	s_	)	{
 							P_.forEach(	function(	p_	)	{
-									tripples.push(	new	Tripple(	s_	,	p_	,	t.o	)	);	//	match
+									triples.push(	new	Triple(	s_	,	p_	,	t.o	)	);	//	match
 							}	);
 						}	);
 					}	else	{//	(	_,	_,	_	)	->	nothing	or	everything	match
 						_spo.forEach(	function(	P_,s_	)	{
 							P_.forEach(	function(	O_,p_	)	{
 								O_.forEach(	function(	o_	)	{
-									tripples.push(	new	Tripple(	s_	,	p_	,	o_	)	);	//	match
+									triples.push(	new	Triple(	s_	,	p_	,	o_	)	);	//	match
 								}	);
 							}	);
 						}	);
@@ -453,29 +453,29 @@ var	InternalTrippleStore	=	function(){
 			}
 		}	catch	(	nothingLikeThatInIndex	)	{
 		}	finally	{
-			//	case	1	:	tripples.length	===	0	(if	"no	match")	;
-			//	case	2	:	tripples.length	===	1	(if	"exact	match!")	;
-			//	case	3	:	tripples.length	>	1	(if	"multiple	match")
-			return	tripples;
+			//	case	1	:	triples.length	===	0	(if	"no	match")	;
+			//	case	2	:	triples.length	===	1	(if	"exact	match!")	;
+			//	case	3	:	triples.length	>	1	(if	"multiple	match")
+			return	triples;
 		}
 	};
-	//	explicit	shorcut	to	getTripplesMatching's	branch	for	(	any	subject,	any	predicate,	any	object	)
-	//	returns	all	known	tripples	of	this	store	!
-	this.getAllTripples	=	function()	{
-		var	tripples	=	[];
+	//	explicit	shorcut	to	getTriplesMatching's	branch	for	(	any	subject,	any	predicate,	any	object	)
+	//	returns	all	known	triples	of	this	store	!
+	this.getAllTriples	=	function()	{
+		var	triples	=	[];
 		_spo.forEach(	function(	P_,s_	)	{
 			P_.forEach(	function(	O_,p_	)	{
 				O_.forEach(	function(	o_	)	{
-					tripples.push(	new	Tripple(	s_,	p_,	o_	)	);	//	match
+					triples.push(	new	Triple(	s_,	p_,	o_	)	);	//	match
 				}	);
 			}	);
 		}	);
-		return	tripples;
+		return	triples;
 	};
-	//	>>>>>	based	on	this.getTripplesMatching's	implementation	<<<<<
-	//	just	counts	the	number	of	tripples	matching	the	input
-	this.countTripplesMatching	=	function(	t	)	{
-		var	n	=	0;//	no	matching	tripple	in	store	by	default
+	//	>>>>>	based	on	this.getTriplesMatching's	implementation	<<<<<
+	//	just	counts	the	number	of	triples	matching	the	input
+	this.countTriplesMatching	=	function(	t	)	{
+		var	n	=	0;//	no	matching	triple	in	store	by	default
 		try	{
 			if	(	!!t.s	)	{
 				if	(	!!t.p	)	{
@@ -537,30 +537,30 @@ var	InternalTrippleStore	=	function(){
 		}
 	};
 	//	privileged	add
-	this.addTripple	=	function(	t	)	{
+	this.addTriple	=	function(	t	)	{
 		return	(
 			(
-				_addTrippleToIndex(	_spo,	t.s,	t.p,	t.o	)
+				_addTripleToIndex(	_spo,	t.s,	t.p,	t.o	)
 			)	&&	(
-				_addTrippleToIndex(	_pos,	t.p,	t.o,	t.s	)
+				_addTripleToIndex(	_pos,	t.p,	t.o,	t.s	)
 			)	&&	(
-				_addTrippleToIndex(	_osp,	t.o,	t.s,	t.p	)
+				_addTripleToIndex(	_osp,	t.o,	t.s,	t.p	)
 			)
 		);
 	};
 	//	privileged	remove
-	this.removeTripple	=	function(	t	)	{
+	this.removeTriple	=	function(	t	)	{
 		var	failures	=	[];
-		this.getTripplesMatching(	t	).forEach(
+		this.getTriplesMatching(	t	).forEach(
 			function(	t_	)	{
 				if	(
 					!(
 						(
-							_removeTrippleFromIndex(	_spo,	t_.s,	t_.p,	t_.o	)
+							_removeTripleFromIndex(	_spo,	t_.s,	t_.p,	t_.o	)
 						)	&&	(
-							_removeTrippleFromIndex(	_pos,	t_.p,	t_.o,	t_.s	)
+							_removeTripleFromIndex(	_pos,	t_.p,	t_.o,	t_.s	)
 						)	&&	(
-							_removeTrippleFromIndex(	_osp,	t_.o,	t_.s,	t_.p	)
+							_removeTripleFromIndex(	_osp,	t_.o,	t_.s,	t_.p	)
 						)
 					)
 				)	{
@@ -578,35 +578,35 @@ var	InternalTrippleStore	=	function(){
 //	prototype	----------
 //	prototype	attr
 //	public	static	----------
-InternalTrippleStore.nbInstance	=	0;
+InternalTripleStore.nbInstance	=	0;
 //	//	tests
 //	function	testbutton1()	{
 //		var
-//			store	=	new	InternalTrippleStore(),
-//			testTripples	=	new	Array(
-//				new	Tripple(	':Benabar'	,':job',':Singer'	),
-//				new	Tripple(	':Lorie'		,':job',':Singer'	),
-//				new	Tripple(	':Benabar'	,':sex',':Male'		),
-//				new	Tripple(	':Lorie'		,':sex',':Female'	)
+//			store	=	new	InternalTripleStore(),
+//			testTriples	=	new	Array(
+//				new	Triple(	':Benabar'	,':job',':Singer'	),
+//				new	Triple(	':Lorie'		,':job',':Singer'	),
+//				new	Triple(	':Benabar'	,':sex',':Male'		),
+//				new	Triple(	':Lorie'		,':sex',':Female'	)
 //			),
-//			whoHasJobSinger	=	new	Tripple(	false,':job',':Singer'	)
+//			whoHasJobSinger	=	new	Triple(	false,':job',':Singer'	)
 //		;
-//		testTripples.forEach(
+//		testTriples.forEach(
 //			function(	t	)	{
-//				if	(	!store.addTripple(	t	)	)	{alert(	t	+	'	not	added,try	again	later'	);}
+//				if	(	!store.addTriple(	t	)	)	{alert(	t	+	'	not	added,try	again	later'	);}
 //			}
 //		);
 //		alert(
-//			'Number	of	tripples	matching	whoHasJobSinger:	'	+	"\n"	+
-//			store.countTripplesMatching(	whoHasJobSinger	)
+//			'Number	of	triples	matching	whoHasJobSinger:	'	+	"\n"	+
+//			store.countTriplesMatching(	whoHasJobSinger	)
 //		);
 //		alert(
-//			'Tripples	matching	whoHasJobSinger:	'	+	"\n"	+
-//			store.getTripplesMatching(	whoHasJobSinger	).join(	"\n"	)
+//			'Triples	matching	whoHasJobSinger:	'	+	"\n"	+
+//			store.getTriplesMatching(	whoHasJobSinger	).join(	"\n"	)
 //		);
 //	}
 //	_______________________________________________________________________________________________________
-//	/InternalTrippleStore	---------------------------------------------------------------------------------
+//	/InternalTripleStore	---------------------------------------------------------------------------------
 //	_______________________________________________________________________________________________________
 
 
@@ -706,7 +706,7 @@ function	clearbrowser_click()	{
 	$(	'#webappcontrol'		).html(	''	);
 	$(	hashtagworkspaceid	).html(	''	);
 	rebuilddefaultworkspace();
-	ITS	=	new	InternalTrippleStore();
+	ITS	=	new	InternalTripleStore();
 	objectids	=	[];
 	nextobjectid						=	0;
 	nextmapid								=	0;
@@ -834,18 +834,18 @@ function	startbrowsing_click()	{
 					labelstr				+=	'<span	class="selectable">'	+	current_object[	1	]	+	'</span>'
 						+	'<div	class="ib">'	+	(	(	langcode	==	'en'	)?	''	:	'&nbsp;('	+	langcode	+	')'	)	+	'</div>'
 						;
-					t	=	new	Tripple(	getCleanTopbarUri()	,	labeluri				,	current_object[	1	]	);	//	update	model
+					t	=	new	Triple(	getCleanTopbarUri()	,	labeluri				,	current_object[	1	]	);	//	update	model
 				}	else	if	(	predicate	==	commenturi			)	{
 					commentstr			+=	'<span	class="selectable">'	+	current_object[	1	]	+	'</span>';
-					t	=	new	Tripple(	getCleanTopbarUri()	,	commenturi			,	current_object[	1	]	);	//	update	model
-					//	if	(	!ITS.addTripple(	t	)	)	{	alert(	'Not	added:	'	+	t	);	};
+					t	=	new	Triple(	getCleanTopbarUri()	,	commenturi			,	current_object[	1	]	);	//	update	model
+					//	if	(	!ITS.addTriple(	t	)	)	{	alert(	'Not	added:	'	+	t	);	};
 				}	else	if	(	predicate	==	imgdepictionuri	)	{
 					imgdepictionstr	+=	'<img	src="'	+	current_object[	1	]	+	'"	title="&nbsp;"	alt="&nbsp;"	'
 						+		'onclick="toggleBigImage1(this)"	/>'
 						;
-					t	=	new	Tripple(	getCleanTopbarUri()	,	imgdepictionuri	,	current_object[	1	]	);	//	update	model
+					t	=	new	Triple(	getCleanTopbarUri()	,	imgdepictionuri	,	current_object[	1	]	);	//	update	model
 				}
-				if	(	!!t	)	{	ITS.addTripple(	t	)	}	//	commit	update	model
+				if	(	!!t	)	{	ITS.addTriple(	t	)	}	//	commit	update	model
 			}
 		}	);
 	}	);
@@ -973,7 +973,7 @@ function	removeitem(	objectidstr	)	{
 function	idontneedtoknowabout(	objectidstr,	predicateuri,	predicateidstr,	object,	objectinlistidstr	)	{
 	displayPageLoading();
 	objectid_to_uri[	objectidstr	].forEach(	function(	subjecturi	)	{
-		var	t	=	new	Tripple()
+		var	t	=	new	Triple()
 		,		askstr	=	'( '
 		;
 		if	(	!!subjecturi	)	{	t.s	=	subjecturi;	askstr	+=	t.s;	}
@@ -981,7 +981,7 @@ function	idontneedtoknowabout(	objectidstr,	predicateuri,	predicateidstr,	object
 		if	(	!!object	)	{	t.o	=	object;	askstr	+=	', '	+	t.o;	}
 		askstr	+=	' )';
 		if	(	confirm(	'Forget about '	+	askstr	+	' ?'	)	)	{
-			if	(	ITS.removeTripple(	t	).length	===	0	)	{
+			if	(	ITS.removeTriple(	t	).length	===	0	)	{
 				if	(	!!objectinlistidstr	&&	!!predicateidstr	&&	!!objectidstr	)	{
 					$(	'#'	+	objectidstr	+	' .'	+	predicateidstr	+	' .'	+	objectinlistidstr	).hide().remove();
 				}	else	if	(									!!predicateidstr	&&	!!objectidstr	)	{
@@ -1092,8 +1092,8 @@ function	seeobjectshere(	this_element,	objectidstr,	predicateuri,	predicate_numb
 	,		bNumber							=	false
 	,		bLongitude					=	false
 	,		bLatitude						=	false
-	,		t										=	new	Tripple()
-	,		T										=	new	Tripple()
+	,		t										=	new	Triple()
+	,		T										=	new	Triple()
 	,		objects_htmlstr			=	''
 	,		l										=	0
 	;
@@ -1174,14 +1174,14 @@ function	seeobjectshere(	this_element,	objectidstr,	predicateuri,	predicate_numb
 						l	+=	1;
 					}
 				}
-				//	detect	visualisation	from	known	tripples	and	this	new	information
-				//	then,	T	must	ensure	that:	∀	Tripple	t	=	(	t.s,	t.p,	t.o	),	t	∈	{	t_	Tripple	|	matching(	T	)	}
+				//	detect	visualisation	from	known	triples	and	this	new	information
+				//	then,	T	must	ensure	that:	∀	Triple	t	=	(	t.s,	t.p,	t.o	),	t	∈	{	t_	Triple	|	matching(	T	)	}
 				if	(	!suggestionsFor.hasOwnProperty(	objectidstr	)	)	{
 					suggestionsFor[	objectidstr	]	=	[];
 				}
 				//	update	model	commit
-				t	=	new	Tripple(	subjecturi,	predicateuri,	current_object	);
-				ITS.addTripple(	t	);
+				t	=	new	Triple(	subjecturi,	predicateuri,	current_object	);
+				ITS.addTriple(	t	);
 				//	=================================================================================
 				suggestion	=	'map';	//	Can	we	put	this	concept	on	a	map	?
 				//	=================================================================================
@@ -1190,7 +1190,7 @@ function	seeobjectshere(	this_element,	objectidstr,	predicateuri,	predicate_numb
 					knownPredicates[	'geo'	][	'longitude'	].forEach(	function(	types	)	{
 						types.forEach(	function(	pattern	)	{
 							T.s	=	t.s;
-							bLongitude	=	ITS.getTripplesMatching(	T	).some(	function(	t_	)	{
+							bLongitude	=	ITS.getTriplesMatching(	T	).some(	function(	t_	)	{
 								return	(	t_.p.indexOf(	pattern	)	>	-1	);
 							}	);
 						}	);
@@ -1199,7 +1199,7 @@ function	seeobjectshere(	this_element,	objectidstr,	predicateuri,	predicate_numb
 					knownPredicates[	'geo'	][	'latitude'	].forEach(	function(	types	)	{
 						types.forEach(	function(	pattern	)	{
 							T.s	=	t.s;
-							bLatitude	=	ITS.getTripplesMatching(	T	).some(	function(	t_	)	{
+							bLatitude	=	ITS.getTriplesMatching(	T	).some(	function(	t_	)	{
 								return	(	t_.p.indexOf(	pattern	)	>	-1	);
 							}	);
 						}	);
@@ -1214,7 +1214,7 @@ function	seeobjectshere(	this_element,	objectidstr,	predicateuri,	predicate_numb
 						formats.forEach(	function(	types	)	{
 							types.forEach(	function(	pattern	)	{
 								T.s	=	t.s;
-								bDate	=	ITS.getTripplesMatching(	T	).some(	function(	t_	)	{
+								bDate	=	ITS.getTriplesMatching(	T	).some(	function(	t_	)	{
 									return	(	t_.p.indexOf(	pattern	)	>	-1	);
 								}	);
 							}	);
@@ -1268,7 +1268,7 @@ function	rebuilddefaultworkspace(	endpointstr,	uristr,	langstr	)	{
 		+				'SLDBrowser  Copyright (C) 2014  Clément Ménoret '
 		+				'under GPLv3 license http://www.gnu.org/licenses/gpl-3.0.html'
 		+				'<div>Internal representation '
-		+					'<button	id="testbutton1"	title="InternalTrippleStore state"	'
+		+					'<button	id="testbutton1"	title="InternalTripleStore state"	'
 		+						'onclick="testbutton1()">Current knowledge</button>'
 		+					'<button	id="testbutton3"	title="Visualisation suggestions state"	'
 		+						'onclick="testbutton3()">Current suggestions</button>'
@@ -1406,11 +1406,11 @@ function	rebuilddefaultworkspace(	endpointstr,	uristr,	langstr	)	{
 }
 
 //	init	workspace
-var	ITS	=	new	InternalTrippleStore();
+var	ITS	=	new	InternalTripleStore();
 function	testbutton1()	{
 	alert(
-		'Number of known Tripples = '	+	ITS.countTripplesMatching(	new	Tripple()	)	+	"\n"	+
-		ITS.getAllTripples().join(	"\n"	)
+		'Number of known Triples = '	+	ITS.countTriplesMatching(	new	Triple()	)	+	"\n"	+
+		ITS.getAllTriples().join(	"\n"	)
 	);
 }
 function	testbutton2()	{
@@ -1777,15 +1777,15 @@ function	testbuttonM()	{
 		suggestionsFor.forEach(	function(	suggestions,	objectid	)	{
 			//	if	the	object	can	be	visualised	on	a	map...
 			if	(	suggestions.hasValue(	'map'	)	)	{
-				var	tripples_lon		=	new	Mapping()
-				,		tripples_lat		=	new	Mapping()
+				var	triples_lon		=	new	Mapping()
+				,		triples_lat		=	new	Mapping()
 				,		labeltextarray	=	[]
 				;
 				//	get	labels	for	text	content	about	this	object
 				//	(that	will	probably	have	many	URI	and	many	values	for	each	URI)
 				objectid_to_uri[	objectid	].forEach(	function(	uri	)	{
-					ITS.getTripplesMatching(
-						new	Tripple(	uri,	'http://www.w3.org/2000/01/rdf-schema#label',	void	0	)
+					ITS.getTriplesMatching(
+						new	Triple(	uri,	'http://www.w3.org/2000/01/rdf-schema#label',	void	0	)
 					).forEach(	function(	t	)	{
 						if	(	!labeltextarray.hasValue(	t.o	)	)	{
 							labeltextarray.push(	t.o	);
@@ -1796,31 +1796,31 @@ function	testbuttonM()	{
 				objectid_to_uri[	objectid	].forEach(	function(	uri	)	{
 					//	longitude	values	for	this	URI
 					knownPredicates[	'geo'	][	'longitude'	].forEach(	function(	prediactes,	referentiel	)	{
-						if	(	!tripples_lon[	referentiel	]	)	{
-							tripples_lon[	referentiel	]	=	[];
+						if	(	!triples_lon[	referentiel	]	)	{
+							triples_lon[	referentiel	]	=	[];
 						}
 						prediactes.forEach(	function(	predicate	)	{
-							tripples_lon[	referentiel	]	=	tripples_lon[	referentiel	].concat(
-								ITS.getTripplesMatching(	new	Tripple(	uri,	predicate,	void	0	)	)
+							triples_lon[	referentiel	]	=	triples_lon[	referentiel	].concat(
+								ITS.getTriplesMatching(	new	Triple(	uri,	predicate,	void	0	)	)
 							);
 						}	);
 					}	);
 					//	latitude	values	for	this	URI
 					knownPredicates[	'geo'	][	'latitude'	].forEach(	function(	prediactes,	referentiel	)	{
-						if	(	!tripples_lat[	referentiel	]	)	{
-							tripples_lat[	referentiel	]	=	[];
+						if	(	!triples_lat[	referentiel	]	)	{
+							triples_lat[	referentiel	]	=	[];
 						}
 						prediactes.forEach(	function(	predicate	)	{
-							tripples_lat[	referentiel	]	=	tripples_lat[	referentiel	].concat(
-								ITS.getTripplesMatching(	new	Tripple(	uri,	predicate,	void	0	)	)
+							triples_lat[	referentiel	]	=	triples_lat[	referentiel	].concat(
+								ITS.getTriplesMatching(	new	Triple(	uri,	predicate,	void	0	)	)
 							);
 						}	);
 					}	);
 					//	display	markers	and	related	labels	for	this	object	on	the	map
-					tripples_lon.forEach(	function(	tripple_lon,	ref_lon	)	{
-						tripples_lat.forEach(	function(	tripple_lat,	ref_lat	)	{
-							tripple_lon.forEach(	function(	t_lon	)	{
-								tripple_lat.forEach(	function(	t_lat	)	{
+					triples_lon.forEach(	function(	triple_lon,	ref_lon	)	{
+						triples_lat.forEach(	function(	triple_lat,	ref_lat	)	{
+							triple_lon.forEach(	function(	t_lon	)	{
+								triple_lat.forEach(	function(	t_lat	)	{
 									var	labelOffsetFeature	=	null;
 									if	(	bNoMarker	)	{
 										markers.addMarker(
@@ -1895,7 +1895,7 @@ function	testbuttonT()	{
 	,		timeline							=	null
 	,		timelinecontainerhtml	=	''
 	,		eventNumber						=	0
-	,		clusterTripplesByYear	=	new	Mapping()
+	,		clusterTriplesByYear	=	new	Mapping()
 	,		labelstext						=	new	Mapping()
 	;
 	timelinehtml	=	$(
@@ -1919,13 +1919,13 @@ function	testbuttonT()	{
 	//		;
 	suggestionsFor.forEach(	function(	suggestions,	objectid	)	{
 		if	(	suggestions.hasValue(	'timeline'	)	)	{
-			var	tripples_birthdate	=	new	Mapping()
+			var	triples_birthdate	=	new	Mapping()
 			,		labeltextarray			=	[]
 			;
 			//	get	the	labels
 			objectid_to_uri[	objectid	].forEach(	function(	uri	)	{
-				ITS.getTripplesMatching(
-					new	Tripple(	uri,	'http://www.w3.org/2000/01/rdf-schema#label',	void	0	)
+				ITS.getTriplesMatching(
+					new	Triple(	uri,	'http://www.w3.org/2000/01/rdf-schema#label',	void	0	)
 				).forEach(	function(	t	)	{
 					if	(	!labeltextarray.hasValue(	t.o	)	)	{
 						labeltextarray.push(	t.o	);
@@ -1936,23 +1936,23 @@ function	testbuttonT()	{
 			objectid_to_uri[	objectid	].forEach(	function(	uri	)	{
 				//	longitude	values	for	this	URI
 				knownPredicates[	'date'	].forEach(	function(	types,	format	)	{ 
-					if	(	!tripples_birthdate[	format	]	)	{
-						tripples_birthdate[	format	]	=	[];
+					if	(	!triples_birthdate[	format	]	)	{
+						triples_birthdate[	format	]	=	[];
 					}
 					types.forEach(	function(	prediactes	)	{
 						prediactes.forEach(	function(	predicate	)	{
-							tripples_birthdate[	format	]	=	tripples_birthdate[	format	].concat(
-								ITS.getTripplesMatching(	new	Tripple(	uri,	predicate,	void	0	)	)
+							triples_birthdate[	format	]	=	triples_birthdate[	format	].concat(
+								ITS.getTriplesMatching(	new	Triple(	uri,	predicate,	void	0	)	)
 							);
 						}	);
 					}	);
 				}	);
 			}	);
 			//	build	timeline	visualisation
-			//	alert(	tripples_birthdate	);
-			//	//	sort	tripples	by	date
-			//	tripples_birthdate.forEach(	function(	tripples,	format	)	{
-			//		tripples.sort(	function(	t1,	t2	)	{
+			//	alert(	triples_birthdate	);
+			//	//	sort	triples	by	date
+			//	triples_birthdate.forEach(	function(	triples,	format	)	{
+			//		triples.sort(	function(	t1,	t2	)	{
 			//			var	bCompare	=	0;
 			//			if	(	t1.o	>	t2.o	)	{
 			//				bCompare	=	1;
@@ -1963,8 +1963,8 @@ function	testbuttonT()	{
 			//		}	);
 			//	}	);
 			//	update	the	year	clusters	with	information
-			tripples_birthdate.forEach(	function(	tripples,	format	)	{
-				tripples.forEach(	function(	t	)	{
+			triples_birthdate.forEach(	function(	triples,	format	)	{
+				triples.forEach(	function(	t	)	{
 					var	parseddate	=	parseDate(	t.o,	format	)
 					,		Y	=	parseddate.fullyear
 					,		M	=	parseddate.fullmonth
@@ -1973,25 +1973,25 @@ function	testbuttonT()	{
 					,		I	=	parseddate.fullminute
 					,		S	=	parseddate.fullsecond
 					;
-					if	(	!clusterTripplesByYear[	Y	]	)	{
-								clusterTripplesByYear[	Y	]	=	new	Mapping();
+					if	(	!clusterTriplesByYear[	Y	]	)	{
+								clusterTriplesByYear[	Y	]	=	new	Mapping();
 					}
-					if	(	!clusterTripplesByYear[	Y	][	M	]	)	{
-								clusterTripplesByYear[	Y	][	M	]	=	new	Mapping();
+					if	(	!clusterTriplesByYear[	Y	][	M	]	)	{
+								clusterTriplesByYear[	Y	][	M	]	=	new	Mapping();
 					}
-					if	(	!clusterTripplesByYear[	Y	][	M	][	D	]	)	{
-								clusterTripplesByYear[	Y	][	M	][	D	]	=	new	Mapping();
+					if	(	!clusterTriplesByYear[	Y	][	M	][	D	]	)	{
+								clusterTriplesByYear[	Y	][	M	][	D	]	=	new	Mapping();
 					}
-					if	(	!clusterTripplesByYear[	Y	][	M	][	D	][	H	]	)	{
-								clusterTripplesByYear[	Y	][	M	][	D	][	H	]	=	new	Mapping();
+					if	(	!clusterTriplesByYear[	Y	][	M	][	D	][	H	]	)	{
+								clusterTriplesByYear[	Y	][	M	][	D	][	H	]	=	new	Mapping();
 					}
-					if	(	!clusterTripplesByYear[	Y	][	M	][	D	][	H	][	I	]	)	{
-								clusterTripplesByYear[	Y	][	M	][	D	][	H	][	I	]	=	new	Mapping();
+					if	(	!clusterTriplesByYear[	Y	][	M	][	D	][	H	][	I	]	)	{
+								clusterTriplesByYear[	Y	][	M	][	D	][	H	][	I	]	=	new	Mapping();
 					}
-					if	(	!clusterTripplesByYear[	Y	][	M	][	D	][	H	][	I	][	S	]	)	{
-								clusterTripplesByYear[	Y	][	M	][	D	][	H	][	I	][	S	]	=	[];
+					if	(	!clusterTriplesByYear[	Y	][	M	][	D	][	H	][	I	][	S	]	)	{
+								clusterTriplesByYear[	Y	][	M	][	D	][	H	][	I	][	S	]	=	[];
 					}
-								clusterTripplesByYear[	Y	][	M	][	D	][	H	][	I	][	S	].push(	t	);
+								clusterTriplesByYear[	Y	][	M	][	D	][	H	][	I	][	S	].push(	t	);
 				}	);
 			}	);
 			//	labels	for	the	uri
@@ -2000,24 +2000,24 @@ function	testbuttonT()	{
 	}	);
 	timelinecontainerhtml	+=	'<div	class="timelineMajor">';
 	//	sort	the	clusters
-	clusterTripplesByYear.forEach(	function(	Ms,	Y	)	{
+	clusterTriplesByYear.forEach(	function(	Ms,	Y	)	{
 		Ms.forEach(	function(	Ds,	M	)	{
 			Ds.forEach(	function(	Hs,	D	)	{
 				Hs.forEach(	function(	Is,	H	)	{
 					Is.forEach(	function(	Ss,	I	)	{
-						clusterTripplesByYear[	Y	][	M	][	D	][	H	][	I	].sortKeys();	//	1/6	sort	seconds
+						clusterTriplesByYear[	Y	][	M	][	D	][	H	][	I	].sortKeys();	//	1/6	sort	seconds
 					}	);
-						clusterTripplesByYear[	Y	][	M	][	D	][	H	].sortKeys();	//	2/6	sort	minutes
+						clusterTriplesByYear[	Y	][	M	][	D	][	H	].sortKeys();	//	2/6	sort	minutes
 				}	);
-						clusterTripplesByYear[	Y	][	M	][	D	].sortKeys();	//	3/6	sort	hours
+						clusterTriplesByYear[	Y	][	M	][	D	].sortKeys();	//	3/6	sort	hours
 			}	);
-						clusterTripplesByYear[	Y	][	M	].sortKeys();	//	4/6	sort	days
+						clusterTriplesByYear[	Y	][	M	].sortKeys();	//	4/6	sort	days
 		}	);
-						clusterTripplesByYear[	Y	].sortKeys();	//	5/6	sort	months
+						clusterTriplesByYear[	Y	].sortKeys();	//	5/6	sort	months
 	}	);
-						clusterTripplesByYear.sortKeys();	//	6/6	sort	years
+						clusterTriplesByYear.sortKeys();	//	6/6	sort	years
 	//	prepare	the	UI	elements
-	clusterTripplesByYear.forEach(	function(	Ms,	Y	)	{
+	clusterTriplesByYear.forEach(	function(	Ms,	Y	)	{
 		timelinecontainerhtml	+=	'<h2	class="timelineMajorMarker	selectable">'	+	Y	+	'</h2>';
 		Ms.forEach(	function(	Ds,	M	)	{
 			timelinecontainerhtml	+=	'<h3	class="timelineMajorMarker	selectable">'

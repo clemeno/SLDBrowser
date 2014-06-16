@@ -138,8 +138,8 @@ module.exports	=	function(	grunt	)	{
 						,	"Mapping"													:	true
 						,	"suggestionsFor"									:	true
 						,	"displayPageLoading"							:	true
-						,	"InternalTrippleStore"						:	true
-						,	"Tripple"													:	true
+						,	"InternalTripleStore"						:	true
+						,	"Triple"													:	true
 						,	"imgdepictionuri"									:	true
 						,	"imgdepictionstr"									:	true
 						,	"commenturi"											:	true

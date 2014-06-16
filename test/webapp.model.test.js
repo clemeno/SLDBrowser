@@ -1,54 +1,54 @@
 
 var	assert	=	require(	'assert'	),	utils	=	require(	'../utils'	),	model	=	require(	'../webapp.model'	);
 
-describe(	'testing webapp.model.js : Tripple, Mapping, InternalTrippleStore ',	function()	{
-	describe(	'Tripple',	function()	{
+describe(	'testing webapp.model.js : Triple, Mapping, InternalTripleStore ',	function()	{
+	describe(	'Triple',	function()	{
 		describe(	'constructor',	function()	{
 			it(	'should be able to store unset: s, p, o',	function()	{
-				var	t	=	new	model.Tripple();
+				var	t	=	new	model.Triple();
 				assert(	typeof(	t	)	==	'object'	);
 				assert.equal(	t.s,	void	0	);
 				assert.equal(	t.p,	void	0	);
 				assert.equal(	t.o,	void	0	);
 			}	);
 			it(	'should be able to store set: s, unset: p, o',	function()	{
-				var	t	=	new	model.Tripple(	7	);
+				var	t	=	new	model.Triple(	7	);
 				assert.equal(	t.s,	7	);
 				assert.equal(	t.p,	void	0	);
 				assert.equal(	t.o,	void	0	);
 			}	);
 			it(	'should be able to store set: p, unset: s, o',	function()	{
-				var	t	=	new	model.Tripple(	void	0,	23	);
+				var	t	=	new	model.Triple(	void	0,	23	);
 				assert.equal(	t.s,	void	0	);
 				assert.equal(	t.p,	23	);
 				assert.equal(	t.o,	void	0	);
 			}	);
 			it(	'should be able to store set: o, unset: s, p',	function()	{
-				var	t	=	new	model.Tripple(	void	0,	void	0,	42	);
+				var	t	=	new	model.Triple(	void	0,	void	0,	42	);
 				assert.equal(	t.s,	void	0	);
 				assert.equal(	t.p,	void	0	);
 				assert.equal(	t.o,	42	);
 			}	);
 			it(	'should be able to store set: s, p, unset: o',	function()	{
-				var	t	=	new	model.Tripple(	7,	23	);
+				var	t	=	new	model.Triple(	7,	23	);
 				assert.equal(	t.s,	7	);
 				assert.equal(	t.p,	23	);
 				assert.equal(	t.o,	void	0	);
 			}	);
 			it(	'should be able to store set: s, o, unset: p',	function()	{
-				var	t	=	new	model.Tripple(	7,	void	0,	42	);
+				var	t	=	new	model.Triple(	7,	void	0,	42	);
 				assert.equal(	t.s,	7	);
 				assert.equal(	t.p,	void	0	);
 				assert.equal(	t.o,	42	);
 			}	);
 			it(	'should be able to store set: p, o, unset: s',	function()	{
-				var	t	=	new	model.Tripple(	void	0,	23,	42	);
+				var	t	=	new	model.Triple(	void	0,	23,	42	);
 				assert.equal(	t.s,	void	0	);
 				assert.equal(	t.p,	23	);
 				assert.equal(	t.o,	42	);
 			}	);
 			it(	'should be able to store set: s, p, o',	function()	{
-				var	t	=	new	model.Tripple(	7,	23,	42	);
+				var	t	=	new	model.Triple(	7,	23,	42	);
 				assert.equal(	t.s,	7	);
 				assert.equal(	t.p,	23	);
 				assert.equal(	t.o,	42	);
@@ -56,28 +56,28 @@ describe(	'testing webapp.model.js : Tripple, Mapping, InternalTrippleStore ',	f
 		}	);
 		describe(	'.prototype.toString',	function()	{
 			it(	'should return a valid string representation when unset: s, p, o',	function()	{
-				assert.equal(	(new	model.Tripple()).toString(),	'( undefined, undefined, undefined )'	);
+				assert.equal(	(new	model.Triple()).toString(),	'( undefined, undefined, undefined )'	);
 			}	);
 			it(	'should return a valid string representation when set: s, unset: p, o ',	function()	{
-				assert.equal(	(new	model.Tripple(	7	)).toString(),	'( 7, undefined, undefined )'	);
+				assert.equal(	(new	model.Triple(	7	)).toString(),	'( 7, undefined, undefined )'	);
 			}	);
 			it(	'should return a valid string representation when set: p, unset: s, o ',	function()	{
-				assert.equal(	(new	model.Tripple(	void	0,	23	)).toString(),	'( undefined, 23, undefined )'	);
+				assert.equal(	(new	model.Triple(	void	0,	23	)).toString(),	'( undefined, 23, undefined )'	);
 			}	);
 			it(	'should return a valid string representation when set: o, unset: s, p ',	function()	{
-				assert.equal(	(new	model.Tripple(	void	0,	void	0,	42	)).toString(),	'( undefined, undefined, 42 )'	);
+				assert.equal(	(new	model.Triple(	void	0,	void	0,	42	)).toString(),	'( undefined, undefined, 42 )'	);
 			}	);
 			it(	'should return a valid string representation when set: s, p, unset: o ',	function()	{
-				assert.equal(	(new	model.Tripple(	7,	23	)).toString(),	'( 7, 23, undefined )'	);
+				assert.equal(	(new	model.Triple(	7,	23	)).toString(),	'( 7, 23, undefined )'	);
 			}	);
 			it(	'should return a valid string representation when set: s, o unset: p ',	function()	{
-				assert.equal(	(new	model.Tripple(	7,	void	0,	42	)).toString(),	'( 7, undefined, 42 )'	);
+				assert.equal(	(new	model.Triple(	7,	void	0,	42	)).toString(),	'( 7, undefined, 42 )'	);
 			}	);
 			it(	'should return a valid string representation when set: p, o unset: s ',	function()	{
-				assert.equal(	(new	model.Tripple(	void	0,	23,	42	)).toString(),	'( undefined, 23, 42 )'	);
+				assert.equal(	(new	model.Triple(	void	0,	23,	42	)).toString(),	'( undefined, 23, 42 )'	);
 			}	);
 			it(	'should return a valid string representation when set: s, p, o ',	function()	{
-				assert.equal(	(new	model.Tripple(	7,	23,	42	)).toString(),	'( 7, 23, 42 )'	);
+				assert.equal(	(new	model.Triple(	7,	23,	42	)).toString(),	'( 7, 23, 42 )'	);
 			}	);
 		}	);
 	}	);
@@ -401,40 +401,40 @@ describe(	'testing webapp.model.js : Tripple, Mapping, InternalTrippleStore ',	f
 			}	);
 		}	);
 	}	);
-	describe(	'InternalTrippleStore',	function()	{
+	describe(	'InternalTripleStore',	function()	{
 		describe(	'constructor',	function()	{
-			it(	'should initially be a new registered instance of InternalTrippleStore',	function()	{
-				var	nbinstance_before	=	model.InternalTrippleStore.nbInstance
-				,		ITS								=	new	model.InternalTrippleStore()
-				,		nbinstance_after	=	model.InternalTrippleStore.nbInstance
+			it(	'should initially be a new registered instance of InternalTripleStore',	function()	{
+				var	nbinstance_before	=	model.InternalTripleStore.nbInstance
+				,		ITS								=	new	model.InternalTripleStore()
+				,		nbinstance_after	=	model.InternalTripleStore.nbInstance
 				;
 				assert(	typeof(	ITS	)	==	'object'	);
 				assert(	nbinstance_before	<	nbinstance_after	);
 			}	);
 		}	);
-		//	add	test	addTripple	here
-		describe(	'getTripplesMatching',	function()	{
-			it(	'should return the tripple matching the input tripple and only this tripple when there is an exact match',	function()	{
+		//	add	test	addTriple	here
+		describe(	'getTriplesMatching',	function()	{
+			it(	'should return the triple matching the input triple and only this triple when there is an exact match',	function()	{
 				var	s		=	'a'
 				,		p		=	'b'
 				,		o		=	'c'
-				,		t		=	new	model.Tripple(	s		,	p		,	o		)
-				,		t2	=	new	model.Tripple(	s		,	p		,	'z'	)
-				,		t3	=	new	model.Tripple(	s		,	'y'	,	'z'	)
-				,		t4	=	new	model.Tripple(	'x'	,	'y'	,	'z'	)
-				,		t5	=	new	model.Tripple(	'x'	,	p		,	'z'	)
-				,		t6	=	new	model.Tripple(	'x'	,	p		,	o		)
-				,		ITS	=	new	model.InternalTrippleStore()
+				,		t		=	new	model.Triple(	s		,	p		,	o		)
+				,		t2	=	new	model.Triple(	s		,	p		,	'z'	)
+				,		t3	=	new	model.Triple(	s		,	'y'	,	'z'	)
+				,		t4	=	new	model.Triple(	'x'	,	'y'	,	'z'	)
+				,		t5	=	new	model.Triple(	'x'	,	p		,	'z'	)
+				,		t6	=	new	model.Triple(	'x'	,	p		,	o		)
+				,		ITS	=	new	model.InternalTripleStore()
 				;
-				ITS.addTripple(	t2	);
-				ITS.addTripple(	t3	);
-				ITS.addTripple(	t		);
-				ITS.addTripple(	t4	);
-				ITS.addTripple(	t5	);
-				ITS.addTripple(	t6	);
-				assert.equal(	ITS.getTripplesMatching(	t	)[	0	].s,	t.s	);
-				assert.equal(	ITS.getTripplesMatching(	t	)[	0	].p,	t.p	);
-				assert.equal(	ITS.getTripplesMatching(	t	)[	0	].o,	t.o	);
+				ITS.addTriple(	t2	);
+				ITS.addTriple(	t3	);
+				ITS.addTriple(	t		);
+				ITS.addTriple(	t4	);
+				ITS.addTriple(	t5	);
+				ITS.addTriple(	t6	);
+				assert.equal(	ITS.getTriplesMatching(	t	)[	0	].s,	t.s	);
+				assert.equal(	ITS.getTriplesMatching(	t	)[	0	].p,	t.p	);
+				assert.equal(	ITS.getTriplesMatching(	t	)[	0	].o,	t.o	);
 			}	);
 		}	);
 	}	);

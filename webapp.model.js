@@ -16,13 +16,13 @@
 	You should have received a copy of the GNU General Public License
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-//	Tripple
-var	Tripple	=	function(	s,	p,	o	)	{
+//	Triple
+var	Triple	=	function(	s,	p,	o	)	{
 	this.s	=	s	||	void	0;
 	this.p	=	p	||	void	0;
 	this.o	=	o	||	void	0;
 };
-Tripple.prototype.toString	=	function()	{
+Triple.prototype.toString	=	function()	{
 	if	(	(	this	===	void	0	)	||	(	this	===	null	)	)	{	throw	new	TypeError;	}
 	return	'( '	+	this.s	+	', '	+	this.p	+	', '	+	this.o	+	' )';
 };
@@ -130,11 +130,11 @@ Mapping.prototype.toString	=	function()	{
 
 
 
-//	internal	graph	:	Internal	Tripple	Store	Class
+//	internal	graph	:	Internal	Triple	Store	Class
 //	______________________________________________________________________________________________________
-//	InternalTrippleStore	---------------------------------------------------------------------------------
+//	InternalTripleStore	---------------------------------------------------------------------------------
 //	______________________________________________________________________________________________________
-var	InternalTrippleStore	=	function(){
+var	InternalTripleStore	=	function(){
 	//	constructor
 	this.constructor.nbInstance	+=	1;
 	//	private	----------
@@ -157,7 +157,7 @@ var	InternalTrippleStore	=	function(){
 			}
 	;
 	//	private	methods
-	function	_addTrippleToIndex(	index,	a,	b,	c	)	{
+	function	_addTripleToIndex(	index,	a,	b,	c	)	{
 		var	bSuccess	=	false;
 		try	{
 			if	(	!index.hasKey(	a	)	)	{
@@ -176,7 +176,7 @@ var	InternalTrippleStore	=	function(){
 			return	_internal_statsUpdate_afterOp(	bSuccess	);
 		}
 	}
-	function	_removeTrippleFromIndex(	index,	a,	b,	c	)	{
+	function	_removeTripleFromIndex(	index,	a,	b,	c	)	{
 		var	bSuccess	=	false;
 		try	{
 			var	idToDel		=	index[	a	][	b	].indexOf(	c	);
@@ -195,7 +195,7 @@ var	InternalTrippleStore	=	function(){
 				delete	index[	a	];
 				bSuccess	=	true;
 			}
-		}	catch	(	unknownTripple	)	{
+		}	catch	(	unknownTriple	)	{
 			bSuccess	=	false;
 		}	finally	{
 			return	_internal_statsUpdate_afterOp(	bSuccess	);
@@ -203,31 +203,31 @@ var	InternalTrippleStore	=	function(){
 	}
 	//	privileged	----------
 	//	privileged	methods
-	//	privileged	tripple	combination
-	this.getTripplesMatching	=	function(	t	)	{
-		var	tripples	=	[];
+	//	privileged	triple	combination
+	this.getTriplesMatching	=	function(	t	)	{
+		var	triples	=	[];
 		try	{
 			//	wildcard	_	implementation	:	any	unknown/falsy/unset	t	attribute
 			if	(	!!t.s	)	{
 				if	(	!!t.p	)	{
 					if	(	!!t.o	)	{	//	(	s,	p,	o	)	->	nothing	or	exactly	one	match
 						if	(	_spo[	t.s	][	t.p	].hasValue(	t.o	)	)	{
-									tripples.push(	new	Tripple(	t.s	,	t.p	,	t.o	)	);	//	match
+									triples.push(	new	Triple(	t.s	,	t.p	,	t.o	)	);	//	match
 						}
 					}	else	{	//	(	s,	p,	_	)
 						_spo[	t.s	][	t.p	].forEach(	function(	o_	)	{
-									tripples.push(	new	Tripple(	t.s	,	t.p	,	o_	)	);	//	match
+									triples.push(	new	Triple(	t.s	,	t.p	,	o_	)	);	//	match
 						}	);
 					}
 				}	else	{
 					if	(	!!t.o	)	{	//	(	s,	_,	o	)
 						_osp[	t.o	][	t.s	].forEach(	function(	p_	)	{
-									tripples.push(	new	Tripple(	t.s	,	p_	,	t.o	)	);	//	match
+									triples.push(	new	Triple(	t.s	,	p_	,	t.o	)	);	//	match
 						}	);
 					}	else	{	//	(	s,	_,	_	)
 						_spo[	t.s	].forEach(	function(	O_,	p_	)	{
 							O_.forEach(	function(	o_	)	{
-									tripples.push(	new	Tripple(	t.s	,	p_	,	o_	)	);	//	match
+									triples.push(	new	Triple(	t.s	,	p_	,	o_	)	);	//	match
 							}	);
 						}	);
 					}
@@ -236,12 +236,12 @@ var	InternalTrippleStore	=	function(){
 				if	(	!!t.p	)	{
 					if	(	!!t.o	)	{	//	(	_,	p,	o	)
 						_pos[	t.p	][	t.o	].forEach(	function(	s_	)	{
-									tripples.push(	new	Tripple(	s_	,	t.p	,	t.o	)	);	//	match
+									triples.push(	new	Triple(	s_	,	t.p	,	t.o	)	);	//	match
 						}	);
 					}	else	{	//	(	_,	p,	_	)
 						_pos[	t.p	].forEach(	function(	S_,	o_	)	{
 							S_.forEach(	function(	s_	)	{
-									tripples.push(	new	Tripple(	s_	,	t.p	,	o_	)	);	//	match
+									triples.push(	new	Triple(	s_	,	t.p	,	o_	)	);	//	match
 							}	);
 						}	);
 					}
@@ -249,14 +249,14 @@ var	InternalTrippleStore	=	function(){
 					if	(	!!t.o	)	{	//	(	_,	_,	o	)
 						_osp[	t.o	].forEach(	function(	P_,	s_	)	{
 							P_.forEach(	function(	p_	)	{
-									tripples.push(	new	Tripple(	s_	,	p_	,	t.o	)	);	//	match
+									triples.push(	new	Triple(	s_	,	p_	,	t.o	)	);	//	match
 							}	);
 						}	);
 					}	else	{//	(	_,	_,	_	)	->	nothing	or	everything	match
 						_spo.forEach(	function(	P_,s_	)	{
 							P_.forEach(	function(	O_,p_	)	{
 								O_.forEach(	function(	o_	)	{
-									tripples.push(	new	Tripple(	s_	,	p_	,	o_	)	);	//	match
+									triples.push(	new	Triple(	s_	,	p_	,	o_	)	);	//	match
 								}	);
 							}	);
 						}	);
@@ -265,29 +265,29 @@ var	InternalTrippleStore	=	function(){
 			}
 		}	catch	(	nothingLikeThatInIndex	)	{
 		}	finally	{
-			//	case	1	:	tripples.length	===	0	(if	"no	match")	;
-			//	case	2	:	tripples.length	===	1	(if	"exact	match!")	;
-			//	case	3	:	tripples.length	>	1	(if	"multiple	match")
-			return	tripples;
+			//	case	1	:	triples.length	===	0	(if	"no	match")	;
+			//	case	2	:	triples.length	===	1	(if	"exact	match!")	;
+			//	case	3	:	triples.length	>	1	(if	"multiple	match")
+			return	triples;
 		}
 	};
-	//	explicit	shorcut	to	getTripplesMatching's	branch	for	(	any	subject,	any	predicate,	any	object	)
-	//	returns	all	known	tripples	of	this	store	!
-	this.getAllTripples	=	function()	{
-		var	tripples	=	[];
+	//	explicit	shorcut	to	getTriplesMatching's	branch	for	(	any	subject,	any	predicate,	any	object	)
+	//	returns	all	known	triples	of	this	store	!
+	this.getAllTriples	=	function()	{
+		var	triples	=	[];
 		_spo.forEach(	function(	P_,s_	)	{
 			P_.forEach(	function(	O_,p_	)	{
 				O_.forEach(	function(	o_	)	{
-					tripples.push(	new	Tripple(	s_,	p_,	o_	)	);	//	match
+					triples.push(	new	Triple(	s_,	p_,	o_	)	);	//	match
 				}	);
 			}	);
 		}	);
-		return	tripples;
+		return	triples;
 	};
-	//	>>>>>	based	on	this.getTripplesMatching's	implementation	<<<<<
-	//	just	counts	the	number	of	tripples	matching	the	input
-	this.countTripplesMatching	=	function(	t	)	{
-		var	n	=	0;//	no	matching	tripple	in	store	by	default
+	//	>>>>>	based	on	this.getTriplesMatching's	implementation	<<<<<
+	//	just	counts	the	number	of	triples	matching	the	input
+	this.countTriplesMatching	=	function(	t	)	{
+		var	n	=	0;//	no	matching	triple	in	store	by	default
 		try	{
 			if	(	!!t.s	)	{
 				if	(	!!t.p	)	{
@@ -349,30 +349,30 @@ var	InternalTrippleStore	=	function(){
 		}
 	};
 	//	privileged	add
-	this.addTripple	=	function(	t	)	{
+	this.addTriple	=	function(	t	)	{
 		return	(
 			(
-				_addTrippleToIndex(	_spo,	t.s,	t.p,	t.o	)
+				_addTripleToIndex(	_spo,	t.s,	t.p,	t.o	)
 			)	&&	(
-				_addTrippleToIndex(	_pos,	t.p,	t.o,	t.s	)
+				_addTripleToIndex(	_pos,	t.p,	t.o,	t.s	)
 			)	&&	(
-				_addTrippleToIndex(	_osp,	t.o,	t.s,	t.p	)
+				_addTripleToIndex(	_osp,	t.o,	t.s,	t.p	)
 			)
 		);
 	};
 	//	privileged	remove
-	this.removeTripple	=	function(	t	)	{
+	this.removeTriple	=	function(	t	)	{
 		var	failures	=	[];
-		this.getTripplesMatching(	t	).forEach(
+		this.getTriplesMatching(	t	).forEach(
 			function(	t_	)	{
 				if	(
 					!(
 						(
-							_removeTrippleFromIndex(	_spo,	t_.s,	t_.p,	t_.o	)
+							_removeTripleFromIndex(	_spo,	t_.s,	t_.p,	t_.o	)
 						)	&&	(
-							_removeTrippleFromIndex(	_pos,	t_.p,	t_.o,	t_.s	)
+							_removeTripleFromIndex(	_pos,	t_.p,	t_.o,	t_.s	)
 						)	&&	(
-							_removeTrippleFromIndex(	_osp,	t_.o,	t_.s,	t_.p	)
+							_removeTripleFromIndex(	_osp,	t_.o,	t_.s,	t_.p	)
 						)
 					)
 				)	{
@@ -390,35 +390,35 @@ var	InternalTrippleStore	=	function(){
 //	prototype	----------
 //	prototype	attr
 //	public	static	----------
-InternalTrippleStore.nbInstance	=	0;
+InternalTripleStore.nbInstance	=	0;
 //	//	tests
 //	function	testbutton1()	{
 //		var
-//			store	=	new	InternalTrippleStore(),
-//			testTripples	=	new	Array(
-//				new	Tripple(	':Benabar'	,':job',':Singer'	),
-//				new	Tripple(	':Lorie'		,':job',':Singer'	),
-//				new	Tripple(	':Benabar'	,':sex',':Male'		),
-//				new	Tripple(	':Lorie'		,':sex',':Female'	)
+//			store	=	new	InternalTripleStore(),
+//			testTriples	=	new	Array(
+//				new	Triple(	':Benabar'	,':job',':Singer'	),
+//				new	Triple(	':Lorie'		,':job',':Singer'	),
+//				new	Triple(	':Benabar'	,':sex',':Male'		),
+//				new	Triple(	':Lorie'		,':sex',':Female'	)
 //			),
-//			whoHasJobSinger	=	new	Tripple(	false,':job',':Singer'	)
+//			whoHasJobSinger	=	new	Triple(	false,':job',':Singer'	)
 //		;
-//		testTripples.forEach(
+//		testTriples.forEach(
 //			function(	t	)	{
-//				if	(	!store.addTripple(	t	)	)	{alert(	t	+	'	not	added,try	again	later'	);}
+//				if	(	!store.addTriple(	t	)	)	{alert(	t	+	'	not	added,try	again	later'	);}
 //			}
 //		);
 //		alert(
-//			'Number	of	tripples	matching	whoHasJobSinger:	'	+	"\n"	+
-//			store.countTripplesMatching(	whoHasJobSinger	)
+//			'Number	of	triples	matching	whoHasJobSinger:	'	+	"\n"	+
+//			store.countTriplesMatching(	whoHasJobSinger	)
 //		);
 //		alert(
-//			'Tripples	matching	whoHasJobSinger:	'	+	"\n"	+
-//			store.getTripplesMatching(	whoHasJobSinger	).join(	"\n"	)
+//			'Triples	matching	whoHasJobSinger:	'	+	"\n"	+
+//			store.getTriplesMatching(	whoHasJobSinger	).join(	"\n"	)
 //		);
 //	}
 //	_______________________________________________________________________________________________________
-//	/InternalTrippleStore	---------------------------------------------------------------------------------
+//	/InternalTripleStore	---------------------------------------------------------------------------------
 //	_______________________________________________________________________________________________________
 
 
@@ -444,8 +444,8 @@ knownPredicates[	'geo'			][	'latitude'	][	'wgs84'			]	=	[	'http://www.w3.org/200
 
 
 
-module.exports.Tripple	=	Tripple;//@grep	for_mocha
+module.exports.Triple	=	Triple;//@grep	for_mocha
 module.exports.Mapping	=	Mapping;//@grep	for_mocha
-module.exports.InternalTrippleStore	=	InternalTrippleStore;//@grep	for_mocha
+module.exports.InternalTripleStore	=	InternalTripleStore;//@grep	for_mocha
 module.exports.knownPredicates	=	knownPredicates;//@grep	for_mocha
 module.exports.suggestionsFor	=	suggestionsFor;//@grep	for_mocha
