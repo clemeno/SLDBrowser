@@ -63,6 +63,7 @@ Will locally install:
 - ◊ **Uglify**
 
 [![Dependency Status](https://gemnasium.com/clemeno/SLDBrowser.svg)](https://gemnasium.com/clemeno/SLDBrowser#development-dependencies)
+
 Command **$** `npm update` will update your local dependancies after a devDependancies update.
 
 --
@@ -77,6 +78,8 @@ Will perform all **Grunt** *tasks*:
  3. ◊ concat
  4. ◊ clean
  5. ◊ minify
+
+[![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/) [![Build Status](https://travis-ci.org/clemeno/SLDBrowser.svg?branch=dev)](https://travis-ci.org/clemeno/SLDBrowser)
 
 --
 
