@@ -62,6 +62,9 @@ Will locally install:
 - ◊ **Grep**
 - ◊ **Uglify**
 
+[![Dependency Status](https://gemnasium.com/clemeno/SLDBrowser.svg)](https://gemnasium.com/clemeno/SLDBrowser#development-dependencies)
+Command **$** `npm update` will update your local dependancies after a devDependancies update.
+
 --
 
 ####2.3 **Grunt** build
