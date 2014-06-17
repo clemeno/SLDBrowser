@@ -1,4 +1,4 @@
-/*! SLDBrowser : Semantic Linked Data Browser - v0.1.0 - 2014-06-16
+/*! SLDBrowser : Semantic Linked Data Browser - v0.1.0 - 2014-06-17
 * http://pirmil.eu
 * Copyright (c) 2014 Clément Ménoret ;
  Licensed SLDBrowser : Semantic Linked Data Browser
