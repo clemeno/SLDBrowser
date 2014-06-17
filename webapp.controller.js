@@ -1399,7 +1399,7 @@ $(	hashtagworkspaceid	).resizable(
 		,	cancel		:	'.selectable'
 	}
 );
-$(	'#defaultentryuri'	).focus().select();	//	default initial	focus
+// $(	'#defaultentryuri'	).focus().select();	//	default initial	focus
 //	user	events	listeners
 $(	'#defaultendpoint'	).keyup(	function(	e	) {
 	if(	e.keyCode == 13	) {	e.preventDefault();	startbrowsing_click();	}
