@@ -489,7 +489,7 @@ function	seeobjectshere(	this_element,	objectidstr,	predicateuri,	predicate_numb
 						l	+=	1;
 					}
 				}
-				//	detect	visualisation	from	known	triples	and	this	new	information
+				//	detect	visualization	from	known	triples	and	this	new	information
 				//	then,	T	must	ensure	that:	∀	Triple	t	=	(	t.s,	t.p,	t.o	),	t	∈	{	t_	Triple	|	matching(	T	)	}
 				if	(	!suggestionsFor.hasOwnProperty(	objectidstr	)	)	{
 					suggestionsFor[	objectidstr	]	=	[];
@@ -585,11 +585,11 @@ function	rebuilddefaultworkspace(	endpointstr,	uristr,	langstr	)	{
 		+				'<div>Internal representation '
 		+					'<button	id="testbutton1"	title="InternalTripleStore state"	'
 		+						'onclick="testbutton1()">Current knowledge</button>'
-		+					'<button	id="testbutton3"	title="Visualisation suggestions state"	'
+		+					'<button	id="testbutton3"	title="Visualization suggestions state"	'
 		+						'onclick="testbutton3()">Current suggestions</button>'
-		+					'<button	id="testbutton2"	title="Suggestions about predicates visualisation"	'
+		+					'<button	id="testbutton2"	title="Suggestions about predicates visualization"	'
 		+						'onclick="testbutton2()">Suggestions tree</button>'
-		+					'<button	id="testbutton4"	title="Edit suggestions about predicates visualisation"	'
+		+					'<button	id="testbutton4"	title="Edit suggestions about predicates visualization"	'
 		+						'onclick="testbutton4()">Edit suggestions</button>'
 		+				'</div>'
 		+		'</p>'
@@ -664,9 +664,9 @@ function	rebuilddefaultworkspace(	endpointstr,	uristr,	langstr	)	{
 		+		'</div>'
 		+		'<div>Layout '
 		+			'<button	id="rebuildlayout"	title="Reorganise layout"	onclick="rebuildlayout()">⌗</button>'
-		+			' &bull; Visualisation '
-		+			'<button	id="testbuttonM"	title="Map visualisation"	onclick="testbuttonM()">Map</button>'
-		+			'<button	id="testbuttonT"	title="Timeline visualisation"	onclick="testbuttonT()">Timeline</button>'
+		+			' &bull; Visualization '
+		+			'<button	id="testbuttonM"	title="Map visualization"	onclick="testbuttonM()">Map</button>'
+		+			'<button	id="testbuttonT"	title="Timeline visualization"	onclick="testbuttonT()">Timeline</button>'
 		+	'</div>'
 	).hide().appendTo(	'#webappcontrol'	).fadeIn(	1000	);
 	try	{
@@ -754,7 +754,7 @@ function	testbutton3()	{
 		str	+=	'Suggestions for '	+	object	+	' : { '	+	suggesions.join(	', '	)	+	' } '	+	"\n";
 	}	);
 	if	(	str	===	''	)	{
-		str	+=	'No visualisation suggesion. '
+		str	+=	'No visualization suggesion. '
 	}
 	alert(	str	);
 }
@@ -810,13 +810,13 @@ function	testbutton4()	{
 			+					')">Update</button>'
 			+			'</span>'
 			+		'</div>'
-			+		'<div	class="section	detectionvisualisationeditor">'
-			+			'<h3>Detection-visualisation matching editor</h3>'
+			+		'<div	class="section	detectionvisualizationeditor">'
+			+			'<h3>Detection-visualization matching editor</h3>'
 			+			'<div>'
 			+				'<table	id="detectionvisualisatontable'	+	nextsuggestionseditorid	+	'">'
 			+					'<tr>'
 			+						'<th	class="y"	>Detection</			th>'
-			+						'<th	class="z"	>Visualisation</	th>'
+			+						'<th	class="z"	>Visualization</	th>'
 			+						'<th	class="x"	></								th>'
 			+					'</tr>'
 			+					'<tr>	<td	>geo</				td>	<td	>map</						td>	<td	><button	disabled>X</button></	td>	</tr>'
@@ -826,7 +826,7 @@ function	testbutton4()	{
 			+			'<span	class="interaction">'
 			+				'<select	id="detectionselector'	+	nextsuggestionseditorid	+	'">'
 			+				'</select>'
-			+				'<select	id="visualisationselector'	+	nextsuggestionseditorid	+	'">'
+			+				'<select	id="visualizationselector'	+	nextsuggestionseditorid	+	'">'
 			+					'<option	value="map"				>map</			option>'
 			+					'<option	value="timeline"	>timeline</	option>'
 			+				'</select>'
@@ -998,7 +998,7 @@ function	testbuttonM()	{
 		'<div	class="item	map"	id="mapitem'	+	nextmapid	+	'">'
 		+		'<button	onclick="removeitem('	+	"'"	+	'mapitem'	+	nextmapid	+	"'"	+	')">X</button>'
 		+		'<button	onclick="nodetogglecontent(this,'	+	"'"	+	'mapitem'	+	nextmapid	+	"'"	+	')">-</button>'
-		+		'	Visualisation:	map	|	<span	class="timestamp">'
+		+		'	Visualization:	map	|	<span	class="timestamp">'
 		+			(new	Date()).toLocaleDateString()	+	'&nbsp;'	+	(new	Date()).toLocaleTimeString()
 		+		'</span>'
 		+		'<div	class="canevas	hideable"	id="map'	+	nextmapid	+	'"></div>'
@@ -1217,7 +1217,7 @@ function	testbuttonT()	{
 		'<div	class="item	timeline"	id="timelineitem'	+	nexttimelineid	+	'">'
 		+		'<button	onclick="removeitem('	+	"'"	+	'timelineitem'	+	nexttimelineid	+	"'"	+	')">X</button>'
 		+		'<button	onclick="nodetogglecontent(this,'	+	"'"	+	'timelineitem'	+	nexttimelineid	+	"'"	+	')">-</button>'
-		+		'Visualisation:	timeline	|	<span	class="timestamp">'
+		+		'Visualization:	timeline	|	<span	class="timestamp">'
 		+			(new	Date()).toLocaleDateString()	+	'&nbsp;'	+	(new	Date()).toLocaleTimeString()
 		+		'</span>'
 		+		'<div	class="canevas	hideable	timelineContainer"	id="timeline'	+	nexttimelineid	+	'"></div>'
@@ -1263,7 +1263,7 @@ function	testbuttonT()	{
 					}	);
 				}	);
 			}	);
-			//	build	timeline	visualisation
+			//	build	timeline	visualization
 			//	alert(	triples_birthdate	);
 			//	//	sort	triples	by	date
 			//	triples_birthdate.forEach(	function(	triples,	format	)	{
