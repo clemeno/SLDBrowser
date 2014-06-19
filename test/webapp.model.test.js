@@ -432,9 +432,31 @@ describe(	'testing webapp.model.js : Triple, Mapping, InternalTripleStore ',	fun
 				ITS.addTriple(	t4	);
 				ITS.addTriple(	t5	);
 				ITS.addTriple(	t6	);
-				assert.equal(	ITS.getTriplesMatching(	t	)[	0	].s,	t.s	);
-				assert.equal(	ITS.getTriplesMatching(	t	)[	0	].p,	t.p	);
-				assert.equal(	ITS.getTriplesMatching(	t	)[	0	].o,	t.o	);
+				assert.equal(	ITS.getTriplesMatching(	t	).length	,	1		);
+				assert.equal(	ITS.getTriplesMatching(	t	)[	0	].s	,	t.s	);
+				assert.equal(	ITS.getTriplesMatching(	t	)[	0	].p	,	t.p	);
+				assert.equal(	ITS.getTriplesMatching(	t	)[	0	].o	,	t.o	);
+			}	);
+			it(	'should return no Triple at all because no triple are supposed to match the input',	function()	{
+				var	s		=	'a'
+				,		p		=	'b'
+				,		o		=	'c'
+				,		t		=	new	model.Triple(	s		,	p		,	o		)
+				,		t1	=	new	model.Triple(	'u'	,	'v'	,	'w'	)
+				,		t2	=	new	model.Triple(	'u'	,	'v'	,	'z'	)
+				,		t3	=	new	model.Triple(	'u'	,	'y'	,	'z'	)
+				,		t4	=	new	model.Triple(	'x'	,	'y'	,	'z'	)
+				,		t5	=	new	model.Triple(	'x'	,	'v'	,	'z'	)
+				,		t6	=	new	model.Triple(	'x'	,	'v'	,	'z'	)
+				,		ITS	=	new	model.InternalTripleStore()
+				;
+				ITS.addTriple(	t2	);
+				ITS.addTriple(	t3	);
+				ITS.addTriple(	t1	);
+				ITS.addTriple(	t4	);
+				ITS.addTriple(	t5	);
+				ITS.addTriple(	t6	);
+				assert.equal(	ITS.getTriplesMatching(	t	).length,	0	);
 			}	);
 		}	);
 	}	);
