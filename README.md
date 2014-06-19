@@ -1,6 +1,6 @@
 #SLDBrowser &nbsp; [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/) [![Build Status](https://travis-ci.org/clemeno/SLDBrowser.svg?branch=dev)](https://travis-ci.org/clemeno/SLDBrowser) [![Dependency Status](https://gemnasium.com/clemeno/SLDBrowser.svg)](https://gemnasium.com/clemeno/SLDBrowser#development-dependencies)
 
-**Keywords:** `Semantic Web` `Linked Data` `browser` `exploration` `data visualisation` `suggestion` `crowdsourcing`
+**Keywords:** `Semantic Web` `Linked Data` `browser` `exploration` `data visualization` `suggestion` `crowdsourcing`
 
 --
 
@@ -21,8 +21,8 @@ Semantic Linked Data Browser, a semantic web browser with
 - ☆ Dynamic *SPARQL endpoint* (data-source) selection
 - ☆ Language *facet* (more *facets* later)
 - ☆ *Knowledge* discovery, recording and selection from the global uncoordinated distributed graph
-- ☆ Automatic (and later: crowdsourced) data visualisation *suggestions*
-- ☆ *Visualisation* map, timeline (more *visualisations* later)
+- ☆ Automatic (and later: crowdsourced) data visualization *suggestions*
+- ☆ *Visualization* map, timeline (more *visualizations* later)
 
 \[ [Try it online (dev)](http://pirmil.eu/) \]
 
