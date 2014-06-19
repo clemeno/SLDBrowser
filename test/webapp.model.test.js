@@ -419,6 +419,7 @@ describe(	'testing webapp.model.js : Triple, Mapping, InternalTripleStore ',	fun
 				,		p		=	'b'
 				,		o		=	'c'
 				,		t		=	new	model.Triple(	s		,	p		,	o		)
+				,		t1	=	new	model.Triple(	s		,	p		,	o		)
 				,		t2	=	new	model.Triple(	s		,	p		,	'z'	)
 				,		t3	=	new	model.Triple(	s		,	'y'	,	'z'	)
 				,		t4	=	new	model.Triple(	'x'	,	'y'	,	'z'	)
@@ -428,7 +429,7 @@ describe(	'testing webapp.model.js : Triple, Mapping, InternalTripleStore ',	fun
 				;
 				ITS.addTriple(	t2	);
 				ITS.addTriple(	t3	);
-				ITS.addTriple(	t		);
+				ITS.addTriple(	t1	);
 				ITS.addTriple(	t4	);
 				ITS.addTriple(	t5	);
 				ITS.addTriple(	t6	);
@@ -447,7 +448,7 @@ describe(	'testing webapp.model.js : Triple, Mapping, InternalTripleStore ',	fun
 				,		t3	=	new	model.Triple(	'u'	,	'y'	,	'z'	)
 				,		t4	=	new	model.Triple(	'x'	,	'y'	,	'z'	)
 				,		t5	=	new	model.Triple(	'x'	,	'v'	,	'z'	)
-				,		t6	=	new	model.Triple(	'x'	,	'v'	,	'z'	)
+				,		t6	=	new	model.Triple(	'x'	,	'v'	,	'w'	)
 				,		ITS	=	new	model.InternalTripleStore()
 				;
 				ITS.addTriple(	t2	);
@@ -457,6 +458,159 @@ describe(	'testing webapp.model.js : Triple, Mapping, InternalTripleStore ',	fun
 				ITS.addTriple(	t5	);
 				ITS.addTriple(	t6	);
 				assert.equal(	ITS.getTriplesMatching(	t	).length,	0	);
+			}	);
+			it(	'should return all stored triples when input pattern is ( _ , _ , _ ), _ stands for "any" ',	function()	{
+				var	s		=	void 0
+				,		p		=	void 0
+				,		o		=	void 0
+				,		t		=	new	model.Triple(	s		,	p		,	o		)
+				,		t1	=	new	model.Triple(	s		,	p		,	o		)
+				,		t2	=	new	model.Triple(	s		,	p		,	'z'	)
+				,		t3	=	new	model.Triple(	s		,	'y'	,	'z'	)
+				,		t4	=	new	model.Triple(	'x'	,	'y'	,	'z'	)
+				,		t5	=	new	model.Triple(	'x'	,	p		,	'z'	)
+				,		t6	=	new	model.Triple(	'x'	,	p		,	o		)
+				,		ITS	=	new	model.InternalTripleStore()
+				;
+				ITS.addTriple(	t2	);
+				ITS.addTriple(	t3	);
+				ITS.addTriple(	t1	);
+				ITS.addTriple(	t4	);
+				ITS.addTriple(	t5	);
+				ITS.addTriple(	t6	);
+				assert.equal(	ITS.getTriplesMatching(	t	).length,	6	);
+			}	);
+			it(	'should return all triples where "a" is the subject when input pattern is ( "a" , _ , _ ), _ stands for "any" ',	function()	{
+				var	s		=	'a'
+				,		p		=	void 0
+				,		o		=	void 0
+				,		t		=	new	model.Triple(	s		,	p		,	o		)
+				,		t1	=	new	model.Triple(	s		,	p		,	o		)
+				,		t2	=	new	model.Triple(	s		,	p		,	'z'	)
+				,		t3	=	new	model.Triple(	s		,	'y'	,	'z'	)
+				,		t4	=	new	model.Triple(	'x'	,	'y'	,	'z'	)
+				,		t5	=	new	model.Triple(	'x'	,	p		,	'z'	)
+				,		t6	=	new	model.Triple(	'x'	,	p		,	o		)
+				,		ITS	=	new	model.InternalTripleStore()
+				;
+				ITS.addTriple(	t2	);
+				ITS.addTriple(	t3	);
+				ITS.addTriple(	t1	);
+				ITS.addTriple(	t4	);
+				ITS.addTriple(	t5	);
+				ITS.addTriple(	t6	);
+				assert.equal(	ITS.getTriplesMatching(	t	).length,	3	);
+				assert(	ITS.getTriplesMatching(	t	).every(	function(	t_	)	{	return	(	t.s	==	t_.s	)	}	)	);
+			}	);
+			it(	'should return all triples where "b" is the predicate when input pattern is ( _ , "b" , _ ), _ stands for "any" ',	function()	{
+				var	s		=	void 0
+				,		p		=	'b'
+				,		o		=	void 0
+				,		t		=	new	model.Triple(	s		,	p		,	o		)
+				,		t1	=	new	model.Triple(	s		,	p		,	o		)
+				,		t2	=	new	model.Triple(	s		,	p		,	'z'	)
+				,		t3	=	new	model.Triple(	s		,	'y'	,	'z'	)
+				,		t4	=	new	model.Triple(	'x'	,	'y'	,	'z'	)
+				,		t5	=	new	model.Triple(	'x'	,	p		,	'z'	)
+				,		t6	=	new	model.Triple(	'x'	,	p		,	o		)
+				,		ITS	=	new	model.InternalTripleStore()
+				;
+				ITS.addTriple(	t2	);
+				ITS.addTriple(	t3	);
+				ITS.addTriple(	t1	);
+				ITS.addTriple(	t4	);
+				ITS.addTriple(	t5	);
+				ITS.addTriple(	t6	);
+				assert.equal(	ITS.getTriplesMatching(	t	).length,	4	);
+				assert(	ITS.getTriplesMatching(	t	).every(	function(	t_	)	{	return	(	t.p	==	t_.p	)	}	)	);
+			}	);
+			it(	'should return all triples where "c" is the object when input pattern is ( _ , _ , "c" ), _ stands for "any" ',	function()	{
+				var	s		=	void 0
+				,		p		=	void 0
+				,		o		=	'c'
+				,		t		=	new	model.Triple(	s		,	p		,	o		)
+				,		t1	=	new	model.Triple(	s		,	p		,	o		)
+				,		t2	=	new	model.Triple(	s		,	p		,	'z'	)
+				,		t3	=	new	model.Triple(	s		,	'y'	,	'z'	)
+				,		t4	=	new	model.Triple(	'x'	,	'y'	,	'z'	)
+				,		t5	=	new	model.Triple(	'x'	,	p		,	'z'	)
+				,		t6	=	new	model.Triple(	'x'	,	p		,	o		)
+				,		ITS	=	new	model.InternalTripleStore()
+				;
+				ITS.addTriple(	t2	);
+				ITS.addTriple(	t3	);
+				ITS.addTriple(	t1	);
+				ITS.addTriple(	t4	);
+				ITS.addTriple(	t5	);
+				ITS.addTriple(	t6	);
+				assert.equal(	ITS.getTriplesMatching(	t	).length,	2	);
+				assert(	ITS.getTriplesMatching(	t	).every(	function(	t_	)	{	return	(	t.o	==	t_.o	)	}	)	);
+			}	);
+			it(	'should return all triples where "b", "c" are the predicate, object when input pattern is ( _ , "b" , "c" ), _ stands for "any" ',	function()	{
+				var	s		=	void 0
+				,		p		=	'b'
+				,		o		=	'c'
+				,		t		=	new	model.Triple(	s		,	p		,	o		)
+				,		t1	=	new	model.Triple(	s		,	p		,	o		)
+				,		t2	=	new	model.Triple(	s		,	p		,	'z'	)
+				,		t3	=	new	model.Triple(	s		,	'y'	,	'z'	)
+				,		t4	=	new	model.Triple(	'x'	,	'y'	,	'z'	)
+				,		t5	=	new	model.Triple(	'x'	,	p		,	'z'	)
+				,		t6	=	new	model.Triple(	'x'	,	p		,	o		)
+				,		ITS	=	new	model.InternalTripleStore()
+				;
+				ITS.addTriple(	t2	);
+				ITS.addTriple(	t3	);
+				ITS.addTriple(	t1	);
+				ITS.addTriple(	t4	);
+				ITS.addTriple(	t5	);
+				ITS.addTriple(	t6	);
+				assert.equal(	ITS.getTriplesMatching(	t	).length,	2	);
+				assert(	ITS.getTriplesMatching(	t	).every(	function(	t_	)	{	return	(	(	t.p	==	t_.p	)&&(	t.o	==	t_.o	)	)	}	)	);
+			}	);
+			it(	'should return all triples where "a", "c" are the subject, object when input pattern is ( "a" , _ , "c" ), _ stands for "any" ',	function()	{
+				var	s		=	'a'
+				,		p		=	void 0
+				,		o		=	'c'
+				,		t		=	new	model.Triple(	s		,	p		,	o		)
+				,		t1	=	new	model.Triple(	s		,	p		,	o		)
+				,		t2	=	new	model.Triple(	s		,	p		,	'z'	)
+				,		t3	=	new	model.Triple(	s		,	'y'	,	'z'	)
+				,		t4	=	new	model.Triple(	'x'	,	'y'	,	'z'	)
+				,		t5	=	new	model.Triple(	'x'	,	p		,	'z'	)
+				,		t6	=	new	model.Triple(	'x'	,	p		,	o		)
+				,		ITS	=	new	model.InternalTripleStore()
+				;
+				ITS.addTriple(	t2	);
+				ITS.addTriple(	t3	);
+				ITS.addTriple(	t1	);
+				ITS.addTriple(	t4	);
+				ITS.addTriple(	t5	);
+				ITS.addTriple(	t6	);
+				assert.equal(	ITS.getTriplesMatching(	t	).length,	1	);
+				assert(	ITS.getTriplesMatching(	t	).every(	function(	t_	)	{	return	(	(	t.s	==	t_.s	)&&(	t.o	==	t_.o	)	)	}	)	);
+			}	);
+			it(	'should return all triples where "a", "b" are the subject, predicate when input pattern is ( "a" , "b" , _ ), _ stands for "any" ',	function()	{
+				var	s		=	'a'
+				,		p		=	'b'
+				,		o		=	void 0
+				,		t		=	new	model.Triple(	s		,	p		,	o		)
+				,		t1	=	new	model.Triple(	s		,	p		,	o		)
+				,		t2	=	new	model.Triple(	s		,	p		,	'z'	)
+				,		t3	=	new	model.Triple(	s		,	'y'	,	'z'	)
+				,		t4	=	new	model.Triple(	'x'	,	'y'	,	'z'	)
+				,		t5	=	new	model.Triple(	'x'	,	p		,	'z'	)
+				,		t6	=	new	model.Triple(	'x'	,	p		,	o		)
+				,		ITS	=	new	model.InternalTripleStore()
+				;
+				ITS.addTriple(	t2	);
+				ITS.addTriple(	t3	);
+				ITS.addTriple(	t1	);
+				ITS.addTriple(	t4	);
+				ITS.addTriple(	t5	);
+				ITS.addTriple(	t6	);
+				assert.equal(	ITS.getTriplesMatching(	t	).length,	2	);
+				assert(	ITS.getTriplesMatching(	t	).every(	function(	t_	)	{	return	(	(	t.s	==	t_.s	)&&(	t.p	==	t_.p	)	)	}	)	);
 			}	);
 		}	);
 	}	);
