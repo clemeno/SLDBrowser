@@ -1,4 +1,4 @@
-/*! SLDBrowser : Semantic Linked Data Browser - v0.1.0 - 2014-06-19
+/*! SLDBrowser : Semantic Linked Data Browser - v0.1.0 - 2014-07-23
 * http://pirmil.eu
 * Copyright (c) 2014 Clément Ménoret ;
  Licensed SLDBrowser : Semantic Linked Data Browser
@@ -1296,13 +1296,14 @@ function	rebuilddefaultworkspace(	endpointstr,	uristr,	langstr	)	{
 		+			'<label	for="defaultentryuri"> &gt; </label>'
 		+			'<select	id="langselector">'
 		+				'<optgroup	label="Popular">'
-		+					'<option	value="en"	selected	>(en)	English	(default)</	option>'
-		+					'<option	value="ja"						>(ja)	日本語</							option>'
-		+					'<option	value="fr"						>(fr)	Français</					option>'
-		+					'<option	value="es"						>(es)	Español</						option>'
-		+					'<option	value="de"						>(de)	Deutsch</						option>'
-		+					'<option	value="it"						>(it)	Italiano</					option>'
-		+					'<option	value="zh"						>(zh)	中文</								option>'
+		+					'<option	value="en"	selected	>(en) English (default)</	option>'
+		+					'<option	value="ja"						>(ja) 日本語</							option>'
+		+					'<option	value="fr"						>(fr) Français</					option>'
+		+					'<option	value="es"						>(es) Español</						option>'
+		+					'<option	value="de"						>(de) Deutsch</						option>'
+		+					'<option	value="it"						>(it) Italiano</					option>'
+		+					'<option	value="nl"						>(nl) Nederlands</				option>'
+		+					'<option	value="zh"						>(zh) 中文</								option>'
 		+				'</optgroup>'
 		+				'<optgroup	label="(a-z) Sorted">'
 		+					'<option	value="az"			>(az) Azərbaycanca</				option>'
